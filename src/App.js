@@ -7,48 +7,63 @@ import LoginButtonContainer from './user/ui/loginbutton/LoginButtonContainer'
 import LogoutButtonContainer from './user/ui/logoutbutton/LogoutButtonContainer'
 
 // Styles
-import './css/oswald.css'
-import './css/open-sans.css'
-import './css/pure-min.css'
-import './App.css'
+
+import './css/bulma.css'
 
 class App extends Component {
   render() {
     const OnlyAuthLinks = VisibleOnlyAuth(() =>
-      <span>
-        <li className="pure-menu-item">
-          <Link to="/dashboard" className="pure-menu-link">Dashboard</Link>
-        </li>
-        <li className="pure-menu-item">
-          <Link to="/profile" className="pure-menu-link">Profile</Link>
-        </li>
-        <li className="pure-menu-item">
-          <Link to="/marketplace" className="pure-menu-link">Market</Link>
-        </li>
-        <LogoutButtonContainer />
-      </span>
+  
+      <div className="navbar-end">
+          <a className="navbar-item">
+            <Link to="/dashboard" className="navbar-item">Dashboard</Link>
+          </a>
+          <a className="navbar-item">
+            <Link to="/profile" cclassName="navbar-item">Profile</Link>
+          </a>
+          <a className="navbar-item">
+            <Link to="/marketplace" className="navbar-item">Market</Link>
+          </a>
+            <LogoutButtonContainer />
+        </div>
     )
 
     const OnlyGuestLinks = HiddenOnlyAuth(() =>
-      <span>
-        <li className="pure-menu-item">
-          <Link to="/signup" className="pure-menu-link">Sign Up</Link>
-        </li>
-        <LoginButtonContainer />
-      </span>
+
+      <div className="navbar-end">
+            <Link to="/signup" className="navbar-item">Sign Up</Link>
+            <LoginButtonContainer />
+        </div>
     )
 
     return (
       <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
-          <ul className="pure-menu-list navbar-right">
-            <OnlyGuestLinks />
-            <OnlyAuthLinks />
-          </ul>
-          <Link to="/" className="pure-menu-heading pure-menu-link">Truffle Box</Link>
+          <nav class="navbar is-white">
+          <div className="container">
+          <div id="navMenu" className="navbar-menu">
+            <div className="navbar-start">
+              <a className="navbar-item">
+                <Link className="navbar-item" to="/" >Escro Market</Link>
+              </a>
+            </div>
+            <OnlyAuthLinks/>
+            <OnlyGuestLinks/>
+            </div>
+          </div>
         </nav>
 
         {this.props.children}
+
+        <br/>
+        <footer class="footer">
+          <div className="container">
+            <div className="content has-text-centered">
+              <p>
+                <strong>EscroMarket</strong> made by <a href="https://robertsimoes.com">Robert Simoes</a>. ✌️
+              </p>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }
