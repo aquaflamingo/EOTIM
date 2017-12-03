@@ -1,13 +1,16 @@
-import { connect } from 'react-redux'
-import OfferContainer from './OfferContainer'
+import React, {Component} from 'react'
+
+import OfferContainer from '../offeritem/OfferContainer'
 
 
 const GridContainer = ({ offers, onClick }) => (
-    <ul>
-      {offers.map(todo => (
-        <OfferContainer {...offer} onClick={() => onClick(offer.address)} />
-      ))}
-    </ul>
+  <div className="grid-container">
+      <div className='offer-container'>
+        {offers.map(offer => (
+          <OfferContainer {...offer} onClick={() => onClick(offer.address)} />
+        ))}
+      </div>
+    </div>
   )
 
 

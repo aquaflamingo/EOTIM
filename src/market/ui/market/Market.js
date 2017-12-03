@@ -9,7 +9,7 @@ import {purchaseOffer} from '../offeritem/OfferActions'
 // that takes the mapDispatch to props and connects to GridContainer
 // Passing it the relevent details
 // Grid container than passes on clicks but dispatches happen at the marketplace container level
-
+// Example: https://redux.js.org/docs/basics/ExampleTodoList.html
 
 
 // const mapDispatchToProps = (dispatch) => {

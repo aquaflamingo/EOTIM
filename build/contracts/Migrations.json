@@ -64,8 +64,8 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x2c2b9c9a4a25e24b174f26114e8926a9f2128fe4",
-      "updated_at": 1512279218190
+      "address": "0x8cdaf0cd259887258bc13a92c0a6da92698644c0",
+      "updated_at": 1512330157518
     },
     "1512277446785": {
       "events": {},
@@ -75,5 +75,5 @@
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1512279218190
+  "updated_at": 1512330157518
 }

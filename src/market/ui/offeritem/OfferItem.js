@@ -1,9 +1,9 @@
 import React from 'react'
 
-const OfferItem = ({ offerName, description, parties, terms, onClick }) => {
+const OfferItem = ({ title, description, parties, terms, onClick }) => {
   return(
     <div className="offer-item">
-      <h3> {offerName} </h3>
+      <h3> {title} </h3>
       <h5> {description} </h5>
       <p> Parties: {parties} </p>
       <p> Terms: </p>
