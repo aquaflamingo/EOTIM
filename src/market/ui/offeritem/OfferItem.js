@@ -4,7 +4,7 @@ import React from 'react'
 function calculatePremium(value,terms) {
   return value*terms;
 }
-const OfferItem = ({ title, description, value, close, parties, price, terms, onClick }) => {
+const OfferItem = ({ title, description, value, issuer, price, terms, onClick }) => {
   return(
       <div className="offer-item">
           <nav className="level">
@@ -31,9 +31,8 @@ const OfferItem = ({ title, description, value, close, parties, price, terms, on
 
         <div className="columns">
           <div className="column is-9">
-            <p className="subtitle">{description} </p>
-            <p> Parties: {parties} </p>
-            
+            <p className="subtitle is-5">{description} </p>
+            <a href="#" style={{fontSize:'14px'}}>Issuer: {issuer} </a>
         </div>
         
         <div className="column is-3">

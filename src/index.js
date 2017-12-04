@@ -13,6 +13,7 @@ import Dashboard from './layouts/dashboard/Dashboard'
 import SignUp from './user/layouts/signup/SignUp'
 import Profile from './user/layouts/profile/Profile'
 import Marketplace from './market/layouts/market/Marketplace'
+import NewEscrow from './market/layouts/market/NewEscrow'
 
 // Redux Store
 import store from './store'
@@ -38,6 +39,7 @@ ReactDOM.render((
           <Route path="signup" component={UserIsNotAuthenticated(SignUp)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
           <Route path="marketplace" component={UserIsAuthenticated(Marketplace)} />
+          <Route path="marketplace/new" component={UserIsAuthenticated(NewEscrow)} />
         </Route>
       </Router>
     </Provider>

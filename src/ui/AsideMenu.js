@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 const AsideMenu = () => (
         
-        <aside class="menu">
+        <aside className="menu">
             <p className="menu-label">
             Announcements
             </p>

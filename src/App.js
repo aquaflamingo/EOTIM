@@ -20,7 +20,7 @@ class App extends Component {
             <Link to="/dashboard" className="navbar-item">Dashboard</Link>
           </a>
           <a className="navbar-item">
-            <Link to="/profile" cclassName="navbar-item">Profile</Link>
+            <Link to="/profile" className="navbar-item">Profile</Link>
           </a>
           <a className="navbar-item">
             <Link to="/marketplace" className="navbar-item">Market</Link>
