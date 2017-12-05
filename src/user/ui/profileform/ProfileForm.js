@@ -26,17 +26,20 @@ class ProfileForm extends Component {
 
   render() {
     return(
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit.bind(this)}>
-        <fieldset>
-          <label htmlFor="name">Name</label>
-          <input id="name" type="text" value={this.state.name} onChange={this.onInputChange.bind(this)} placeholder="Name" />
-          <span className="pure-form-message">This is a required field.</span>
+        <div className="container">
+            <div className="field">
+              <label className="label">User Name</label>
+              <div className="control">
+                <input className="input" id="name" type="text" value={this.state.name} onChange={this.onInputChange.bind(this)} placeholder="Name" />
+              </div>
+            </div>
 
-          <br />
-
-          <button type="submit" className="pure-button pure-button-primary">Update</button>
-        </fieldset>
-      </form>
+            <div className="field is-grouped">
+              <div className="control">
+                <button type="submit" className="button is-submit" onClick={this.handleSubmit.bind(this)}>Update</button>
+              </div>
+            </div>
+        </div>
     )
   }
 }
