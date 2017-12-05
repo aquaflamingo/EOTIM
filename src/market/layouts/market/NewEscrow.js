@@ -7,58 +7,72 @@ class NewEscrow extends Component {
   render() {
    
     return(
+      <section className="section">
+     
       <div className="container">
-        <div class="field">
-          <label class="label">Name</label>
-          <div class="control">
-            <input class="input" type="text" placeholder="Text input"/>
+      <h2 className="title">New Escrow Transaction </h2>
+      <p> Fill out the form below to create a new insurable escrow transaction </p>
+      <br/>
+        <div className="field">
+          <label className="label">Transaction Name</label>
+          <div className="control">
+            <input className="input" type="text" placeholder="Real estate deed transfer"/>
           </div>
         </div>
 
-        <div class="field">
-          <label class="label">Username</label>
-          <div class="control has-icons-left has-icons-right">
-            <input class="input is-success" type="text" placeholder="Text input" value="bulma"/>
-            <span class="icon is-small is-left">
-              <i class="fa fa-user"></i>
-            </span>
-            <span class="icon is-small is-right">
-              <i class="fa fa-check"></i>
-            </span>
-          </div>
-          <p class="help is-success">This username is available</p>
-        </div>
-
-        <div class="field">
-          <label class="label">Message</label>
-          <div class="control">
-            <textarea class="textarea" placeholder="Textarea"></textarea>
+        <div className="field">
+          <label className="label">Description</label>
+          <div className="control">
+            <textarea className="input" type="text" placeholder="Making deed transfer from Toronto to Texas"/>
           </div>
         </div>
 
-
-        <div class="field">
-          <div class="control">
-            <label class="radio">
-              <input type="radio" name="question"/>
-              Yes
-            </label>
-            <label class="radio">
-              <input type="radio" name="question"/>
-              No
-            </label>
+        <div className="field">
+          <label className="label">Escrow Value (ETH)</label>
+          <div className="control">
+            <input className="input" type="text" placeholder="1.01" />
           </div>
         </div>
 
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Submit</button>
+        <div className="field">
+        <label className="label">Loss Coverage (%)</label>
+        <div className="control">
+          <div className="select">
+            <select>
+              <option>10%</option>
+              <option>25%</option>
+              <option>50%</option>
+              <option>75%</option>
+              <option>100%</option>
+            </select>
           </div>
-          <div class="control">
-            <button class="button is-text">Cancel</button>
+        </div>
+      </div>
+
+      <div className="field">
+      <label className="label">Payable Premium (%)</label>
+      <div className="control">
+        <div className="select">
+          <select>
+            <option>1%</option>
+            <option>2%</option>
+            <option>5%</option>
+            <option>10%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+        <div className="field is-grouped">
+          <div className="control">
+            <button className="button is-link">Submit</button>
+          </div>
+          <div className="control">
+            <button className="button is-text">Cancel</button>
           </div>
         </div>
     </div>
+    </section>
     )
   }
 }
