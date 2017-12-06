@@ -2,23 +2,20 @@ pragma solidity ^0.4.2;
 
 import './zeppelin/lifecycle/Killable.sol';
 import './zeppelin/ownership/Ownable.sol';
+import './Insurable.sol';
 
-
-contract Escrow is Ownable {
+contract STransaction is Ownable, Insurable {
     address public owner;
     address public beneficiary_address;
-    address public parent;
-    address public insurer;
 
-    uint public escrow_amount;
-    uint public insurance_coverage;
+    uint public transaction_value;
     uint public max_coverage;
     uint public premium;
     
-    EscrowStatus public status = EscrowStatus.Pending;
+    TransactionStatus public status = TransactionStatus.Pending;
     Insurance public insured = Insurance.NonInsured;
 
-    enum EscrowStatus { Paid, Pending, Complete, Cancelled, Partial }
+    enum TransactionStatus { Paid, Pending, Complete, Cancelled, Partial }
     enum Insurance { Insured, NonInsured }
 
     event Paid(string _msg, uint bal);
@@ -31,11 +28,10 @@ contract Escrow is Ownable {
     event Insured(string _msg);
     event InsurancePayout(string _msg, uint payout);
 
-    function EscrowContract(uint _amount, address _recipient, address _parent) {
+    function STransactionContract(uint _amount, address _recipient, address _parent) {
         require(_parent!=0x0 && _amount>0 && _recipient!=0x0);
         owner = msg.sender;
-        parent = _parent;
-        escrow_amount = _amount;
+        transaction_value = _amount;
         beneficiary_address = _recipient;
 
     }
@@ -44,25 +40,17 @@ contract Escrow is Ownable {
         return this.balance;
     }
 
-    function fundEscrow() payable {
-        require(this.balance<=escrow_amount);
-        if (this.balance==escrow_amount) {
-            Paid("Escrow paid..",this.balance);
-            status = EscrowStatus.Paid;
+    function fundTransaction() payable {
+        require(this.balance<=transaction_value);
+        if (this.balance==transaction_value) {
+            Paid("Transaction paid..",this.balance);
+            status = TransactionStatus.Paid;
         } else {
             PartialPayment("Partial Payment..", this.balance);
         }
     }
 
-    function insure() payable {
-        // Cannot over insure an escrow contract beyond coverage set
-        // require(this.insurance_coverage<=msg.value);
 
-        insurer = msg.sender;
-        insured = Insurance.Insured;
-        insurance_coverage = msg.value;
-        Insured("Escrow insured");
-    }
 
     // Set to only owner 
     function setPremium(uint _premium) onlyOwner {

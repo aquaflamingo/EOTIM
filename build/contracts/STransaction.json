@@ -1,0 +1,455 @@
+{
+  "contract_name": "STransaction",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_premium",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPremium",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "status",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "insure",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "locked_coverage",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "beneficiary_address",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_amount",
+          "type": "uint256"
+        },
+        {
+          "name": "_recipient",
+          "type": "address"
+        },
+        {
+          "name": "_parent",
+          "type": "address"
+        }
+      ],
+      "name": "STransactionContract",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "transaction_value",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_coverage",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxInsuranceCoverage",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "fundTransaction",
+      "outputs": [],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "insurer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "premium",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "insured",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "max_coverage",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "bal",
+          "type": "uint256"
+        }
+      ],
+      "name": "Paid",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "PaymentReceived",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "bal",
+          "type": "uint256"
+        }
+      ],
+      "name": "PartialPayment",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        }
+      ],
+      "name": "Completed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        }
+      ],
+      "name": "Cancelled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        }
+      ],
+      "name": "OverPay",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        }
+      ],
+      "name": "Insured",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "payout",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsurancePayout",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x6060604052600880546001919060ff191682805b0217905550600880546001919061ff001916610100835b02179055505b5b60008054600160a060020a03191633600160a060020a03161790555b5b5b6106468061005e6000396000f300606060405236156100e35763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166310ec214f81146100e857806312065fe014610100578063200d2ed2146101255780633c3ce17d1461015c5780633c40b46214610166578063787ea7f51461018b57806382d8e92b146101ba5780638da5cb5b146101e4578063a4da04e414610213578063b28ba0b014610238578063d0a141ad14610250578063dbc837c51461025a578063e0a73a9314610289578063eebb1363146102ae578063eec8cb92146102e5578063f2fde38b1461030a575b600080fd5b34156100f357600080fd5b6100fe60043561032b565b005b341561010b57600080fd5b61011361035a565b60405190815260200160405180910390f35b341561013057600080fd5b610138610369565b6040518082600481111561014857fe5b60ff16815260200191505060405180910390f35b6100fe610372565b005b341561017157600080fd5b610113610391565b60405190815260200160405180910390f35b341561019657600080fd5b61019e610397565b604051600160a060020a03909116815260200160405180910390f35b34156101c557600080fd5b6100fe600435600160a060020a03602435811690604435166103a6565b005b34156101ef57600080fd5b61019e610425565b604051600160a060020a03909116815260200160405180910390f35b341561021e57600080fd5b610113610434565b60405190815260200160405180910390f35b341561024357600080fd5b6100fe60043561043a565b005b6100fe610469565b005b341561026557600080fd5b61019e61059c565b604051600160a060020a03909116815260200160405180910390f35b341561029457600080fd5b6101136105ab565b60405190815260200160405180910390f35b34156102b957600080fd5b6102c16105b1565b6040518082600181111561014857fe5b60ff16815260200191505060405180910390f35b34156102f057600080fd5b6101136105bf565b60405190815260200160405180910390f35b341561031557600080fd5b6100fe600160a060020a03600435166105c5565b005b60005433600160a060020a0390811691161415610355576000811161034f57600080fd5b60078190555b5b5b50565b600160a060020a033016315b90565b60085460ff1681565b60015433600160a060020a039081169116141561038e57346002555b5b565b60025481565b600454600160a060020a031681565b600160a060020a038116158015906103be5750600083115b80156103d25750600160a060020a03821615155b15156103dd57600080fd5b60038054600160a060020a0333811673ffffffffffffffffffffffffffffffffffffffff1992831617909255600585905560048054928516929091169190911790555b505050565b600354600160a060020a031681565b60055481565b60005433600160a060020a0390811691161415610355576000811161045e57600080fd5b60068190555b5b5b50565b600554600160a060020a03301631111561048257600080fd5b60055430600160a060020a0316311415610524577f66885ebda71e7c88d436b829702409fdac814bd578324657df72ae5b4f244ec230600160a060020a031631604051602081019190915260408082526012818301527f5472616e73616374696f6e20706169642e2e000000000000000000000000000060608301526080909101905180910390a1600880546000919060ff19166001835b021790555061038e565b7f2618a6a73b6175fb738d30717c8e02bb6e78f6edf603f997e3e99d343c69778530600160a060020a031631604051602081019190915260408082526011818301527f5061727469616c205061796d656e742e2e00000000000000000000000000000060608301526080909101905180910390a15b5b565b600154600160a060020a031681565b60075481565b600854610100900460ff1681565b60065481565b60015433600160a060020a039081169116141561035557600160a060020a03811615610355576001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b5b5b505600a165627a7a723058201df4c28f084c035a9f5220986dac3c7b2218aa782025f404f953b82b65978ba20029",
+  "networks": {
+    "5777": {
+      "links": {},
+      "events": {
+        "0x66885ebda71e7c88d436b829702409fdac814bd578324657df72ae5b4f244ec2": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "bal",
+              "type": "uint256"
+            }
+          ],
+          "name": "Paid",
+          "type": "event"
+        },
+        "0xd78903455e3bfe57a34c1b193ad1751a51ca1b1075f0562c334e3ea6a2814889": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "PaymentReceived",
+          "type": "event"
+        },
+        "0x2618a6a73b6175fb738d30717c8e02bb6e78f6edf603f997e3e99d343c697785": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "bal",
+              "type": "uint256"
+            }
+          ],
+          "name": "PartialPayment",
+          "type": "event"
+        },
+        "0xa554c5ece40ddc458252a21d6268e4a67f51cbe8e2f00c818417161c854a817f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            }
+          ],
+          "name": "Completed",
+          "type": "event"
+        },
+        "0x2ac842f90dab3279148f7e55ac91d911f75c1c300a202a5250e05400b15fa156": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            }
+          ],
+          "name": "Cancelled",
+          "type": "event"
+        },
+        "0x25fbf919d9e78955833d152c745ffdb85b9342457dae4fbf83bc9803f8c06f7d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            }
+          ],
+          "name": "OverPay",
+          "type": "event"
+        },
+        "0x27d90661c577c44f5db5263d05ab908cc5f00baa0e0dee5d3ecb8cdda32f7410": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            }
+          ],
+          "name": "Insured",
+          "type": "event"
+        },
+        "0x139794ea4da04ef67863aff10e0daa4cdacd8bf19379d52b0609e8dfa1de2d8f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "payout",
+              "type": "uint256"
+            }
+          ],
+          "name": "InsurancePayout",
+          "type": "event"
+        }
+      },
+      "updated_at": 1512566662607,
+      "address": "0x2eca6fcfef74e2c8d03fbaf0ff6712314c9bd58b"
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1512566662607
+}
