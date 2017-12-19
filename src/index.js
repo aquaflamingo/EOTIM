@@ -36,12 +36,18 @@ ReactDOM.render((
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
-          <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
+          {/* <Route path="dashboard" component={UserIsAuthenticated(Dashboard)} />
           <Route path="signup" component={UserIsNotAuthenticated(SignUp)} />
           <Route path="profile" component={UserIsAuthenticated(Profile)} />
           <Route path="marketplace" component={UserIsAuthenticated(Marketplace)} />
           <Route path="debug" component={Debug} />
-          <Route path="marketplace/new" component={UserIsAuthenticated(NewEscrow)} />
+          <Route path="marketplace/new" component={UserIsAuthenticated(NewEscrow)} /> */}
+          <Route path="dashboard" component={Dashboard} />
+          <Route path="signup" component={SignUp} />
+          <Route path="profile" component={Profile} />
+          <Route path="marketplace" component={Marketplace} />
+          <Route path="debug" component={Debug} />
+          <Route path="marketplace/new" component={NewEscrow} />
         </Route>
       </Router>
     </Provider>

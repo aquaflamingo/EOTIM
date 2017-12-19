@@ -4,7 +4,7 @@ import './zeppelin/lifecycle/Killable.sol';
 import './zeppelin/ownership/Ownable.sol';
 import './Insurable.sol';
 
-contract STransaction is Ownable, Insurable {
+contract Transaction is Ownable, Insurable {
     address public owner;
     address public beneficiary_address;
 
@@ -28,7 +28,7 @@ contract STransaction is Ownable, Insurable {
     event Insured(string _msg);
     event InsurancePayout(string _msg, uint payout);
 
-    function STransactionContract(uint _amount, address _recipient, address _parent) {
+    function TransactionContract(uint _amount, address _recipient, address _parent) {
         require(_parent!=0x0 && _amount>0 && _recipient!=0x0);
         owner = msg.sender;
         transaction_value = _amount;
@@ -40,7 +40,7 @@ contract STransaction is Ownable, Insurable {
         return this.balance;
     }
 
-    function fundTransaction() payable {
+    function fund() payable {
         require(this.balance<=transaction_value);
         if (this.balance==transaction_value) {
             Paid("Transaction paid..",this.balance);
@@ -51,7 +51,7 @@ contract STransaction is Ownable, Insurable {
     }
 
 
-
+    
     // Set to only owner 
     function setPremium(uint _premium) onlyOwner {
         require(_premium>0);
