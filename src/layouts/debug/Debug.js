@@ -11,7 +11,7 @@ class Debug extends Component {
     super(props);
     console.log("props are ", props)
     this.state = {
-      // contract: this.props.contract
+      contract: this.props.contract
     }
   
   }
@@ -26,6 +26,16 @@ class Debug extends Component {
     this.props.onRefresh();
   }
 
+  renderContractInfo() {
+    return 
+    (
+      <div>
+    <p> Covarage {this.state.contract.coverage }</p>
+    <p> Premium:   {this.state.contract.premium}</p>
+    <p> Insurer:  {this.state.contract.insurer}</p>
+    </div>
+    )
+  }
   render() {
     
     return(
@@ -34,11 +44,14 @@ class Debug extends Component {
         <h1 className="title">Debug Land</h1>
         <section className="section">
             <h2> Transaction </h2>
-            <p> Balance:  {this.state.contract}</p>
-            <p> Coverage:  {this.state.cover}</p>
-            <p> Premium:  {this.state.premium}</p>
-            <p> Owner:  {this.state.owner}</p>
-            <p> Insurer:  {this.state.insurer}</p>
+            {/* <p> Balance: {this.state.contract.balance} </p> */}
+            { this.state.contract==null? 
+            <p>Loading..</p>
+              : 
+            this.renderContractInfo.bind(this)
+            }
+            
+            {/* <p> Issuer:  {this.state..contract.owner}</p> */}
             <button className="button is-info" onClick={this.fund.bind(this)}>Fund 1 ETH</button>
             <button className="button is-success" onClick={this.refresh.bind(this)}>Refresh</button>
         </section>

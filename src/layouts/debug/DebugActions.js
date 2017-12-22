@@ -87,8 +87,14 @@ export function fetchDetails() {
             stransactionInstance.getInsuranceDetails.call().then(function(result) {
                 // If no error, update user.
             console.log("Result is: ", result);
+            var contract = {
+                premium: result[0].toString(),
+                coverage: result[1].toString(),
+                max_coverage: result[2].toString(),
+                insurer:result[3].toString()
+            }
 
-                // contractUpdate(result)
+            contractUpdate(contract)
             }).catch(function(result) {
                 console.log("Failed to get deployed contract")
                 console.log(result)
