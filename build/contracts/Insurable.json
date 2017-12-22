@@ -4,6 +4,40 @@
     {
       "constant": false,
       "inputs": [],
+      "name": "obtainInsurerStatus",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_premium",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPremium",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_coverage",
+          "type": "uint256"
+        }
+      ],
+      "name": "setMaxCoverage",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
       "name": "insure",
       "outputs": [],
       "payable": true,
@@ -12,11 +46,49 @@
     {
       "constant": true,
       "inputs": [],
-      "name": "locked_coverage",
+      "name": "insurance_status",
       "outputs": [
         {
           "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "getInsuranceDetails",
+      "outputs": [
+        {
+          "name": "_prem",
           "type": "uint256"
+        },
+        {
+          "name": "_curr_cover",
+          "type": "uint256"
+        },
+        {
+          "name": "_max_cover",
+          "type": "uint256"
+        },
+        {
+          "name": "_insurer",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
         }
       ],
       "payable": false,
@@ -30,6 +102,45 @@
         {
           "name": "",
           "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "premium",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "coverage",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "max_coverage",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
         }
       ],
       "payable": false,
@@ -52,10 +163,85 @@
       "inputs": [],
       "payable": false,
       "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Insured",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "_msg",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "name": "payout",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsurancePayout",
+      "type": "event"
     }
   ],
-  "unlinked_binary": "0x6060604052341561000f57600080fd5b5b5b5b610192806100216000396000f300606060405263ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416633c3ce17d811461005e5780633c40b46214610068578063dbc837c51461008d578063f2fde38b146100bc575b600080fd5b6100666100dd565b005b341561007357600080fd5b61007b6100fc565b60405190815260200160405180910390f35b341561009857600080fd5b6100a0610102565b604051600160a060020a03909116815260200160405180910390f35b34156100c757600080fd5b610066600160a060020a0360043516610111565b005b60005433600160a060020a03908116911614156100f957346001555b5b565b60015481565b600054600160a060020a031681565b60005433600160a060020a039081169116141561016057600160a060020a03811615610160576000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b5b5b505600a165627a7a72305820b6b513ec3e70094510934fec5863797610fe611d3310bd60c5e7a6a84ad7fddc0029",
+  "unlinked_binary": "0x6060604052600580546001919060ff191682805b0217905550341561002357600080fd5b5b5b60008054600160a060020a03191633600160a060020a03161790555b5b5b6104a9806100526000396000f300606060405236156100b75763ffffffff7c010000000000000000000000000000000000000000000000000000000060003504166306ea0d2081146100bc57806310ec214f146100d1578063173416ae146100e95780633c3ce17d146101015780636d84440d1461010b5780637087cb9f146101425780638da5cb5b14610189578063dbc837c5146101b8578063e0a73a93146101e7578063ee8f6a0e1461020c578063eec8cb9214610231578063f2fde38b14610256575b600080fd5b34156100c757600080fd5b6100cf610277565b005b34156100dc57600080fd5b6100cf6004356102b8565b005b34156100f457600080fd5b6100cf6004356102e7565b005b6100cf610309565b005b341561011657600080fd5b61011e6103d3565b6040518082600181111561012e57fe5b60ff16815260200191505060405180910390f35b341561014d57600080fd5b6101556103dc565b6040519384526020840192909252604080840191909152600160a060020a0390911660608301526080909101905180910390f35b341561019457600080fd5b61019c6103f8565b604051600160a060020a03909116815260200160405180910390f35b34156101c357600080fd5b61019c610407565b604051600160a060020a03909116815260200160405180910390f35b34156101f257600080fd5b6101fa610416565b60405190815260200160405180910390f35b341561021757600080fd5b6101fa61041c565b60405190815260200160405180910390f35b341561023c57600080fd5b6101fa610422565b60405190815260200160405180910390f35b341561026157600080fd5b6100cf600160a060020a0360043516610428565b005b600154600160a060020a03161561028d57600080fd5b6001805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a03161790555b565b60005433600160a060020a03908116911614156102e257600081116102dc57600080fd5b60048190555b5b5b50565b60005433600160a060020a03908116911614156102e25760038190555b5b5b50565b60015433600160a060020a03908116911614156102b6576003546002541115801561033a5750600354346002540111155b151561034557600080fd5b600280543401908190557f37f2ee001c6b004c116d1d6b3ba11741f14571fd4723d360623dee0f56da4e4090604051602081019190915260408082526019818301527f5472616e73616374696f6e20696e737572656420757020746f0000000000000060608301526080909101905180910390a1600580546000919060ff19166001835b02179055505b5b5b565b60055460ff1681565b600454600254600354600154600160a060020a03165b90919293565b600054600160a060020a031681565b600154600160a060020a031681565b60045481565b60025481565b60035481565b60015433600160a060020a03908116911614156102e257600160a060020a038116156102e2576001805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b5b5b505600a165627a7a723058209e042dabe51c039fe0ed05a3023ed6310d9af6acd9ce42a1fe0b155acf19e26a0029",
   "networks": {
+    "5777": {
+      "events": {
+        "0x37f2ee001c6b004c116d1d6b3ba11741f14571fd4723d360623dee0f56da4e40": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Insured",
+          "type": "event"
+        },
+        "0x139794ea4da04ef67863aff10e0daa4cdacd8bf19379d52b0609e8dfa1de2d8f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "payout",
+              "type": "uint256"
+            }
+          ],
+          "name": "InsurancePayout",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x9fbda871d559710256a2502a2517b794b482db40",
+      "updated_at": 1513921240160
+    },
     "1513661394205": {
       "events": {},
       "links": {},
@@ -64,5 +250,5 @@
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1513661970030
+  "updated_at": 1513921240160
 }

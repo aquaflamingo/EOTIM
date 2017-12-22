@@ -14,7 +14,7 @@ import SignUp from './user/layouts/signup/SignUp'
 import Profile from './user/layouts/profile/Profile'
 import Marketplace from './market/layouts/market/Marketplace'
 import NewEscrow from './market/layouts/market/NewEscrow'
-import Debug from './layouts/debug/Debug'
+import D from './layouts/debug/D'
 
 // Redux Store
 import store from './store'
@@ -46,7 +46,7 @@ ReactDOM.render((
           <Route path="signup" component={SignUp} />
           <Route path="profile" component={Profile} />
           <Route path="marketplace" component={Marketplace} />
-          <Route path="debug" component={Debug} />
+          <Route path="debug" component={D} />
           <Route path="marketplace/new" component={NewEscrow} />
         </Route>
       </Router>

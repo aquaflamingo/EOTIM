@@ -3,7 +3,7 @@ module.exports = {
     development: {
       host: "localhost",
       port: 7545,
-      network_id: "1" // Match any network id
+      network_id: "5777" // Match any network id
    },
    testrpc: {
     host: "localhost",
