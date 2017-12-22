@@ -24,6 +24,7 @@ export function fundTransaction() {
     
   let web3 = store.getState().web3.web3Instance
   // Double-check web3's status.
+  
   if (typeof web3 !== 'undefined') {
 
     return function(dispatch) {
@@ -67,6 +68,7 @@ export function fundTransaction() {
 export function fetchDetails() {
     
     let web3 = store.getState().web3.web3Instance
+    console.log("Web3 is ", web3)
     // Double-check web3's status.
     if (typeof web3 !== 'undefined') {
   
@@ -82,7 +84,7 @@ export function fetchDetails() {
             
             console.log(stransactionInstance)
             // Attempt to login user.
-            stransactionInstance.getInsuranceDetails.then(function(result) {
+            stransactionInstance.getInsuranceDetails.call().then(function(result) {
                 // If no error, update user.
             console.log("Result is: ", result);
 

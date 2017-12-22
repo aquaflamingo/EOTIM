@@ -16,18 +16,18 @@ class Debug extends Component {
   
   }
 
-  componentDidMount() {
-    this.props.onRefresh();
-  }
-
   fund() {
     
       let web3 = store.getState().web3.web3Instance;
       
   }
   
+  refresh() {
+    this.props.onRefresh();
+  }
 
   render() {
+    
     return(
       <div className="container">
       <br/><br/>
@@ -40,6 +40,7 @@ class Debug extends Component {
             <p> Owner:  {this.state.owner}</p>
             <p> Insurer:  {this.state.insurer}</p>
             <button className="button is-info" onClick={this.fund.bind(this)}>Fund 1 ETH</button>
+            <button className="button is-success" onClick={this.refresh.bind(this)}>Refresh</button>
         </section>
       </div>
     )
