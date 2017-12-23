@@ -3,8 +3,9 @@ import Debug from './Debug'
 import { fetchDetails } from './DebugActions'
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("Mapping state to props " , state)
     return {
-        contract:state.debug.cdetails
+        contract: state.debug.cdetails
     }
 }
 

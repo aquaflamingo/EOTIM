@@ -39,15 +39,21 @@
       "events": {},
       "links": {},
       "address": "0x345ca3e014aaf5dca488057592ee47305d9b3e10",
-      "updated_at": 1513921240160
+      "updated_at": 1514063089117
     },
     "1513661394205": {
       "events": {},
       "links": {},
       "address": "0xd6d9d4df716ee1c55edda426d1acb20a64bc3532",
       "updated_at": 1513661970024
+    },
+    "1514063625070": {
+      "events": {},
+      "links": {},
+      "address": "0xd9f4b4934c75925c72d9a14a4eca6280dbc7d433",
+      "updated_at": 1514063677802
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1513921240160
+  "updated_at": 1514063677802
 }

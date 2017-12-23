@@ -10,9 +10,6 @@ class Debug extends Component {
     
     super(props);
     console.log("props are ", props)
-    this.state = {
-      contract: this.props.contract
-    }
   
   }
 
@@ -24,18 +21,14 @@ class Debug extends Component {
   
   refresh() {
     this.props.onRefresh();
+    // todo this does not execute refresh on front end for state 
+    // change props after state contract updated
   }
 
-  renderContractInfo() {
-    return 
-    (
-      <div>
-    <p> Covarage {this.state.contract.coverage }</p>
-    <p> Premium:   {this.state.contract.premium}</p>
-    <p> Insurer:  {this.state.contract.insurer}</p>
-    </div>
-    )
+  ping() {
+    console.log(this.props.contract)
   }
+
   render() {
     
     return(
@@ -45,15 +38,20 @@ class Debug extends Component {
         <section className="section">
             <h2> Transaction </h2>
             {/* <p> Balance: {this.state.contract.balance} </p> */}
-            { this.state.contract==null? 
+            { this.props.contract==null? 
             <p>Loading..</p>
               : 
-            this.renderContractInfo.bind(this)
+              <div>
+              <p> Covarage {this.props.contract.coverage }</p>
+              <p> Premium: {this.props.contract.premium}</p>
+              <p> Insurer:  {this.props.contract.insurer}</p>
+              </div>
             }
             
             {/* <p> Issuer:  {this.state..contract.owner}</p> */}
             <button className="button is-info" onClick={this.fund.bind(this)}>Fund 1 ETH</button>
             <button className="button is-success" onClick={this.refresh.bind(this)}>Refresh</button>
+            <button className="button is-danger" onClick={this.ping.bind(this)}>ping</button>
         </section>
       </div>
     )

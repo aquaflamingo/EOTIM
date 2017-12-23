@@ -240,15 +240,56 @@
       },
       "links": {},
       "address": "0x9fbda871d559710256a2502a2517b794b482db40",
-      "updated_at": 1513921240160
+      "updated_at": 1514063089117
     },
     "1513661394205": {
       "events": {},
       "links": {},
       "address": "0xcbf4a7619054b0da5494da35c5997d8d2306ce6d",
       "updated_at": 1513661970030
+    },
+    "1514063625070": {
+      "events": {
+        "0x37f2ee001c6b004c116d1d6b3ba11741f14571fd4723d360623dee0f56da4e40": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Insured",
+          "type": "event"
+        },
+        "0x139794ea4da04ef67863aff10e0daa4cdacd8bf19379d52b0609e8dfa1de2d8f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "_msg",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "name": "payout",
+              "type": "uint256"
+            }
+          ],
+          "name": "InsurancePayout",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x1a53f2886cf7c8ccb384b8cff664cd946a8036ce",
+      "updated_at": 1514063677803
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1513921240160
+  "updated_at": 1514063677803
 }

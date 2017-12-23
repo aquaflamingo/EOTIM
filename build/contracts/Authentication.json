@@ -91,15 +91,21 @@
       "events": {},
       "links": {},
       "address": "0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f",
-      "updated_at": 1513921240163
+      "updated_at": 1514063089117
     },
     "1513661394205": {
       "events": {},
       "links": {},
       "address": "0xd276328e5b41a90c95079769a809ad9dfbfb5d3e",
       "updated_at": 1513661970029
+    },
+    "1514063625070": {
+      "events": {},
+      "links": {},
+      "address": "0x6e84f31283cfbb1f72eac5af0924df7e618ae526",
+      "updated_at": 1514063677802
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1513921240163
+  "updated_at": 1514063677802
 }
