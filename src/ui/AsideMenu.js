@@ -7,7 +7,7 @@ const AsideMenu = () => (
             Announcements
             </p>
             <ul className="menu-list">
-            <li><a>We launched 🎊!</a></li>
+            <li><a>Launched 🎊!</a></li>
             </ul>
         </aside>
 )

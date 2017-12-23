@@ -3,11 +3,19 @@ const initialState = {
   }
   
   const debugReducer = (state = initialState, action) => {
+    console.log("debugReducer: ",action.type, action.payload)
     if (action.type === 'CONTRACT_UPDATE')
     {
-      console.log("debugReducer: CONTRACT_UPDATE, payload - ",action.payload)
+      
       return Object.assign({}, state, {
         cdetails: action.payload
+      })
+    } 
+    else if (action.type === 'CONTRACT_CREATE') 
+    {
+      
+      return Object.assign({}, state, {
+        contract: action.payload
       })
     }
   

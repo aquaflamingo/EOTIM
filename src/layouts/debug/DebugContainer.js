@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Debug from './Debug'
-import { fetchDetails } from './DebugActions'
+import { fetchDetails, fundTransaction, createTransaction} from './DebugActions'
 
 const mapStateToProps = (state, ownProps) => {
   console.log("Mapping state to props " , state)
@@ -15,6 +15,13 @@ const mapDispatchToProps = (dispatch) => {
         // event.preventDefault();
   
         dispatch(fetchDetails())
+      },
+      onCreate: (params) => {
+        dispatch(createTransaction(params))
+      },
+      
+      onFund: (event) => {
+        dispatch(fundTransaction())
       }
     }
   }

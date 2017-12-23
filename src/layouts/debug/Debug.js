@@ -14,8 +14,7 @@ class Debug extends Component {
   }
 
   fund() {
-    
-      let web3 = store.getState().web3.web3Instance;
+    this.props.onFund();
       
   }
   

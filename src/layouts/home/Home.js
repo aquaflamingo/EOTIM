@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import LoginButtonContainer from '../../user/ui/loginbutton/LoginButtonContainer'
+
 class Home extends Component {
   render() {
     return(
@@ -12,7 +12,7 @@ class Home extends Component {
               Insure Ethereum escrow transactions. Get paid.
             </p>
 
-            <a href="/signup" className="button is-warning">Create account</a>
+            <a href="/dashboard" className="button is-warning">Start</a>
             
           </div>
         </section>

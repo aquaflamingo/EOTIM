@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import { HiddenOnlyAuth, VisibleOnlyAuth } from './util/wrappers.js'
-
-// UI Components
-import LoginButtonContainer from './user/ui/loginbutton/LoginButtonContainer'
-import LogoutButtonContainer from './user/ui/logoutbutton/LogoutButtonContainer'
 
 // Styles
 
@@ -13,29 +8,25 @@ import './App.css'
 
 class App extends Component {
   render() {
-    const OnlyAuthLinks = VisibleOnlyAuth(() =>
-  
-      <div className="navbar-end">
-          <a className="navbar-item">
-            <Link to="/dashboard" className="navbar-item">Dashboard</Link>
-          </a>
-          <a className="navbar-item">
-            <Link to="/profile" className="navbar-item">Profile</Link>
-          </a>
-          <a className="navbar-item">
-            <Link to="/marketplace" className="navbar-item">Market</Link>
-          </a>
-            <LogoutButtonContainer />
-        </div>
-    )
+    const Links = () =>  {
+      return(   
+        <div className="navbar-end">
+            <a className="navbar-item">
+              <Link to="/dashboard" className="navbar-item">Dashboard</Link>
+            </a>
+            <a className="navbar-item">
+              <Link to="/profile" className="navbar-item">Profile</Link>
+            </a>
+            <a className="navbar-item">
+              <Link to="/marketplace" className="navbar-item">Market</Link>
+            </a>
+            <a className="navbar-item">
+              <Link to="/debug" className="navbar-item">Debug</Link>
+            </a>
+          </div>
+      )
+    }
 
-    const OnlyGuestLinks = HiddenOnlyAuth(() =>
-
-      <div className="navbar-end">
-            <Link to="/signup" className="navbar-item">Sign Up</Link>
-            <LoginButtonContainer />
-        </div>
-    )
 
     return (
       <div className="App">
@@ -47,8 +38,7 @@ class App extends Component {
                 <Link className="navbar-item" to="/" >Escro Market</Link>
               </a>
             </div>
-            <OnlyAuthLinks/>
-            <OnlyGuestLinks/>
+            <Links/>
             </div>
           </div>
         </nav>

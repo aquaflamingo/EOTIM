@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import AsideMenu from '../../ui/AsideMenu'
 
 class Dashboard extends Component {
-  constructor(props, { authData }) {
+  constructor(props) {
     super(props)
-    authData = this.props
   }
 
   render() {
@@ -17,7 +16,7 @@ class Dashboard extends Component {
         </div>
         <div className="column is-9">
           <h1 className="title">Dashboard</h1>
-          <p className="subtitle"><strong>Congratulations {this.authData.name} </strong> If you're seeing this page, you've logged in with your own smart contract successfully.</p>
+          <p className="subtitle"><strong>Congratulations! </strong> If you're seeing this page, you've logged in with your own smart contract successfully.</p>
         </div>
       </div>
       </div>
