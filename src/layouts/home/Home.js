@@ -6,7 +6,7 @@ class Home extends Component {
         <section className="hero is-medium is-primary">
           <div className="hero-body">
             <p className="title">
-              OTIM
+              Ethereum Open Transaction Insurance Market (EOTIM)
             </p>
             <p className="subtitle">
               Insure Ethereum transactions. Get paid.

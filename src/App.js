@@ -35,7 +35,7 @@ class App extends Component {
           <div id="navMenu" className="navbar-menu">
             <div className="navbar-start">
               <a className="navbar-item">
-                <Link className="navbar-item" to="/" >Escro Market</Link>
+                <Link className="navbar-item" to="/" ><img src="logo.png"/></Link>
               </a>
             </div>
             <Links/>
@@ -51,7 +51,7 @@ class App extends Component {
           <div className="container">
             <div className="content has-text-centered">
               <p>
-                <strong>EscroMarket</strong> made by <a href="https://robertsimoes.com">Robert Simoes</a>. ✌️
+                <strong>Ethereum Open Transaction Insurance Market</strong> made by <a href="https://robertsimoes.com">Robert Simoes</a>. ✌️
               </p>
               <p>
                 ETH: 0x34b081884Ac640B6CAD3bC9aA1d1cdd5e33AAAb1
