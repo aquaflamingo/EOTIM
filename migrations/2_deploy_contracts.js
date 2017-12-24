@@ -1,5 +1,5 @@
-var Ownable = artifacts.require("./zeppelin/ownership/Ownable.sol");
-var Killable = artifacts.require("./zeppelin/lifecycle/Killable.sol");
+var Ownable = artifacts.require("./Ownable.sol");
+var Killable = artifacts.require("./Killable.sol");
 var Authentication = artifacts.require("./Authentication.sol");
 var Insurable = artifacts.require('./Insurable.sol');
 var Transaction = artifacts.require('./Transaction.sol');

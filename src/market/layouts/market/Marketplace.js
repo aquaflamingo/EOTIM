@@ -17,8 +17,8 @@ class Marketplace extends Component {
     ]
     
     var links = [
-      {to:'/marketplace',name:'All Escrows'},
-      {to:'/marketplace/new',name:'Create Escrow'},
+      {to:'/marketplace',name:'All'},
+      {to:'/marketplace/new',name:'Create Transaction'},
     ]
     return(
       <div className="container">

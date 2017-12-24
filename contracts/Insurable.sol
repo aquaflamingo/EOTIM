@@ -1,9 +1,9 @@
 pragma solidity ^0.4.2;
 
-import './zeppelin/lifecycle/Killable.sol';
-import './zeppelin/ownership/Ownable.sol';
+import './Killable.sol';
+import './Ownable.sol';
 
-contract Insurable is Ownable {
+contract Insurable is Ownable, Killable {
     address public insurer;
     uint public coverage;
     uint public max_coverage;
@@ -15,22 +15,19 @@ contract Insurable is Ownable {
     Insurance public insurance_status = Insurance.NonInsured;
     enum Insurance { Insured, NonInsured }
 
-    function Insurable() {
-
-    }
 
     modifier onlyInsurer() {
         if (msg.sender == insurer)
         _;
     }
 
-    function transferOwnership(address newOwner) onlyInsurer {
+    function transferOwnership(address newOwner) public onlyInsurer  {
         if (newOwner != address(0)) {
             insurer = newOwner;
         }
     }
 
-    function insure() payable onlyInsurer {
+    function insure() public payable onlyInsurer  {
         require(coverage<=max_coverage && (coverage+msg.value)<=max_coverage);
         coverage+=msg.value;
         Insured("Transaction insured up to",coverage);
@@ -40,7 +37,7 @@ contract Insurable is Ownable {
      
     }
 
-    function obtainInsurerStatus() {
+    function becomeInsurer() public  {
         require(insurer==0x0);
         insurer = msg.sender;
         // If insurance status is 0, then we can 
@@ -48,16 +45,16 @@ contract Insurable is Ownable {
     }
 
 
-    function setMaxCoverage(uint _coverage) onlyOwner {
+    function setMaxCoverage(uint _coverage) onlyOwner public  {
         max_coverage = _coverage;
     }
 
-    function setPremium(uint _premium) onlyOwner {
+    function setPremium(uint _premium) onlyOwner public {
         require(_premium>0);
         premium = _premium;
     }
 
-    function getInsuranceDetails() returns (uint _prem, uint _curr_cover, uint _max_cover, address _insurer) {
+    function getInsuranceDetails() public returns (uint _prem, uint _cover, uint _max_cover, address _insurer) {
         return (premium, coverage, max_coverage, insurer);
     }
 

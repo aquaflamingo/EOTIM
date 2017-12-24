@@ -1,6 +1,6 @@
-# Escro Market
+# Open Transaction Insurance Market (OTIM)
 
-Open insurance market for insuring escrows on the blockchain
+Open insurance market for insuring transactions and escrows on the blockchain
 
 ## Author
 

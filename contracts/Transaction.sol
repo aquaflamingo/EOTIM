@@ -4,11 +4,10 @@ pragma solidity ^0.4.2;
 import './Insurable.sol';
 
 contract Transaction is Insurable {
-    address public beneficiary_address;
+    address public counter_party;
 
     TransactionStatus public status = TransactionStatus.Pending;
    
-
     enum TransactionStatus { Paid, Pending, Complete, Cancelled, Partial }
    
 
@@ -18,26 +17,31 @@ contract Transaction is Insurable {
     event Completed(string _msg);
     event Cancelled(string _msg);
 
-    function TransactionContract(
-        address _recipient, 
-        address _parent, 
-        uint _max_coverage,
-        uint _prem) {
-        require(_parent!=0x0 && _recipient!=0x0);
+    function Transaction(address _counterparty, uint _max_coverage, uint _prem) public {
+        require(_counterparty!=0x0);
+        counter_party = _counterparty;
         owner = msg.sender;
         max_coverage = _max_coverage;
         premium = _prem;
-        beneficiary_address = _recipient;
 
     }
 
-    function getBalance() constant returns (uint) {
+    function completeTransaction(bool success) onlyOwner {
+       // TODO 
+       // if (success) { sendPremium }
+       // else { take coverage send to owner }
+       
+       msg.sender.transfer(this.balance);
+    }
+
+    function getBalance() public constant returns (uint) {
         return this.balance;
     }
 
-    function setBeneficiary(address _benefit) onlyOwner {
-        beneficiary_address = _benefit;
+    function setCounterParty(address _party) public onlyOwner {
+        counter_party = _party;
     }
 
-
+    // Fallback function
+    function() public payable {}
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 
-class NewEscrow extends Component {
+class NewTransaction extends Component {
 
 
   render() {
@@ -10,8 +10,8 @@ class NewEscrow extends Component {
       <section className="section">
      
       <div className="container">
-      <h2 className="title">New Escrow Transaction </h2>
-      <p> Fill out the form below to create a new insurable escrow transaction </p>
+      <h2 className="title">New Transaction </h2>
+      <p> Fill out the form below to create a new insurable transaction </p>
       <br/>
         <div className="field">
           <label className="label">Transaction Name</label>
@@ -28,26 +28,11 @@ class NewEscrow extends Component {
         </div>
 
         <div className="field">
-          <label className="label">Escrow Value (ETH)</label>
+          <label className="label">Value (ETH)</label>
           <div className="control">
             <input className="input" type="text" placeholder="1.01" />
           </div>
         </div>
-
-        <div className="field">
-        <label className="label">Loss Coverage (%)</label>
-        <div className="control">
-          <div className="select">
-            <select>
-              <option>10%</option>
-              <option>25%</option>
-              <option>50%</option>
-              <option>75%</option>
-              <option>100%</option>
-            </select>
-          </div>
-        </div>
-      </div>
 
       <div className="field">
       <label className="label">Payable Premium (%)</label>
@@ -77,4 +62,4 @@ class NewEscrow extends Component {
   }
 }
 
-export default NewEscrow;
+export default NewTransaction;

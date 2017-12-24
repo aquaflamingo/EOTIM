@@ -6,10 +6,10 @@ class Home extends Component {
         <section className="hero is-medium is-primary">
           <div className="hero-body">
             <p className="title">
-              EscroMarket
+              OTIM
             </p>
             <p className="subtitle">
-              Insure Ethereum escrow transactions. Get paid.
+              Insure Ethereum transactions. Get paid.
             </p>
 
             <a href="/dashboard" className="button is-warning">Start</a>
