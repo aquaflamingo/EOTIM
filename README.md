@@ -1,6 +1,6 @@
-# Open Transaction Insurance Market (OTIM)
+# Ethereum Open Transaction Insurance Market (EOTIM)
 
-Open insurance market for insuring transactions and escrows on the blockchain
+Proof on concept for an open market for insuring transactions and escrows on the blockchain
 
 ## Author
 
