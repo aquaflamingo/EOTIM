@@ -1,4 +1,4 @@
-import {reduxForm} from 'redux-form';
+
 import React from 'react'
 import { connect } from 'react-redux'
 import TransactionForm from './TransactionForm'
@@ -14,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleTransactionSubmit: (event) => {
-          alert("Hello world")
+            console.log(event)
+          alert(event)
         // dispatch(fundTransaction())
       }
     }
