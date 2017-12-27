@@ -26,13 +26,10 @@ contract Transaction is Insurable {
 
     }
 
-    function completeTransaction(bool success) onlyOwner {
-       // TODO 
-       // if (success) { sendPremium }
-       // else { take coverage send to owner }
-       
-       msg.sender.transfer(this.balance);
-    }
+    // function completeTransaction(bool success) public onlyOwner {
+
+    //    msg.sender.transfer(this.balance);
+    // }
 
     function getBalance() public constant returns (uint) {
         return this.balance;
