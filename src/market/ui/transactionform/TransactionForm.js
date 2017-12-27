@@ -61,12 +61,9 @@ class TransactionForm extends Component {
 
 
   }
-
-
-
   
   render() {
-    
+
     const { handleChange, handleSubmit, value } = this.props;
     return(
             <form onSubmit={handleSubmit}>
