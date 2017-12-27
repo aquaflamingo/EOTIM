@@ -55,13 +55,14 @@
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
     "redux-auth-wrapper": "^1.0.0",
+    "redux-form": "^7.2.0",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "rpcmigrate":"truffle migrate --network testrpc --reset"
+    "rpcmigrate": "truffle migrate --network testrpc --reset"
   },
   "jest": {
     "collectCoverageFrom": [
