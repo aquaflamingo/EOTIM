@@ -44,6 +44,7 @@ class App extends Component {
         </nav>
 
         <div className="main-content">
+        
         {this.props.children}
         </div>
 

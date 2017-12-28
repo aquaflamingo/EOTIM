@@ -6,13 +6,13 @@ import './Ownable.sol';
 contract Insurable is Ownable, Killable {
     address public insurer;
     uint public coverage;
-    uint public max_coverage;
+    uint public maxCoverage;
     uint public premium;
     
     event Insured(string _msg, uint value);
     event InsurancePayout(string _msg, uint payout);
   
-    Insurance public insurance_status = Insurance.NonInsured;
+    Insurance public insuranceStatus = Insurance.NonInsured;
     enum Insurance { Insured, NonInsured }
 
 
@@ -28,10 +28,10 @@ contract Insurable is Ownable, Killable {
     }
 
     function insure() public payable onlyInsurer  {
-        require(coverage<=max_coverage && (coverage+msg.value)<=max_coverage);
+        require(coverage<=maxCoverage && (coverage+msg.value)<=maxCoverage);
         coverage+=msg.value;
         Insured("Transaction insured up to",coverage);
-        insurance_status = Insurance.Insured;
+        insuranceStatus = Insurance.Insured;
         // Cannot over insure an escrow contract beyond coverage set
         // require(this.insurance_coverage<=msg.value);
      
@@ -46,16 +46,12 @@ contract Insurable is Ownable, Killable {
 
 
     function setMaxCoverage(uint _coverage) onlyOwner public  {
-        max_coverage = _coverage;
+        maxCoverage = _coverage;
     }
 
     function setPremium(uint _premium) onlyOwner public {
         require(_premium>0);
         premium = _premium;
-    }
-
-    function getInsuranceDetails() public returns (uint _prem, uint _cover, uint _max_cover, address _insurer) {
-        return (premium, coverage, max_coverage, insurer);
     }
 
     

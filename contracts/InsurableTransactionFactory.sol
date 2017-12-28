@@ -18,12 +18,19 @@ contract InsurableTransactionFactory {
         return contracts.length;
     }
 
-    function create( address counterParty, uint max, uint premium) payable external {
+    function create(
+        address counterParty, 
+        string name,
+        string desc,
+        uint max, 
+        uint premium) payable external returns (address newContractAddress) {
+            
         require(counterParty!=0x0);
-        address newContract = new Transaction(counterParty,max,premium);
+        address newContract = new Transaction(counterParty,name,desc,max,premium);
         contracts.push(newContract);
         newContract.transfer(msg.value);
         NewContractAddress(newContract,msg.sender);
+        return newContract;
     }
 
 
@@ -36,11 +43,6 @@ contract InsurableTransactionFactory {
 
     function getTransactions() public returns (address[] trxns) {
         return contracts;
-    }
-
-    function add(uint num) public returns (uint) {
-        var i = 1;
-        return i+1;
     }
 
 }

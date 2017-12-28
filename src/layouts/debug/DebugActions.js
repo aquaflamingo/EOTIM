@@ -15,10 +15,6 @@ function contractUpdate(details) {
     }
 }
 
-function contractCreate(params) {
-    
-}
-
 export function createTransaction() {
     let web3 = store.getState().web3.web3Instance
   // Double-check web3's status.

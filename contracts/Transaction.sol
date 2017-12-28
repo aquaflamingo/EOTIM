@@ -4,7 +4,9 @@ pragma solidity ^0.4.2;
 import './Insurable.sol';
 
 contract Transaction is Insurable {
-    address public counter_party;
+    address public counterParty;
+    string public name;
+    string public desc;
 
     TransactionStatus public status = TransactionStatus.Pending;
    
@@ -17,29 +19,35 @@ contract Transaction is Insurable {
     event Completed(string _msg);
     event Cancelled(string _msg);
 
-    function Transaction(address _counterparty, uint _max_coverage, uint _prem) public {
+    function Transaction(address _counterparty, string _name, string _desc, uint _max_coverage, uint _prem) public {
         require(_counterparty!=0x0);
-        counter_party = _counterparty;
+        counterParty = _counterparty;
         owner = msg.sender;
-        max_coverage = _max_coverage;
+        maxCoverage = _max_coverage;
         premium = _prem;
-
+        name =_name;
+        desc =_desc;
     }
 
-
-    // function completeTransaction(bool success) public onlyOwner {
-
-    //    msg.sender.transfer(this.balance);
-    // }
-
-    function getBalance() public constant returns (uint) {
-        return this.balance;
-    }
 
     function setCounterParty(address _party) public onlyOwner {
-        counter_party = _party;
+        counterParty = _party;
     }
 
     // Fallback function
     function() public payable {}
+
+
+    // Only return relevant details for would be insurer
+    function getTransactionDetails() public constant returns (
+            string name, 
+            string desc, 
+            uint value,
+            uint coverage,
+            uint maxCoverage,
+            uint premium,
+            address counterParty,
+            address insurer) {
+                return (name, desc, this.balance, coverage, maxCoverage,premium,counterParty,insurer);
+            }
 }

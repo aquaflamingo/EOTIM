@@ -70,10 +70,19 @@ class TransactionForm extends Component {
   }
   
   render() {
-
+    console.log("RENDERING", this.props)
     const { handleChange, handleSubmit, value } = this.props;
     return(
             <form onSubmit={handleSubmit}>
+            {
+                this.props.status!=null ? 
+                <div className="notification">
+                 <button className="delete"></button>
+                    Contract created!
+                </div>
+                :
+                null
+            }
                 <div className="field">
                 
                     <div className="control">

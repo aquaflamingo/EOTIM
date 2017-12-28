@@ -9,15 +9,15 @@ import TransactionForm from './TransactionForm'
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        user: state.user
+        status: state.transaction.status
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleTransactionSubmit: (values) => {
-        console.log(event)
-        dispatch(createTransaction(values))
+            console.log(event)
+            dispatch(createTransaction(values))
       }
     }
   }
