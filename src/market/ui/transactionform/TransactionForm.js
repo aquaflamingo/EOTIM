@@ -23,13 +23,20 @@ const validate = values => {
         errors.transactionValue = '* Cannot be less than 0'
     }
 
-     /* Transaction Counter Party */
+    //  /* Transaction Counter Party */
      if (!values.counterPartyAddress) {
         errors.counterPartyAddress = '* Required'
      } else if(!isAddress(values.counterPartyAddress)) {
         errors.counterPartyAddress = '* Invalid Ethereum Address'
      }
+     
+     if (!values.maxInsurance) {
+         errors.maxInsurance = '* Required'
+     } 
 
+     if (!values.insurerPremium) {
+        errors.insurerPremium = '* Required'
+    } 
     /* Transaction premium and max coverage are automatically selected */
     return errors
   }
@@ -132,6 +139,7 @@ class TransactionForm extends Component {
                         <Field
                             component="select"
                             name="maxInsurance">
+                            <option></option>
                             <option value="25">25%</option>
                             <option value="50">50%</option>
                             <option value="75">75%</option>
@@ -146,10 +154,11 @@ class TransactionForm extends Component {
                         <Field
                             component="select"
                             name="insurerPremium">
-                            <option value="25">1%</option>
-                            <option value="50">5%</option>
-                            <option value="75">10%</option>
-                            <option value="100">25%</option>
+                            <option></option>
+                            <option value="1">1%</option>
+                            <option value="5">5%</option>
+                            <option value="10">10%</option>
+                            <option value="25">25%</option>
                         </Field>
                     </div>
                 </div>

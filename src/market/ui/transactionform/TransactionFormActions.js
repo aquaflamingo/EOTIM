@@ -46,22 +46,33 @@ export function createTransaction(values) {
                 factoryInstance = instance
                 
                 console.log("Factory Instance... ", factoryInstance)
-                factoryInstance.create(
-                {
-                    counterParty:values.counterPartyAddress.toString(),
-                    max:values.maxInsurance,
-                    premium:values.insurerPremium,
-                    from:coinbase,
-                    value: web3.toWei(values.transactionValue,'ether')})
-                .then(function(result) {
-                
-                console.log("Result is ", result)
+              
 
-                }).catch(function(err) {
+             
+                var est = factoryInstance.create.estimateGas();
+                var ethVal = web3.toWei(parseInt(values.transactionValue),'ether');
+                console.log(values);
+                console.log("valu is val, ", ethVal)
+                console.log("hello ",values.counterPartyAddress,
+                values.maxInsurance,
+                values.insurerPremium)
+                factoryInstance.create(
+                    values.counterPartyAddress,
+                    values.maxInsurance,
+                    values.insurerPremium,
+                    {from:coinbase, value:ethVal}).then(function(result) {console.log("Result is ", result)})
+                .catch(function(err) {
                     console.log("Failed to get deployed contract")
                     console.log(err)
                 // If error...
                 })
+                
+                // factoryInstance.add(1, {from:coinbase}).then(function(result) {console.log("Result is ", result)})
+                // .catch(function(err) {
+                //     console.log("Failed to get deployed contract")
+                //     console.log(err)
+                // // If error...
+                // })
             })
         })
     }

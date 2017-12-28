@@ -26,6 +26,7 @@ contract Transaction is Insurable {
 
     }
 
+
     // function completeTransaction(bool success) public onlyOwner {
 
     //    msg.sender.transfer(this.balance);
