@@ -2,11 +2,13 @@ import { connect } from 'react-redux'
 import OfferItem from './OfferItem'
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("Own props are ", ownProps)
   return {
     offerName: ownProps.offerName,
     description: ownProps.description,
-    parties: ownProps.parties,
+    value: ownProps.value,
     terms: ownProps.terms,
+    counterParty: ownProps.counterParty,
     onClick: ownProps.onClick
   }
 }

@@ -3,16 +3,18 @@ import React, {Component} from 'react'
 import OfferContainer from '../offeritem/OfferContainer'
 
 const GridContainer = ({ offers, onClick }) => (
-  <section class="section is-medium">
+  <section className="section is-medium">
         { 
-          
-          offers.map(offer => (
+          // Error not able to render as a collection for some reason.. 
+          offers.forEach((offer,i)=> (
               <div>
-              <OfferContainer {...offer} onClick={() => onClick(offer.address)} />
-              <br/>
-              <br/>
-              </div>
-        ))
+                <OfferContainer 
+                  {...offer} 
+                  key={i} 
+                  onClick={() => onClick(offer.address)} />
+                <br/>
+                </div>
+          ))
         } 
     </section>
   )
