@@ -1,5 +1,6 @@
 import store from '../../../store'
 import InsurableTransactionFactory from '../../../../build/contracts/InsurableTransactionFactory.json'
+import Transaction from '../../../../build/contracts/Transaction.json'
 const contract = require('truffle-contract')
 
 export const CONTRACT_CREATE = 'CONTRACT_CREATE'
@@ -12,8 +13,6 @@ function contractCreated(details) {
         payload: details
     }
 }
-
-
 
 export function createTransaction(values) {
     let web3 = store.getState().web3.web3Instance
@@ -51,8 +50,19 @@ export function createTransaction(values) {
                         }
                     });
         
-                var ethVal = web3.toWei(parseInt(values.transactionValue),'ether');
+                var newTrxnEvent = factoryInstance.ContractDetails()
+                    newTrxnEvent.watch(function(error, result){
+                        if (!error)
+                        {
+                            console.log("Contract details are as followes:  ", result)
+                        } else {
+                            // Error
+                            console.log("Failed to get contract details")
+                        }
+                    });
 
+                var ethVal = web3.toWei(parseInt(values.transactionValue),'ether');
+                console.log("Values in contract creation are ", values)
                 factoryInstance.create(
                     values.counterPartyAddress,
                     values.transactionName,

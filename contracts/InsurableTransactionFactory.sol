@@ -12,7 +12,11 @@ contract InsurableTransactionFactory {
     }
     
     event NewContractAddress (address contractAddress, address contractCreator);
-
+    event ContractDetails(address counterParty, 
+        string name,
+        string desc,
+        uint max, 
+        uint premium);
 
     function count() public constant returns (uint theCount) { 
         return contracts.length;
@@ -24,7 +28,8 @@ contract InsurableTransactionFactory {
         string desc,
         uint max, 
         uint premium) payable external returns (address newContractAddress) {
-            
+        ContractDetails(counterParty,name,desc,max,premium);
+        
         require(counterParty!=0x0);
         address newContract = new Transaction(counterParty,name,desc,max,premium);
         contracts.push(newContract);

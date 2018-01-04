@@ -12,6 +12,7 @@ import Dashboard from './layouts/dashboard/Dashboard'
 import Profile from './user/layouts/profile/Profile'
 import Marketplace from './market/layouts/market/Marketplace'
 import NewTransaction from './market/layouts/market/NewTransaction'
+import SearchTransaction from './market/layouts/market/SearchTransaction'
 import D from './layouts/debug/D'
 
 // Redux Store
@@ -39,6 +40,7 @@ ReactDOM.render((
           <Route path="marketplace" component={Marketplace} />
           <Route path="debug" component={D} />
           <Route path="marketplace/new" component={NewTransaction} />
+          <Route path="marketplace/search" component={SearchTransaction} />
         </Route>
       </Router>
     </Provider>
