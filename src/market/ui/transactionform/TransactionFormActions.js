@@ -1,10 +1,8 @@
 import store from '../../../store'
-import getWeb3 from '../../../util/web3/getWeb3'
 import InsurableTransactionFactory from '../../../../build/contracts/InsurableTransactionFactory.json'
 const contract = require('truffle-contract')
 
 export const CONTRACT_CREATE = 'CONTRACT_CREATE'
-
 
 function contractCreated(details) {
     alert("Contract Created!!! ")

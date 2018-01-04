@@ -1,8 +1,4 @@
 import React, { Component } from 'react'
-import getWeb3 from '../../util/web3/getWeb3'
-import store from '../../store'
-import TransactionContract from '../../../build/contracts/Transaction.json'
-const contract = require('truffle-contract')
 
 class Debug extends Component {
 

@@ -63,11 +63,7 @@ const renderField = ({
     </div>
 
 class TransactionForm extends Component {
-  constructor(props) {
-    super(props)
 
-
-  }
   
   render() {
     console.log("RENDERING", this.props)

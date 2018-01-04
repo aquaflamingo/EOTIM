@@ -1,59 +1,22 @@
-// import { connect } from 'react-redux'
-// import { toggleTodo } from '../actions'
+import React, { Component } from 'react'
 
-// import {purchaseOffer} from '../offeritem/OfferActions'
-
-
-// // TODO make Marketplace container (that polls the blockchain for escrow accounts) 
-// // that takes the mapDispatch to props and connects to GridContainer
-// // Passing it the relevent details
-// // Grid container than passes on clicks but dispatches happen at the marketplace container level
-// // Example: https://redux.js.org/docs/basics/ExampleTodoList.html
-
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//       onPurchaseClick: (event) => {
-//         event.preventDefault();
-//         dispatch(purchaseOffer)
-//       }
-//     }
-//   }
+class Market extends Component {
   
-// //   const  OfferContainer = connect(
-// //     mapStateToProps,
-// //     mapDispatchToProps
-// //   )(OfferItem)
+  componentDidMount() {
+    console.log("Hello world component mounted")
+    
+  }
 
-// const getVisibleTodos = (todos, filter) => {
-//   switch (filter) {
-//     case 'SHOW_COMPLETED':
-//       return todos.filter(t => t.completed)
-//     case 'SHOW_ACTIVE':
-//       return todos.filter(t => !t.completed)
-//     case 'SHOW_ALL':
-//     default:
-//       return todos
-//   }
-// }
+  refresh() {
+    this.props.onRefresh()
+  }
+  render() {
+    return(
+            <div>
+              <a href="#" onClick={this.refresh.bind(this)}> Refresh </a>
+            </div>
+    )
+  }
+}
 
-// const mapStateToProps = state => {
-//   return {
-//     todos: getVisibleTodos(state.todos, state.visibilityFilter)
-//   }
-// }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onTodoClick: id => {
-//       dispatch(toggleTodo(id))
-//     }
-//   }
-// }
-
-// const VisibleTodoList = connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(TodoList)
-
-// export default VisibleTodoList
+export default Market

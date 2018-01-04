@@ -1,6 +1,5 @@
 import store from '../../store'
 
-import getWeb3 from '../../util/web3/getWeb3'
 import TransactionContract from '../../../build/contracts/Transaction.json'
 const contract = require('truffle-contract')
 

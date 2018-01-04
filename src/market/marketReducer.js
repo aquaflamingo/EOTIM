@@ -1,17 +1,24 @@
 const initialState = {
-    data: null
+    data: null,
+    offers: null,
+    status: null,
   }
   
   const marketReducer = (state = initialState, action) => {
+      console.log("Market Reducers, ", state)
     switch (action.type) {
-        case 'GET_ESCROWS':
+        case 'REFRESH_OFFERS':
             return Object.assign({}, state, {
-                escrows: action.payload
+                offers: action.payload
             })
-        case 'INSURE_ESCROW':
-            return Object.assign({}, state, {
+        case 'INSURE_TRANSACTION':
+            return Object.assign({},state,{
                 data: action.payload
             })
+        case 'CONTRACT_CREATE':
+            return Object.assign({}, state, {
+                status: action.payload
+              })
         default:
             return state
     }

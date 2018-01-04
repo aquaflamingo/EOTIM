@@ -27,7 +27,7 @@ contract Insurable is Ownable, Killable {
         }
     }
 
-    function insure() public payable onlyInsurer  {
+    function insure() public payable onlyInsurer {
         require(coverage<=maxCoverage && (coverage+msg.value)<=maxCoverage);
         coverage+=msg.value;
         Insured("Transaction insured up to",coverage);

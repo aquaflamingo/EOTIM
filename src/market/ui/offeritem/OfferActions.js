@@ -1,17 +1,22 @@
-import Escrow from '../../../../build/contracts/Escrow.json'
-import { browserHistory } from 'react-router'
+// import InsurableTransactionFactory from '../../../../build/contracts/InsurableTransactionFactory.json'
+import Transaction from '../../../../build/contracts/Transaction.json'
 import store from '../../../store'
+export const REFRESH_OFFERS = "REFRESH_OFFERS"
+
+import { browserHistory } from 'react-router'
+
 
 const contract = require('truffle-contract')
 
-export const INSURE_ESCROW = 'INSURE_ESCROW'
+export const INSURE_TRANSACTION = 'INSURE_TRANSACTION'
 
-function insureEscrow(address) {
-  return {
-    type: INSURE_ESCROW,
-    payload: address
-  }
-}
+
+// function insureTransaction(address) {
+//   return {
+//     type: INSURE_TRANSACTION,
+//     payload: address
+//   }
+// }
 
 export function purchaseOffer() {
   let web3 = store.getState().web3.web3Instance
@@ -21,11 +26,11 @@ export function purchaseOffer() {
 
     return function(dispatch) {
       // Using truffle-contract we create the escrow object.
-      const escrow = contract(Escrow)
-      escrow.setProvider(web3.currentProvider)
+      const trxn = contract(Transaction)
+      trxn.setProvider(web3.currentProvider)
 
-      // Declaring this for later so we can chain functions on escrow.
-      var escrowInstance
+      // Declaring this for later so we can chain functions on trxn.
+      var trxnInstance
 
       // Get current ethereum wallet.
       web3.eth.getCoinbase((error, coinbase) => {
@@ -34,15 +39,21 @@ export function purchaseOffer() {
           console.error(error);
         }
 
-        escrow.deployed().then(function(instance) {
-          escrowInstance = instance
+        trxn.deployed().then(function(instance) {
+          trxnInstance = instance
 
-          // Attempt to login user.
-          escrowInstance.insure({from: coinbase})
+          /**
+           *  TODO we need to some how figure out how to
+           *  get the transaction instance 
+           *  Factory[
+           *   1,2,3,4,5 
+           *   s]
+           */
+          trxnInstance.insure({from: coinbase})
           .then(function(result) {
             // If no error, login user.
 
-            dispatch(insureEscrow({"address": escrowInstance.address}))
+            // dispatch(insureTransaction({"address": escrowInstance.address}))
 
           })
           .catch(function(result) {

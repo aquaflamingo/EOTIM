@@ -4,12 +4,9 @@ import { connect } from 'react-redux'
 import {createTransaction} from './TransactionFormActions'
 import TransactionForm from './TransactionForm'
 
-// import actions
-
-
 const mapStateToProps = (state, ownProps) => {
     return {
-        status: state.transaction.status
+        status: state.market.status
     }
 }
 
