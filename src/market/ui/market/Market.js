@@ -8,7 +8,7 @@ class Market extends Component {
     console.log(props)
   }
   componentDidMount() {
-    console.log("Hello world component mounted")
+    console.log("Market component mounted")
     
   }
 

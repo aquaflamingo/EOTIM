@@ -14,6 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const  OfferContainer = connect(
+  null,
   mapStateToProps
 )(OfferItem)
 

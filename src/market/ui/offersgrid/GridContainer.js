@@ -6,11 +6,10 @@ const GridContainer = ({ offers, onClick }) => (
   <section className="section is-medium">
         { 
           // Error not able to render as a collection for some reason.. 
-          offers.forEach((offer,i)=> (
+          offers.map(offer=> (
               <div>
                 <OfferContainer 
-                  {...offer} 
-                  key={i} 
+                  {...offer}
                   onClick={() => onClick(offer.address)} />
                 <br/>
                 </div>

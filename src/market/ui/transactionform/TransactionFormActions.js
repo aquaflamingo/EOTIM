@@ -46,6 +46,7 @@ export function createTransaction(values) {
                             console.log("Factory successfully deployed new contract ", result)
                         } else {
                             // Error
+                            console.log("Failed to get deployed contract")
                             console.log(error);
                         }
                     });
@@ -64,7 +65,7 @@ export function createTransaction(values) {
                     console.log("Result is ", result)
                 })
                 .catch(function(err) {
-                    console.log("Failed to get deployed contract")
+                    
                     console.log(err)
                 // If error...
                 })
