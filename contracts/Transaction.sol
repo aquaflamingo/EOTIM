@@ -9,8 +9,13 @@ contract Transaction is Killable {
     address public counterParty;
     bytes32 public name;
     bytes32 public desc;
+    address public insurer;
+    uint public coverage;
+    uint8 public maxCoverage;
+    uint8 public premium;
 
-    function Transaction(address _counterparty, bytes32 _name, bytes32 _desc, uint _max_coverage, uint _prem) public {
+
+    function Transaction(address _counterparty, bytes32 _name, bytes32 _desc, uint8 _max_coverage, uint8 _prem) public {
         require(_counterparty!=0x0);
         counterParty = _counterparty;
         owner = msg.sender;
@@ -18,8 +23,12 @@ contract Transaction is Killable {
         premium = _prem;
         name = _name;
         desc = _desc;
+
     }
 
+    function getN() returns (uint) {
+        return maxCoverage;
+    }
 
     function setCounterParty(address _party) public onlyOwner {
         counterParty = _party;
@@ -33,19 +42,14 @@ contract Transaction is Killable {
     function getTransactionDetails() public constant returns (
             bytes32 _name, 
             bytes32 _desc, 
-            uint value,
-            uint coverage,
-            uint maxCoverage,
-            uint premium,
+            uint _value,
+            uint _coverage,
+            uint8 _maxCoverage,
+            uint8 _premium,
             address _counterParty,
-            address insurer) {
+            address _insurer) {
                 return (name, desc, this.balance, coverage, maxCoverage,premium,counterParty,insurer);
             }
-
-    address public insurer;
-    uint public coverage;
-    uint public maxCoverage;
-    uint public premium;
     
     Insurance public insuranceStatus = Insurance.NonInsured;
     enum Insurance { Insured, NonInsured }
@@ -80,11 +84,11 @@ contract Transaction is Killable {
     }
 
 
-    function setMaxCoverage(uint _coverage) onlyOwner public  {
+    function setMaxCoverage(uint8 _coverage) onlyOwner public  {
         maxCoverage = _coverage;
     }
 
-    function setPremium(uint _premium) onlyOwner public {
+    function setPremium(uint8 _premium) onlyOwner public {
         require(_premium>0);
         premium = _premium;
     }

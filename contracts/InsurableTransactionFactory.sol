@@ -26,14 +26,17 @@ contract InsurableTransactionFactory {
         address counterParty, 
         bytes32 name,
         bytes32 desc,
-        uint max, 
-        uint premium) payable external returns (Transaction newContractAddress) {
-        ContractDetails(counterParty,name,desc,max,premium);
+        uint8 max, 
+        uint8 premium) payable external returns (Transaction newContractAddress) {
+        
         
         require(counterParty!=0x0);
         Transaction newContract = new Transaction(counterParty,name,desc,max,premium);
         contracts.push(newContract);
         newContract.transfer(msg.value);
+
+        ContractDetails(newContract.counterParty(),newContract.name(),newContract.desc(),newContract.maxCoverage(),newContract.premium());
+
         NewContractAddress(newContract,msg.sender);
         return newContract;
     }

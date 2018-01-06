@@ -25,6 +25,8 @@ export function createTransaction(values) {
         const factory = contract(InsurableTransactionFactory)
         
         factory.setProvider(web3.currentProvider)
+
+    
         // Declaring this for later so we can chain functions on factory.
         var factoryInstance
 
@@ -72,6 +74,7 @@ export function createTransaction(values) {
                     {from:coinbase, value:ethVal})
                 .then(function(result) {
                     dispatch(contractCreated(result))
+                    
                     console.log("Result is ", result)
                 })
                 .catch(function(err) {
