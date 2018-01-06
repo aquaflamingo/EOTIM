@@ -25,9 +25,10 @@ function offersRefreshed(offers) {
             instance.getTransactionDetails.call()
             .then(function(results) {
                 // resolve promise successfully
+                console.log(details)
                   var details = {
-                    offerName: results[0],
-                    description: results[1],
+                    offerName: web3.toAscii(results[0]),
+                    description: web3.toAscii(results[1]),
                     val: web3.fromWei(results[2],'ether').toString(),
                     maxCoverage:  web3.fromWei(results[4],'ether').toString(),
                     terms: web3.fromWei(results[5], 'ether').toString(),

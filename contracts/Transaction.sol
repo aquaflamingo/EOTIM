@@ -1,35 +1,23 @@
 pragma solidity ^0.4.2;
 
 
-import './Ownable.sol';
 import './Killable.sol';
 
-contract Transaction is Ownable, Killable {
+contract Transaction is Killable {
 
 
     address public counterParty;
-    string public name;
-    string public desc;
+    bytes32 public name;
+    bytes32 public desc;
 
-    TransactionStatus public status = TransactionStatus.Pending;
-   
-    enum TransactionStatus { Paid, Pending, Complete, Cancelled, Partial }
-   
-
-    event Paid(string _msg, uint bal);
-    event PaymentReceived(string _msg, uint amount);
-    event PartialPayment(string _msg, uint bal);
-    event Completed(string _msg);
-    event Cancelled(string _msg);
-
-    function Transaction(address _counterparty, string _name, string _desc, uint _max_coverage, uint _prem) public {
+    function Transaction(address _counterparty, bytes32 _name, bytes32 _desc, uint _max_coverage, uint _prem) public {
         require(_counterparty!=0x0);
         counterParty = _counterparty;
         owner = msg.sender;
         maxCoverage = _max_coverage;
         premium = _prem;
-        name =_name;
-        desc =_desc;
+        name = _name;
+        desc = _desc;
     }
 
 
@@ -43,25 +31,22 @@ contract Transaction is Ownable, Killable {
 
     // Only return relevant details for would be insurer
     function getTransactionDetails() public constant returns (
-            string name, 
-            string desc, 
+            bytes32 _name, 
+            bytes32 _desc, 
             uint value,
             uint coverage,
             uint maxCoverage,
             uint premium,
-            address counterParty,
+            address _counterParty,
             address insurer) {
                 return (name, desc, this.balance, coverage, maxCoverage,premium,counterParty,insurer);
             }
 
-     address public insurer;
+    address public insurer;
     uint public coverage;
     uint public maxCoverage;
     uint public premium;
     
-    event Insured(string _msg, uint value);
-    event InsurancePayout(string _msg, uint payout);
-  
     Insurance public insuranceStatus = Insurance.NonInsured;
     enum Insurance { Insured, NonInsured }
 
@@ -79,8 +64,8 @@ contract Transaction is Ownable, Killable {
 
     function insure() public payable onlyInsurer {
         require(coverage<=maxCoverage && (coverage+msg.value)<=maxCoverage);
-        coverage+=msg.value;
-        Insured("Transaction insured up to",coverage);
+        coverage += msg.value;
+        // Insured("Transaction insured up to",coverage);
         insuranceStatus = Insurance.Insured;
         // Cannot over insure an escrow contract beyond coverage set
         // require(this.insurance_coverage<=msg.value);

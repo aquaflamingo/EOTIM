@@ -64,22 +64,16 @@
     "2": {
       "links": {},
       "events": {},
-      "updated_at": 1515108665782,
-      "address": "0x7a8d54cec354b6d092b031d335d0b7697c08131e"
+      "updated_at": 1515208925500,
+      "address": "0x8cdaf0cd259887258bc13a92c0a6da92698644c0"
     },
-    "5777": {
+    "1515208790252": {
       "events": {},
       "links": {},
-      "address": "0x8cdaf0cd259887258bc13a92c0a6da92698644c0",
-      "updated_at": 1514063089123
-    },
-    "1513661394205": {
-      "events": {},
-      "links": {},
-      "address": "0xfa1332c0bab4d469fb13632f411844f1090e638e",
-      "updated_at": 1513661969686
+      "address": "0x184bc21472a0f6d871182dfa3e84e126927fd6ee",
+      "updated_at": 1515208808274
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1515108665782
+  "updated_at": 1515208925500
 }

@@ -4,7 +4,7 @@ import './Transaction.sol';
 
 contract InsurableTransactionFactory {
     address public owner;
-    address[] contracts;
+    Transaction[] contracts;
 
 
     function InsurableTransactionFactory() {
@@ -13,8 +13,8 @@ contract InsurableTransactionFactory {
     
     event NewContractAddress (address contractAddress, address contractCreator);
     event ContractDetails(address counterParty, 
-        string name,
-        string desc,
+        bytes32 name,
+        bytes32 desc,
         uint max, 
         uint premium);
 
@@ -24,14 +24,14 @@ contract InsurableTransactionFactory {
 
     function create(
         address counterParty, 
-        string name,
-        string desc,
+        bytes32 name,
+        bytes32 desc,
         uint max, 
-        uint premium) payable external returns (address newContractAddress) {
+        uint premium) payable external returns (Transaction newContractAddress) {
         ContractDetails(counterParty,name,desc,max,premium);
         
         require(counterParty!=0x0);
-        address newContract = new Transaction(counterParty,name,desc,max,premium);
+        Transaction newContract = new Transaction(counterParty,name,desc,max,premium);
         contracts.push(newContract);
         newContract.transfer(msg.value);
         NewContractAddress(newContract,msg.sender);
@@ -46,7 +46,7 @@ contract InsurableTransactionFactory {
     //     // trxn.kill();
     // }
 
-    function getTransactions() public returns (address[] trxns) {
+    function getTransactions() public returns (Transaction[] trxns) {
         return contracts;
     }
 

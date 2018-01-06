@@ -10,7 +10,6 @@ const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterPar
   return(
       <div className="offer-item">
           <nav className="level">
-            <p> {offerName} </p>
             <div className="level-left">
               <div className="level-item">
                    <span className="tag is-success"> {val} ETH </span>
