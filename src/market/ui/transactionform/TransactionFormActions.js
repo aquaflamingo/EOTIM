@@ -6,8 +6,6 @@ const contract = require('truffle-contract')
 export const CONTRACT_CREATE = 'CONTRACT_CREATE'
 
 function contractCreated(details) {
-    alert("Contract Created!!! ")
-    console.log(details)
     return {
         type: CONTRACT_CREATE,
         payload: details
@@ -63,7 +61,7 @@ export function createTransaction(values) {
                         }
                     });
 
-                var ethVal = web3.toWei(parseInt(values.transactionValue),'ether');
+                var ethVal = web3.toWei(parseFloat(values.transactionValue),'ether');
                 console.log("Values in contract creation are ", values)
                 factoryInstance.create(
                     values.counterPartyAddress,

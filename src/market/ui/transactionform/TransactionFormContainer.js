@@ -5,6 +5,7 @@ import {createTransaction} from './TransactionFormActions'
 import TransactionForm from './TransactionForm'
 
 const mapStateToProps = (state, ownProps) => {
+    console.log("TransactionFormContainer state2props ",state.market.status)
     return {
         status: state.market.status
     }
@@ -13,14 +14,14 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleTransactionSubmit: (values) => {
-            console.log(event)
             dispatch(createTransaction(values))
       }
     }
   }
   
-const TransactionFormContainer = ({handleTransactionSubmit,values}) =>
+const TransactionFormContainer = ({handleTransactionSubmit,values,status}) =>
     <TransactionForm 
+        status={status}
         onSubmit={values => handleTransactionSubmit(values)}/>
   
 export default connect(

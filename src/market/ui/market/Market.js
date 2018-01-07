@@ -7,14 +7,19 @@ class Market extends Component {
 
     console.log(props)
   }
+
+
+
   componentDidMount() {
     console.log("Market component mounted")
-    
+    setTimeout(this.props.onRefresh,1000)
   }
 
   refresh() {
     this.props.onRefresh()
   }
+
+  
 
   renderOffers() {
 
@@ -25,7 +30,7 @@ class Market extends Component {
             <div>
               <a href="#" onClick={this.refresh.bind(this)}> Refresh </a>
               {this.props.offers == null ?
-                <p> Please Refresh </p>
+                <p> Refreshing.. </p>
               :
                 this.renderOffers()
               }

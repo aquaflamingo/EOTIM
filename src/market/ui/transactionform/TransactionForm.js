@@ -64,17 +64,23 @@ const renderField = ({
 
 class TransactionForm extends Component {
 
+  renderNotification(newContractEvent) {
+    return (
+        <div className="notification is-success">
+            Contract created @ {newContractEvent.address}
+        </div>
+    )
+  }
   
   render() {
     const { handleChange, handleSubmit, value } = this.props;
+    console.log("Props are %%%", this.props)
     return(
             <form onSubmit={handleSubmit}>
-            {
+            {   
+                
                 this.props.status!=null ? 
-                <div className="notification">
-                 <button className="delete"></button>
-                    Contract created!
-                </div>
+                this.renderNotification(this.props.status.logs[0])
                 :
                 null
             }
