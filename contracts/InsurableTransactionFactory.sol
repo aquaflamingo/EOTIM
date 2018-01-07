@@ -26,8 +26,8 @@ contract InsurableTransactionFactory {
         address counterParty, 
         bytes32 name,
         bytes32 desc,
-        uint8 max, 
-        uint8 premium) payable external returns (Transaction newContractAddress) {
+        uint max, 
+        uint premium) payable external returns (Transaction newContractAddress) {
         
         
         require(counterParty!=0x0);

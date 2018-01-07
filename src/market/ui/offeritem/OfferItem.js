@@ -20,7 +20,7 @@ const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterPar
               
               <div className="level-right">
                 <div className="level-item">
-                 <span className="tag">{100*parseInt(terms)}% Premium</span>
+                 <span className="tag">{parseInt(terms)}% Premium</span>
                 </div>
                 <div className="level-item">
                   <span className="tag is-info">
@@ -38,7 +38,7 @@ const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterPar
         </div>
         
         <div className="column is-3">
-          <a href="#" className="button is-warning" onClick={(event) => onClick(event)}>Insure at {maxCoverage} ETH</a>      
+          <a href="#" className="button is-warning" onClick={(event) => onClick(event)}>Insure at {val*maxCoverage/100} ETH</a>      
         </div>
         </div>
     </div>  

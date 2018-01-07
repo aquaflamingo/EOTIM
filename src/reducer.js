@@ -3,13 +3,12 @@ import { routerReducer } from 'react-router-redux'
 import {reducer as formReducer} from 'redux-form'
 import userReducer from './user/userReducer'
 import web3Reducer from './util/web3/web3Reducer'
-import debugReducer from './layouts/debug/debugReducer'
+// import debugReducer from './layouts/debug/debugReducer'
 import marketReducer from './market/marketReducer';
 
 const reducer = combineReducers({
   routing: routerReducer,
   user: userReducer,
-  debug: debugReducer,
   market: marketReducer,
   web3: web3Reducer,
   form: formReducer
