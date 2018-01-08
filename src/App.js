@@ -14,14 +14,11 @@ class App extends Component {
             <a className="navbar-item">
               <Link to="/dashboard" className="navbar-item">Dashboard</Link>
             </a>
-            <a className="navbar-item">
+            {/* <a className="navbar-item">
               <Link to="/profile" className="navbar-item">Profile</Link>
-            </a>
+            </a> */}
             <a className="navbar-item">
               <Link to="/marketplace" className="navbar-item">Market</Link>
-            </a>
-            <a className="navbar-item">
-              <Link to="/debug" className="navbar-item">Debug</Link>
             </a>
           </div>
       )

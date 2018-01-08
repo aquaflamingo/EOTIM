@@ -9,11 +9,10 @@ import getWeb3 from './util/web3/getWeb3'
 import App from './App'
 import Home from './layouts/home/Home'
 import Dashboard from './layouts/dashboard/Dashboard'
-import Profile from './user/layouts/profile/Profile'
+// import Profile from './user/layouts/profile/Profile'
 import Marketplace from './market/layouts/market/Marketplace'
 import NewTransaction from './market/layouts/market/NewTransaction'
 import SearchTransaction from './market/layouts/market/SearchTransaction'
-import D from './layouts/debug/D'
 
 // Redux Store
 import store from './store'
@@ -36,9 +35,8 @@ ReactDOM.render((
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
           <Route path="dashboard" component={Dashboard} />
-          <Route path="profile" component={Profile} />
+          {/* <Route path="profile" component={Profile} /> */}
           <Route path="marketplace" component={Marketplace} />
-          <Route path="debug" component={D} />
           <Route path="marketplace/new" component={NewTransaction} />
           <Route path="marketplace/search" component={SearchTransaction} />
         </Route>
