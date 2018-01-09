@@ -2,11 +2,15 @@ import React, {Component} from 'react'
 
 
 function calculatePremium(val,terms) {
+
   return val*terms;
 }
 
 const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterParty, onClick }) => {
-  console.log("In offer item", val)
+  console.log("Max Cover=", maxCoverage)
+    console.log("Value=",val);
+    console.log("Terms=",terms);
+
   return(
       <div className="offer-item">
           <nav className="level">
@@ -24,7 +28,7 @@ const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterPar
                 </div>
                 <div className="level-item">
                   <span className="tag is-info">
-                    Payout: {calculatePremium(parseInt(val),parseInt(terms))} ETH
+                    Payout: {calculatePremium(val,terms/100)} ETH
                   </span>
                 </div>
               </div>

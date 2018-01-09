@@ -7,3 +7,8 @@
 .main-content {
     flex: 1;
   }
+
+.no-params {
+    padding: 0em;
+    margin: 0em;
+}

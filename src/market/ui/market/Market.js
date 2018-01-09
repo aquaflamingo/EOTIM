@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import GridContainer from '../offersgrid/GridContainer'
+import { Link } from 'react-router'
+
 class Market extends Component {
   
   constructor(props) {
@@ -22,6 +24,17 @@ class Market extends Component {
   
 
   renderOffers() {
+    if (this.props.offers.length==0) {
+        return (
+            <div>
+            <br/><br/><br/>
+            <div className="notification is-info">
+                <p> No Offers Available.. </p>
+                <p> Why not <Link to="marketplace/new">create one?</Link></p>
+              </div>
+            </div>
+        )
+    }
 
     return <GridContainer offers={this.props.offers} onClick={this.props.onPurchaseClick} />;
   }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {reduxForm, Field} from 'redux-form';
 import {isAddress} from '../../../util/isAddress';
+import { Link } from 'react-router'
 
 const validate = values => {
     const errors = {}
@@ -64,17 +65,25 @@ const renderField = ({
 
 class TransactionForm extends Component {
 
+
   renderNotification(newContractEvent) {
+    setTimeout(function() {
+            let mountNode = React.findDOMNode(this.refs.notif);
+            let unmount = React.unmountComponentAtNode(mountNode);
+        },5000);
     return (
-        <div className="notification is-success">
+        <div ref="notif" className="notification is-success">
             Contract created @ {newContractEvent.address}
+            <p>
+            <Link to="marketplace">
+                Check it out here.
+            </Link></p>
         </div>
     )
   }
   
   render() {
     const { handleChange, handleSubmit, value } = this.props;
-    console.log("Props are %%%", this.props)
     return(
             <form onSubmit={handleSubmit}>
             {   

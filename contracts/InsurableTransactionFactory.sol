@@ -44,14 +44,6 @@ contract InsurableTransactionFactory {
         return newContract;
     }
 
-
-    // function remove(uint id) public {
-    //     require(id<contracts.length);
-    //     Transaction trxn = Transaction(contracts[id]);
-    //     // if(msg.sender!=trxn.owner()) revert();
-    //     // trxn.kill();
-    // }
-
     function getTransactions() public returns (Transaction[] trxns) {
         return contracts;
     }

@@ -8,11 +8,12 @@ import getWeb3 from './util/web3/getWeb3'
 // Layouts
 import App from './App'
 import Home from './layouts/home/Home'
-import Dashboard from './layouts/dashboard/Dashboard'
-// import Profile from './user/layouts/profile/Profile'
+import Dashboard from './dashboard/Dashboard'
+
 import Marketplace from './market/layouts/market/Marketplace'
 import NewTransaction from './market/layouts/market/NewTransaction'
 import SearchTransaction from './market/layouts/market/SearchTransaction'
+import Debug from './debug/Debug'
 
 // Redux Store
 import store from './store'
@@ -39,6 +40,7 @@ ReactDOM.render((
           <Route path="marketplace" component={Marketplace} />
           <Route path="marketplace/new" component={NewTransaction} />
           <Route path="marketplace/search" component={SearchTransaction} />
+            <Route path="debug" component={Debug}/>
         </Route>
       </Router>
     </Provider>

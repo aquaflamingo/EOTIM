@@ -7,7 +7,7 @@ const GridContainer = ({ offers, onClick }) => (
         { 
           // Error not able to render as a collection for some reason.. 
           offers.map(offer=> (
-              <div>
+              <div className="no-params">
                 <OfferContainer 
                   {...offer}
                   onClick={() => onClick(offer.address)} />

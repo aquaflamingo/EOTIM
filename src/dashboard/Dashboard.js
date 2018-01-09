@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AsideMenu from '../../ui/AsideMenu'
+import AsideMenu from '../ui/AsideMenu'
 
 class Dashboard extends Component {
 

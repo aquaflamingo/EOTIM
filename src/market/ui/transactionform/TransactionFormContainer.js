@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {createTransaction} from './TransactionFormActions'
 import TransactionForm from './TransactionForm'
 
+
 const mapStateToProps = (state, ownProps) => {
     console.log("TransactionFormContainer state2props ",state.market.status)
     return {
