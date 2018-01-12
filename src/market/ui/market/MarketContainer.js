@@ -6,9 +6,8 @@ import Market from './Market'
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      onPurchaseClick: (event) => {
-        event.preventDefault();
-        dispatch(purchaseOffer())
+      onPurchaseClick: (address,val) => {
+        dispatch(purchaseOffer(address,val))
       },
       onRefresh: (event) => {
         // event.preventDefault();

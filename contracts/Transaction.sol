@@ -26,10 +26,6 @@ contract Transaction is Killable {
 
     }
 
-    function getN() returns (uint) {
-        return maxCoverage;
-    }
-
     function setCounterParty(address _party) public onlyOwner {
         counterParty = _party;
     }

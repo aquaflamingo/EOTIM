@@ -6,7 +6,6 @@ import TransactionForm from './TransactionForm'
 
 
 const mapStateToProps = (state, ownProps) => {
-    console.log("TransactionFormContainer state2props ",state.market.status)
     return {
         status: state.market.status
     }

@@ -30,10 +30,6 @@ const validate = values => {
      } else if(!isAddress(values.counterPartyAddress)) {
         errors.counterPartyAddress = '* Invalid Ethereum Address'
      }
-     
-     if (!values.maxInsurance) {
-         errors.maxInsurance = '* Required'
-     } 
 
      if (!values.insurerPremium) {
         errors.insurerPremium = '* Required'
@@ -67,12 +63,9 @@ class TransactionForm extends Component {
 
 
   renderNotification(newContractEvent) {
-    setTimeout(function() {
-            let mountNode = React.findDOMNode(this.refs.notif);
-            let unmount = React.unmountComponentAtNode(mountNode);
-        },5000);
+   
     return (
-        <div ref="notif" className="notification is-success">
+        <div className="notification is-success">
             Contract created @ {newContractEvent.address}
             <p>
             <Link to="marketplace">
@@ -151,9 +144,9 @@ class TransactionForm extends Component {
                         />
                     </div>
                 </div>
-
+                
                 <div className="field">
-                <label className="label">Max Insurance (%)</label>
+                    <label className="label">Max Insurance (%)</label>
                     <div className="select">
                         <Field
                             component="select"
@@ -166,7 +159,7 @@ class TransactionForm extends Component {
                         </Field>
                     </div>
                 </div>
-                
+
                 <div className="field">
                     <label className="label">Insurer Premium (%)</label>
                     <div className="select">

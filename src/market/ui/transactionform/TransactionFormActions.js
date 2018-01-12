@@ -66,8 +66,8 @@ export function createTransaction(values) {
                 factoryInstance.create(
                     values.counterPartyAddress,
                     values.transactionName,
-                    values.transactionDescription,
                     values.maxInsurance,
+                    values.transactionDescription,
                     values.insurerPremium,
                     {from:coinbase, value:ethVal})
                 .then(function(result) {

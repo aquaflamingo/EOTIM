@@ -6,7 +6,7 @@ function calculatePremium(val,terms) {
   return val*terms;
 }
 
-const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterParty, onClick }) => {
+const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterParty, contractAddress, onClick }) => {
   console.log("Max Cover=", maxCoverage)
     console.log("Value=",val);
     console.log("Terms=",terms);
@@ -38,11 +38,10 @@ const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterPar
         <div className="columns">
           <div className="column is-9">
             <p className="subtitle is-5">{description} </p>
-            {/* <a href="#" style={{fontSize:'14px'}}>Issuer: {issuer} </a> */}
         </div>
         
         <div className="column is-3">
-          <a href="#" className="button is-warning" onClick={(event) => onClick(event)}>Insure at {val*maxCoverage/100} ETH</a>      
+          <a href="#" className="button is-warning" onClick={(event) => onClick(contractAddress,val*maxCoverage/100)}>Insure at {val*maxCoverage/100} ETH</a>      
         </div>
         </div>
     </div>  

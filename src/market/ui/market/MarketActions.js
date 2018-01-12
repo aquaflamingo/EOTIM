@@ -29,6 +29,7 @@ function offersRefreshed(offers) {
 
                   console.log("max cover =", results[4].toString())
                   var details = {
+                    address:address,
                     offerName: web3.toAscii(results[0]),
                     description: web3.toAscii(results[1]),
                     val: web3.fromWei(results[2],'ether').toNumber(),
@@ -71,7 +72,7 @@ function offersRefreshed(offers) {
               console.log("Offers are refreshed!! , ",result)
               fetchOfferDetails(result).then(
                 data=> {
-                dispatch(offersRefreshed(data))
+                  dispatch(offersRefreshed(data))
                 })
   
             })

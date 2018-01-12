@@ -10,7 +10,7 @@ const GridContainer = ({ offers, onClick }) => (
               <div className="no-params">
                 <OfferContainer 
                   {...offer}
-                  onClick={() => onClick(offer.address)} />
+                  onClick={(address,val) => onClick(address,val)} />
                 <br/>
                 </div>
           ))

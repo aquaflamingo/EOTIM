@@ -36,6 +36,8 @@ class Market extends Component {
         )
     }
 
+    console.log("Hello world", this.props.offers)
+
     return <GridContainer offers={this.props.offers} onClick={this.props.onPurchaseClick} />;
   }
   render() {

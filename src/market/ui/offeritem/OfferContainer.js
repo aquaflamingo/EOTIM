@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     value: ownProps.value,
     terms: ownProps.terms,
     counterParty: ownProps.counterParty,
+    contractAddress: ownProps.address,
     onClick: ownProps.onClick
   }
 }

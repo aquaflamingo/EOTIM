@@ -15,8 +15,8 @@ contract InsurableTransactionFactory {
     event NewContractAddress (address contractAddress, address contractCreator);
     event ContractDetails(address counterParty, 
         bytes32 name,
+        uint max,
         bytes32 desc,
-        uint max, 
         uint premium);
 
     function count() public constant returns (uint theCount) { 
@@ -26,8 +26,8 @@ contract InsurableTransactionFactory {
     function create(
         address counterParty, 
         bytes32 name,
+        uint max,
         bytes32 desc,
-        uint max, 
         uint premium) payable external returns (Transaction newContractAddress) {
         
         
@@ -38,7 +38,7 @@ contract InsurableTransactionFactory {
         owners[msg.sender].push(id);
         newContract.transfer(msg.value);
 
-        ContractDetails(newContract.counterParty(),newContract.name(),newContract.desc(),newContract.maxCoverage(),newContract.premium());
+        ContractDetails(newContract.counterParty(),newContract.name(),max,newContract.desc(),newContract.premium());
 
         NewContractAddress(newContract,msg.sender);
         return newContract;
