@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import AsideMenu from '../ui/AsideMenu'
-
+import AsideMenu from '../../../ui/AsideMenu'
+import {Link} from 'react-router'
 class Dashboard extends Component {
 
 
@@ -14,7 +14,14 @@ class Dashboard extends Component {
         </div>
         <div className="column is-9">
           <h1 className="title">Dashboard</h1>
-          <p className="subtitle"><strong>Congratulations! </strong> If you're seeing this page, you've logged in with your own smart contract successfully.</p>
+          <p className="subtitle"><strong>Congratulations! </strong> Welcome to EOTIM!</p>
+
+            <br/><br/><br/>
+            <div className="notification">
+              <p> Nothing to see here. </p>
+              <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
+            </div>
+
         </div>
       </div>
       </div>

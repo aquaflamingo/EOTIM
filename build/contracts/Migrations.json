@@ -64,8 +64,8 @@
     "2": {
       "links": {},
       "events": {},
-      "updated_at": 1515716534846,
-      "address": "0xd4641bb1efde006b7123d430c88ab236dea24f18"
+      "updated_at": 1515722274466,
+      "address": "0xea4c54b087a00c95b2557fdd166079bf53b7aea6"
     },
     "1515550764169": {
       "events": {},
@@ -75,5 +75,5 @@
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1515716534846
+  "updated_at": 1515722274466
 }

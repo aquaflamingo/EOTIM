@@ -8,7 +8,7 @@ import getWeb3 from './util/web3/getWeb3'
 // Layouts
 import App from './App'
 import Home from './layouts/home/Home'
-import Dashboard from './dashboard/Dashboard'
+import Dashboard from './dashboard/layout/dashboard/Dashboard'
 
 import Marketplace from './market/layouts/market/Marketplace'
 import NewTransaction from './market/layouts/market/NewTransaction'
