@@ -2,13 +2,10 @@
 
 Proof on concept for an open market for insuring transactions and escrows on the blockchain. Work in Progress.
 
-
-
 ![Home](/assets/home.png)
 ![Dashboard](/assets/dash.png)
 ![Open](/assets/open.png)
 ![Trxn](/assets/trxn.png)
-
 
 ## Author
 
