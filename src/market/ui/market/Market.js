@@ -33,6 +33,16 @@ class Market extends Component {
     return sum/offers.length;
   }
 
+  offersAvail(offers) {
+    var tmp = []
+    for (var offer in offers) {
+
+      if(offer.insurance===0) {
+        tmp.push(offer)
+      }
+    }
+    return tmp.length;
+  }
   renderOffers() {
     if (this.props.offers.length==0) {
         return (
@@ -61,7 +71,7 @@ class Market extends Component {
                      {this.props.offers == null ? 
                     <p className="title">N/A</p>
                     :
-                    <p className="title">{this.props.offers.length}</p>
+                    <p className="title">{this.offersAvail(this.props.offers)}</p>
                      }
                   </div>
                 </div>

@@ -43,8 +43,9 @@ contract Transaction is Killable {
             uint _maxCoverage,
             uint _premium,
             address _counterParty,
-            address _insurer) {
-                return (name, desc, this.balance, coverage, maxCoverage,premium,counterParty,insurer);
+            address _insurer,
+            Insurance i) {
+                return (name, desc, this.balance, coverage, maxCoverage,premium,counterParty,insurer,i);
             }
     
     Insurance public insuranceStatus = Insurance.NonInsured;

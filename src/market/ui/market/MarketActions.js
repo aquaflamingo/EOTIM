@@ -27,6 +27,7 @@ function offersRefreshed(offers) {
                 // resolve promise successfully
                 console.log("Results of the instance, single getTransactionDetails are ",results);
 
+              
                   var details = {
                     address:address,
                     offerName: web3.toAscii(results[0]),
@@ -35,6 +36,7 @@ function offersRefreshed(offers) {
                     maxCoverage:  results[4].toNumber(),
                     terms: results[5].toNumber(),
                     counterParty: results[6],
+                    insurance: results[7]
                   }
 
                   console.log(details)
