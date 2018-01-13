@@ -22,6 +22,16 @@ class Market extends Component {
   }
 
   
+  calculateAvgVal(offers) {
+    var sum=0;
+    console.log("Sum")
+    for (var offer in offers) {
+        sum+=offers[offer].val;
+        console.log("Sum value is ",sum);
+        console.log(offer);
+    }
+    return sum/offers.length;
+  }
 
   renderOffers() {
     if (this.props.offers.length==0) {
@@ -38,18 +48,47 @@ class Market extends Component {
 
     console.log("Hello world", this.props.offers)
 
-    return <GridContainer offers={this.props.offers} onClick={this.props.onPurchaseClick} />;
+    return <div> <GridContainer offers={this.props.offers} onClick={this.props.onPurchaseClick} /> </div>
   }
   render() {
     return(
             <div>
+              <div>
+                <nav className="level">
+                <div className="level-item has-text-centered">
+                  <div>
+                    <p className="heading">Deals Available</p>
+                     {this.props.offers == null ? 
+                    <p className="title">N/A</p>
+                    :
+                    <p className="title">{this.props.offers.length}</p>
+                     }
+                  </div>
+                </div>
+                <div className="level-item has-text-centered">
+                  <div>
+                    <p className="heading">Average Value</p>
+                     {this.props.offers == null ? 
+                    <p className="title">N/A</p>
+                    :
+                    <p className="title">{this.calculateAvgVal(this.props.offers).toFixed(1)} ETH</p>
+                     }
+                  </div>
+                </div>
+              </nav>
+              
+
+              <div>
               <a href="#" onClick={this.refresh.bind(this)}> Refresh </a>
               {this.props.offers == null ?
                 <p> Refreshing.. </p>
               :
                 this.renderOffers()
               }
+              </div>
               
+
+              </div>
             </div>
     )
   }

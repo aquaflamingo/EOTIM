@@ -70,7 +70,7 @@ class TransactionForm extends Component {
         <div className="notification is-success">
             Contract created @ {newContractEvent.address}
             <p>
-            <Link to="marketplace">
+            <Link to="/marketplace">
                 Check it out here.
             </Link></p>
         </div>
