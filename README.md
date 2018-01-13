@@ -3,9 +3,19 @@
 Proof on concept for an open market for insuring transactions and escrows on the blockchain. Work in Progress.
 
 ![Home](/assets/home.png)
+Home Landing Page
+
 ![Dashboard](/assets/dash.png)
-![Open](/assets/open.png)
+Dashboard to display to users their offers
+
+![Open](/assets/open.png) 
+Blank home page
+
+![offers](/assets/offers.png)
+Offers currently out there fore me to insurer
+
 ![Trxn](/assets/trxn.png)
+Transaction creation page
 
 ## Author
 
