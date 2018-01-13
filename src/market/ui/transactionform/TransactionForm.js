@@ -8,20 +8,22 @@ const validate = values => {
     /* Transaction Name */
     if (!values.transactionName) {
       errors.transactionName = '* Required'
-    } else if (values.transactionName.length > 50) {
-      errors.transactionName = '* Must be 50 characters or less'
+    } else if (values.transactionName.length > 32) {
+      errors.transactionName = '* Must be 32 characters or less'
     }
     /* Transaction Description */
     if (!values.transactionDescription) {
       errors.transactionDescription = '* Required'
-    } else if (values.transactionDescription.length>500 || values.transactionDescription.length<20) {
-      errors.transactionDescription = '* Must be greater than 20 and less than 500 characters'
+    } else if (values.transactionDescription.length>32 || values.transactionDescription.length<0) {
+      errors.transactionDescription = '* Must be greater than 0 and less than 32 characters'
     }
     /* Transaction Ethereum Value */
     if (!values.transactionValue) {
         errors.transactionValue = '* Required'
     } else if (values.transactionValue<0) {
         errors.transactionValue = '* Cannot be less than 0'
+    } else if (isNaN(values.transactionValue)) {
+        errors.transactionValue = '* Must be a number.'
     }
 
     //  /* Transaction Counter Party */

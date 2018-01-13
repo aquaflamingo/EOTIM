@@ -446,8 +446,64 @@
       "links": {},
       "address": "0xe8d81f2ccac06b3e30a3d405c359cea550c8a4aa",
       "updated_at": 1515722274463
+    },
+    "1515819745586": {
+      "events": {
+        "0x9e991a79092c9b7be8055c69102d1a547dbb5f9cf5aad2cee2dacb65ed4ac5bd": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "contractAddress",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "contractCreator",
+              "type": "address"
+            }
+          ],
+          "name": "NewContractAddress",
+          "type": "event"
+        },
+        "0x9274a55efda269d95097b9807100fc3c04a36df4e4b189ab684b25295b6d4ee5": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "counterParty",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "name",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "max",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "desc",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "name": "premium",
+              "type": "uint256"
+            }
+          ],
+          "name": "ContractDetails",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xc46d184f05ccd0ab73cf0cff716f14dc837ca7a2",
+      "updated_at": 1515820575026
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1515722274463
+  "updated_at": 1515820575026
 }

@@ -25,9 +25,8 @@ function offersRefreshed(offers) {
             instance.getTransactionDetails.call()
             .then(function(results) {
                 // resolve promise successfully
-                console.log(results);
+                console.log("Results of the instance, single getTransactionDetails are ",results);
 
-                  console.log("max cover =", results[4].toString())
                   var details = {
                     address:address,
                     offerName: web3.toAscii(results[0]),
@@ -68,8 +67,7 @@ function offersRefreshed(offers) {
         factory.deployed().then(function(instance) {
           instance.getTransactions.call()
             .then(function(result) {
-  
-              console.log("Offers are refreshed!! , ",result)
+
               fetchOfferDetails(result).then(
                 data=> {
                   dispatch(offersRefreshed(data))
