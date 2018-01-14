@@ -139,7 +139,7 @@ class TransactionForm extends Component {
                             className="input"
                             label="Counter Party Address"
                             name="counterPartyAddress"
-                            placeholder="0x3433eca3d3adec88639a32d123das312"
+                            placeholder="0x6ac70c5bc0bad41d66621c25ea7b23f76b02e6e9"
                             onChange={handleChange}
                             type="text"
                             value={value}
