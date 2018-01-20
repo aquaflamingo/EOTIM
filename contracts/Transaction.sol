@@ -13,7 +13,9 @@ contract Transaction is Killable {
     uint public coverage;
     uint public maxCoverage;
     uint public premium;
-
+    Insurance public insuranceStatus;
+    event TransactionInsured(string msg);
+    enum Insurance { Insured, NonInsured }
 
     function Transaction(address _counterparty, bytes32 _name, bytes32 _desc, uint _max_coverage, uint _prem) public {
         require(_counterparty!=0x0);
@@ -23,7 +25,7 @@ contract Transaction is Killable {
         premium = _prem;
         name = _name;
         desc = _desc;
-
+        insuranceStatus = Insurance.NonInsured;
     }
 
     function setCounterParty(address _party) public onlyOwner {
@@ -32,7 +34,6 @@ contract Transaction is Killable {
 
     // Fallback function
     function() public payable {}
-
 
     // Only return relevant details for would be insurer
     function getTransactionDetails() public constant returns (
@@ -44,12 +45,9 @@ contract Transaction is Killable {
             uint _premium,
             address _counterParty,
             address _insurer,
-            Insurance i) {
-                return (name, desc, this.balance, coverage, maxCoverage,premium,counterParty,insurer,i);
+            uint insured) {
+                return (name, desc, this.balance, coverage, maxCoverage,premium,counterParty,insurer,uint(insuranceStatus));
             }
-    
-    Insurance public insuranceStatus = Insurance.NonInsured;
-    enum Insurance { Insured, NonInsured }
 
 
     modifier onlyInsurer() {
@@ -63,22 +61,17 @@ contract Transaction is Killable {
         }
     }
 
-    function insure() public payable onlyInsurer {
-        require(coverage<=maxCoverage && (coverage+msg.value)<=maxCoverage);
+    function insure() public payable returns (bool _success) {
+        require(coverage<=maxCoverage);
+        require((coverage+msg.value)<=maxCoverage);
+        require(insuranceStatus!=Insurance.Insured);
+
         coverage += msg.value;
-        // Insured("Transaction insured up to",coverage);
         insuranceStatus = Insurance.Insured;
-        // Cannot over insure an escrow contract beyond coverage set
-        // require(this.insurance_coverage<=msg.value);
-     
+        insurer=msg.sender;
+        return true;
     }
 
-    function becomeInsurer() public  {
-        require(insurer==0x0);
-        insurer = msg.sender;
-        // If insurance status is 0, then we can 
-        // set insurer
-    }
 
 
     function setMaxCoverage(uint _coverage) onlyOwner public  {

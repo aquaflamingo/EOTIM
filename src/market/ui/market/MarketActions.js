@@ -12,6 +12,13 @@ function offersRefreshed(offers) {
     }
   }
   
+  function parseInsurance(status) {
+    if (status=="0x0000000000000000000000000000000000000000") {
+      return false;
+    } 
+
+    return true;
+  }
   function fetchOfferDetails(offerAddresses) {
     let web3 = store.getState().web3.web3Instance
     let trxn = contract(Transaction)
@@ -27,7 +34,9 @@ function offersRefreshed(offers) {
                 // resolve promise successfully
                 console.log("Results of the instance, single getTransactionDetails are ",results);
 
-              
+                  var insuredStatus = parseInsurance(results[7]);
+                  console.log("Insured ", insuredStatus)
+
                   var details = {
                     address:address,
                     offerName: web3.toAscii(results[0]),
@@ -36,7 +45,7 @@ function offersRefreshed(offers) {
                     maxCoverage:  results[4].toNumber(),
                     terms: results[5].toNumber(),
                     counterParty: results[6],
-                    insurance: results[7]
+                    insurance: insuredStatus
                   }
 
                   console.log(details)
