@@ -8,6 +8,18 @@ You might want to have some insurance on that... 👨🏻‍
 
 Okay probably not 🤦. But this was just a fun project to learn a little bit more about Truffle, Dapps and React.Js.
 
+## Building
+
+1. Clone repo
+2. `cd eotim && npm install`
+3. Download testrpc, run `testrpc`
+4. `npm run start`
+5. http://localhost:3000
+6. ???
+7. Profit??? 
+
+## Lé Gallerié 
+
 ![Home](/assets/home.png)
 Home Landing Page
 
@@ -27,9 +39,11 @@ Transaction creation page
 
 [@RobertSimoes](www.robertsimoes.com)
 
-## Tech
+## Technology
 
 React, Redux, Truffle, Solidity
+
+
 
 ## License
 
