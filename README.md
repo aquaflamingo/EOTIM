@@ -1,6 +1,6 @@
 # Ethereum Open Transaction Insurance Market (EOTIM)
 
-Proof on concept for an open market for insuring transactions and escrows on the blockchain. Work in Progress.
+Proof on concept front end design for an p2p open market for insuring escrow based transactions on the blockchain. Let's say you're making a shipment from Mexico to Vancouver for oranges. You might want to have some insurance on that. 
 
 ![Home](/assets/home.png)
 Home Landing Page
