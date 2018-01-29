@@ -1,6 +1,12 @@
 # Ethereum Open Transaction Insurance Market (EOTIM)
 
-Proof on concept front end design for an p2p open market for insuring escrow based transactions on the blockchain. Let's say you're making a shipment from Mexico to Vancouver for oranges. You might want to have some insurance on that. 
+PoC for an p2p open market for insuring escrow based transactions on the blockchain. 
+
+Let's say you're making a shipment from Mexico to Vancouver for oranges 📦🍊. 
+
+You might want to have some insurance on that... 👨🏻‍
+
+Okay probably not 🤦. But this was just a fun project to learn a little bit more about Truffle, Dapps and React.Js.
 
 ![Home](/assets/home.png)
 Home Landing Page
