@@ -18,6 +18,14 @@ Okay probably not 🤦. But this was just a fun project to learn a little bit mo
 6. ???
 7. Profit??? 
 
+## TODO
+(It's a wip okay 😆)
+
+1. Fix `insure` method to accurately insure contracts 
+2. Fix insured flags to present non-insured contracts
+3. Pull user's deal contracts on dashboard
+4. Search by name for contracts
+
 ## Lé Gallerié 
 
 ![Home](/assets/home.png)
@@ -42,8 +50,6 @@ Transaction creation page
 ## Technology
 
 React, Redux, Truffle, Solidity
-
-
 
 ## License
 
