@@ -2,8 +2,12 @@ import React, { Component } from 'react'
 import MarketMenu from '../../../ui/MarketMenu'
 import MarketContainer from '../../ui/market/MarketContainer'
 
+/** 
+ * Basic dumb wrapper layout for the market section of the app, containing the menu and offers
+*/
 class Marketplace extends Component {
 
+  /* Woo hoo clicking the offer purchase works!*/
   onPurchaseClick(address) {
     alert("Clicked purchase ");
 
@@ -11,6 +15,7 @@ class Marketplace extends Component {
     
   render() {
     
+    /* Links in relavent side nav */
     var links = [
       {to:'/marketplace',name:'All'},
       {to:'/marketplace/new',name:'Create Transaction'},

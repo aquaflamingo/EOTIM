@@ -11,12 +11,25 @@ Okay probably not 🤦. But this was just a fun project to learn a little bit mo
 ## Building
 
 1. Clone repo
+
+```
+    $ git clone https://github.com/robertsimoes/Ethereum-Open-Transaction-Insurance-Market eotim
+```
+
 2. `cd eotim && npm install`
-3. Download testrpc, run `testrpc`
-4. `npm run start`
-5. http://localhost:3000
-6. ???
-7. Profit??? 
+3. Download testrpc
+4. Start Local Ethereum instance: 
+    run `testrpc`
+5. Deploy contracts:
+    run `truffle migrate --network testrpc --reset`
+5. Start the server: 
+    `npm run start`
+6. Navigate over to http://localhost:3000
+7. Make sure you have MetaMask
+8. Input your `menomic` -> check testrpc
+9. Make sure network on 8545 (testrpc)
+10. ???
+11. Profit??? 
 
 ## TODO
 (It's a wip okay 😆)

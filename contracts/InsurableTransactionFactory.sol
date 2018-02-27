@@ -13,6 +13,7 @@ contract InsurableTransactionFactory {
     }
     
     event NewContractAddress (address contractAddress, address contractCreator);
+
     event ContractDetails(address counterParty, 
         bytes32 name,
         uint max,
@@ -48,23 +49,25 @@ contract InsurableTransactionFactory {
         return contracts;
     }
 
-    function get(uint[] _ids) returns (Transaction[] trxns) {
-        require(_ids.length>0);
-        Transaction[] t;
+    // Remove this method for now.
+    // function get(uint[] _ids) returns (Transaction[] trxns) {
+    //     require(_ids.length>0);
+    //     Transaction[] t;
 
-        // Iterate through array values
-        for (uint i=0;i<_ids.length;i++) {
-            // Can't be outside range
-            require(_ids[i]<contracts.length);
+    //     // Iterate through array values
+    //     for (uint i=0;i<_ids.length;i++) {
+    //         // Can't be outside range
+    //         require(_ids[i]<contracts.length);
 
-            t.push(contracts[_ids[i]]);
-        }
+    //         t.push(contracts[_ids[i]]);
+    //     }
 
-        return t;
-    }
+    //     return t;
+    // }
 
-    function getOwnerTransactions(address _owner) returns (Transaction[] trxns) {
-        return get(owners[_owner]);
-    }
+    // Eventually allows users to ping contract for individual address
+    // function getOwnerTransactions(address _owner) returns (Transaction[] trxns) {
+    //     return get(owners[_owner]);
+    // }
 
 }

@@ -5,6 +5,10 @@ const contract = require('truffle-contract')
 
 export const CONTRACT_CREATE = 'CONTRACT_CREATE'
 
+/**
+ * For redux state updates
+ * @param {object} details 
+ */
 function contractCreated(details) {
     return {
         type: CONTRACT_CREATE,
@@ -12,6 +16,10 @@ function contractCreated(details) {
     }
 }
 
+/**
+ * Creates the new insurance offering by calling Factory contract
+ * @param {object} values 
+ */
 export function createTransaction(values) {
     let web3 = store.getState().web3.web3Instance
   // Double-check web3's status.
@@ -63,6 +71,7 @@ export function createTransaction(values) {
 
                 var ethVal = web3.toWei(parseFloat(values.transactionValue),'ether');
                 console.log("Values in contract creation are ", values)
+                
                 factoryInstance.create(
                     values.counterPartyAddress,
                     values.transactionName,

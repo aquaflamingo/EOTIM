@@ -4,6 +4,9 @@ const initialState = {
     status: null,
   }
   
+  /**
+   * Handles redux state objects related to marketplace actions
+   */
   const marketReducer = (state = initialState, action) => {
       console.log("Market Reducers, ", state)
     switch (action.type) {

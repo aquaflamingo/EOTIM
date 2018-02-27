@@ -6,10 +6,11 @@ function calculatePremium(val,terms) {
   return val*terms;
 }
 
+/**
+ * The basis of the application is contained in an "OfferItem"
+ * The offer item is passed it's relv. detail to display to to the user.
+ */
 const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterParty, contractAddress, onClick }) => {
-  console.log("Max Cover=", maxCoverage)
-    console.log("Value=",val);
-    console.log("Terms=",terms);
 
   return(
       <div className="panel offer-item">

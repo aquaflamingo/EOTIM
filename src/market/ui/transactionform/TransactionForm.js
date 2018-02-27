@@ -3,6 +3,10 @@ import {reduxForm, Field} from 'redux-form';
 import {isAddress} from '../../../util/isAddress';
 import { Link } from 'react-router'
 
+/**
+ * Validates the form values, and passes an error object back containing specific errors
+ * @param {object} values 
+ */
 const validate = values => {
     const errors = {}
     /* Transaction Name */
@@ -61,9 +65,17 @@ const renderField = ({
       </div>
     </div>
 
+/** 
+ * Specific Form component for building a new insurance offering 
+ * Uses Redux Form
+*/
 class TransactionForm extends Component {
 
 
+    /**
+     *  Displays notification of contract address and creation (Still buggy) 
+     * FIXME://
+     * */
   renderNotification(newContractEvent) {
    
     return (

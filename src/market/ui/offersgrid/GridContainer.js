@@ -2,6 +2,10 @@ import React, {Component} from 'react'
 
 import OfferContainer from '../offeritem/OfferContainer'
 
+/**
+ * Grid container creates the list of offers - eventually to become a grid based 
+ * component but for now lists in one row.
+ */
 const GridContainer = ({ offers, onClick }) => (
   <section className="is-medium">
     <br/>

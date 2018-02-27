@@ -4,6 +4,10 @@ import { connect } from 'react-redux'
 import SearchTransactionForm from './SearchTransactionForm'
 
 
+/**
+ * activated with values to pass to search
+ * @param {object} dispatch 
+ */
 const mapDispatchToProps = (dispatch) => {
     return {
         handleTransactionSubmit: (values) => {
@@ -12,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
       }
     }
   }
-  
+
 const SearchTransactionFormContainer = ({handleTransactionSubmit,values}) =>
     <SearchTransactionForm 
         onSubmit={values => handleTransactionSubmit(values)}/>

@@ -6,6 +6,9 @@ import { Link } from 'react-router'
 import './css/bulma.css'
 import './App.css'
 
+/**
+ * App container eventually to include
+ */
 class App extends Component {
   render() {
     const Links = () =>  {

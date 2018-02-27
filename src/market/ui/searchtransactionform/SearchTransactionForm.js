@@ -3,7 +3,9 @@ import {reduxForm, Field} from 'redux-form';
 import {isAddress} from '../../../util/isAddress';
 
 
-
+/**
+ * Based on Redux Form tutorial creates a redux form with appropriate layouts.
+ */
 const renderField = ({
     input,
     label,
@@ -25,6 +27,9 @@ const renderField = ({
       </div>
     </div>
 
+/** 
+ * Basic container for eventual search function with input and submission
+*/
 class SearchTransactionForm extends Component {
 
   

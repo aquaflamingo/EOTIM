@@ -1,16 +1,23 @@
 import React, { Component } from 'react'
-import AsideMenu from '../../../ui/AsideMenu'
+import MarketMenu from '../../../ui/MarketMenu'
 import {Link} from 'react-router'
 class Dashboard extends Component {
 
 
   render() {
+  
+    var links = [
+      {to:'#',name:'Launched 🎊'}
+    ]
+
     return(
       <div className="container">
       <br/><br/>
       <div className="columns">
         <div className="column is-3">
-          <AsideMenu />
+           <MarketMenu
+           title="Announcements"
+           links={links} />
         </div>
         <div className="column is-9">
           <h1 className="title">Dashboard</h1>

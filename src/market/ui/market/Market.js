@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import GridContainer from '../offersgrid/GridContainer'
 import { Link } from 'react-router'
 
+/** 
+ * A more sophisticated layout for containing the relavent offers in the
+ * Grid container component and managing the upper status of global 
+ * statistics for offerings.
+*/
 class Market extends Component {
   
   constructor(props) {
@@ -17,11 +22,15 @@ class Market extends Component {
     setTimeout(this.props.onRefresh,1000)
   }
 
+
   refresh() {
     this.props.onRefresh()
   }
 
   
+  /**
+   * Used to calculate the average value per insurance offering
+   * */ 
   calculateAvgVal(offers) {
     var sum=0;
     console.log("Sum")
@@ -33,6 +42,9 @@ class Market extends Component {
     return sum/offers.length;
   }
 
+  /**
+   *  Should eventually load and present the number of UNINSURED offers
+  */
   offersAvail(offers) {
     var tmp = []
     for (var offer in offers) {
@@ -43,6 +55,11 @@ class Market extends Component {
     }
     return tmp.length;
   }
+
+  /**
+   * Renders the Grid container with the offers, 
+   * as well as a notice if there are no contract offers available.
+   */
   renderOffers() {
     if (this.props.offers.length==0) {
         return (
@@ -56,7 +73,6 @@ class Market extends Component {
         )
     }
 
-    console.log("Hello world", this.props.offers)
 
     return <div> <GridContainer offers={this.props.offers} onClick={this.props.onPurchaseClick} /> </div>
   }

@@ -5,6 +5,10 @@ import store from '../../../store'
 const contract = require('truffle-contract')
 export const REFRESH_OFFERS = "REFRESH_OFFERS"
 
+/**
+ * Returns the payload user to update the redux state
+ * @param {array} offers 
+ */
 function offersRefreshed(offers) {
     return {
       type: REFRESH_OFFERS,
@@ -12,6 +16,10 @@ function offersRefreshed(offers) {
     }
   }
   
+  /**
+   * Determines whether or not the status is insured or not
+   * @param {string} status 
+   */
   function parseInsurance(status) {
     if (status=="0x0000000000000000000000000000000000000000") {
       return false;
@@ -19,6 +27,13 @@ function offersRefreshed(offers) {
 
     return true;
   }
+
+  /**
+   * Create a set of promises to iterate through and grab relavent contract
+   * Then converts these contracts into individual details objects (representing offers)
+   * for consumption
+   * @param {array} offerAddresses 
+   */
   function fetchOfferDetails(offerAddresses) {
     let web3 = store.getState().web3.web3Instance
     let trxn = contract(Transaction)
@@ -65,6 +80,10 @@ function offersRefreshed(offers) {
     let results = Promise.all(actions)
     return results;
   }
+
+  /** 
+   * Refreshes and checks for the offers present in the contract 
+  */
   export function refreshOffers() {
     let web3 = store.getState().web3.web3Instance
   
