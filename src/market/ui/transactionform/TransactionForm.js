@@ -77,6 +77,7 @@ class TransactionForm extends Component {
      * FIXME://
      * */
   renderNotification(newContractEvent) {
+   console.log(newContractEvent);
    
     return (
         <div className="notification is-success">

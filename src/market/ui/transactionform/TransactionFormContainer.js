@@ -11,6 +11,8 @@ import TransactionForm from './TransactionForm'
  * @param {object} ownProps 
  */
 const mapStateToProps = (state, ownProps) => {
+    console.log("Status",state.market.status);
+    
     return {
         status: state.market.status
     }

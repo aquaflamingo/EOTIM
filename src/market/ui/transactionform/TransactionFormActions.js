@@ -57,17 +57,6 @@ export function createTransaction(values) {
                             console.log(error);
                         }
                     });
-        
-                var newTrxnEvent = factoryInstance.ContractDetails()
-                    newTrxnEvent.watch(function(error, result){
-                        if (!error)
-                        {
-                            console.log("Contract details are as followes:  ", result)
-                        } else {
-                            // Error
-                            console.log("Failed to get contract details")
-                        }
-                    });
 
                 var ethVal = web3.toWei(parseFloat(values.transactionValue),'ether');
                 console.log("Values in contract creation are ", values)

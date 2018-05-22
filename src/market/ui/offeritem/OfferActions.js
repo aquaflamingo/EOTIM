@@ -59,7 +59,7 @@ export function purchaseOffer(address,val) {
 
             /* call the insurance method using 'call' -> reference 'call' vs. true 
               function invocation in solidity docs, next time you come around to this */
-            instance.insure.call({from:coinbase,value:web3.toWei(val,'ether')})
+            instance.insure({from:coinbase,value:web3.toWei(val,'ether')})
                   .then(function(results) {
                       console.log("Insure transaction sent")
                       /* dispatch contract insured */

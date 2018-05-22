@@ -68,7 +68,7 @@ contract Transaction is Killable {
 
         coverage += msg.value;
         insuranceStatus = Insurance.Insured;
-        insurer=msg.sender;
+        insurer = msg.sender;
         return true;
     }
 
