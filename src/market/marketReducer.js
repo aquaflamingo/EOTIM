@@ -8,7 +8,6 @@ const initialState = {
    * Handles redux state objects related to marketplace actions
    */
   const marketReducer = (state = initialState, action) => {
-      console.log("Market Reducers, ", state)
     switch (action.type) {
         case 'REFRESH_OFFERS':
             return Object.assign({}, state, {
@@ -19,7 +18,7 @@ const initialState = {
                 data: action.payload
             })
         case 'CONTRACT_CREATE':
-        console.log("CONTRACT_CREATE state ",action.payload)
+        console.log("Contract created. Transaction information: ",action.payload)
             return Object.assign({}, state, {
                 status: action.payload
               })

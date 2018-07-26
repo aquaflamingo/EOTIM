@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {purchaseOffer} from '../offeritem/OfferActions'
-import {refreshOffers} from './MarketActions'
+import {refreshOffers,clearOffers} from './MarketActions'
 import Market from './Market'
 
 /**
@@ -14,7 +14,8 @@ const mapDispatchToProps = (dispatch) => {
       },
       onRefresh: (event) => {
         // event.preventDefault();
-        console.log("onRefresh.. dispatching")
+        dispatch(clearOffers())
+        console.log("Refreshing offers in marketplace..")
         dispatch(refreshOffers())
      }
   }

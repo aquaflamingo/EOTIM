@@ -15,7 +15,19 @@ function offersRefreshed(offers) {
       payload: offers
     }
   }
-  
+  function offersCleared() {
+    return {
+      type: REFRESH_OFFERS,
+      payload: null
+    }
+  }
+
+  export function clearOffers() {
+    return function(dispatch) {
+      dispatch(offersCleared())
+    }
+  }
+ 
   /**
    * Determines whether or not the status is insured or not
    * @param {string} status 

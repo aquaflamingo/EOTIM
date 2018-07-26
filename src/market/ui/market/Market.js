@@ -79,6 +79,7 @@ class Market extends Component {
   render() {
     return(
             <div>
+               
               <div>
                 <nav className="level">
                 <div className="level-item has-text-centered">
@@ -101,16 +102,21 @@ class Market extends Component {
                      }
                   </div>
                 </div>
+                <div className="level-item">
+                  <a href="#" onClick={this.refresh.bind(this)}> 
+                    Refresh
+                  </a>
+                </div>
               </nav>
               
 
               <div>
-              <a href="#" onClick={this.refresh.bind(this)}> Refresh </a>
-              {this.props.offers == null ?
-                <p> Refreshing.. </p>
-              :
-                this.renderOffers()
-              }
+                {
+                  this.props.offers == null ?
+                  <p> Refreshing.. </p>
+                :
+                  this.renderOffers()
+                }
               </div>
               
 

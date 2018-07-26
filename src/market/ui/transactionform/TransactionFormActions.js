@@ -23,7 +23,8 @@ function contractCreated(details) {
 export function createTransaction(values) {
     let web3 = store.getState().web3.web3Instance
   // Double-check web3's status.
-  
+  console.log("Hello World")
+
   if (typeof web3 !== 'undefined') {
 
     return function(dispatch) {
@@ -45,6 +46,7 @@ export function createTransaction(values) {
             // Get current ethereum wallet.
             factory.deployed().then(function(instance) {
                 factoryInstance = instance
+                console.log("Factory address = ", factoryInstance);
                 
                 var newTrxnEvent = factoryInstance.NewContractAddress()
                     newTrxnEvent.watch(function(error, result){
@@ -71,7 +73,7 @@ export function createTransaction(values) {
                 .then(function(result) {
                     dispatch(contractCreated(result))
                     
-                    console.log("Result is ", result)
+                    console.log("Completed contract creation.")
                 })
                 .catch(function(err) {
                     

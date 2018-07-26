@@ -13,40 +13,42 @@ function calculatePremium(val,terms) {
 const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterParty, contractAddress, onClick }) => {
 
   return(
-      <div className="panel offer-item">
-          <nav className="level">
-            <div className="level-left">
-            
-              <div className="level-item">
-                   <span className="tag is-success"> {val} ETH </span>
+      <div className="card">
+        <div className="card-content offer-item">
+            <nav className="level">
+              <div className="level-left">
+              
+                <div className="level-item">
+                    <span className="tag is-success"> {val} ETH </span>
+                    </div>
+
+                <div className="level-right">
+                  <div className="level-item">
+                  <span className="tag">{parseInt(terms)}% Premium</span>
                   </div>
+                  <div className="level-item">
+                    <span className="tag is-info">
+                      Payout: {calculatePremium(val,terms/100)} ETH
+                    </span>
+                  </div>
+                </div>
+                </div>
+              </nav>
+            <h2 className="title is-4">{offerName} </h2>
 
-              <div className="level-right">
-                <div className="level-item">
-                 <span className="tag">{parseInt(terms)}% Premium</span>
-                </div>
-                <div className="level-item">
-                  <span className="tag is-info">
-                    Payout: {calculatePremium(val,terms/100)} ETH
-                  </span>
-                </div>
-              </div>
-              </div>
-            </nav>
-          <h2 className="title is-4">{offerName} </h2>
+            <div className="columns">
+              <div className="column is-9">
+                <p className="subtitle is-5">{description} </p>
+                <a href={"https://ethplorer.io/address/"+contractAddress}> {contractAddress}</a>
+            </div>
           
-
-        <div className="columns">
-          <div className="column is-9">
-            <p className="subtitle is-5">{description} </p>
-            <a href={"https://ethplorer.io/address/"+contractAddress}> {contractAddress}</a>
-        </div>
-        
-        <div className="column is-3">
-          <a href="#" className="button is-warning" onClick={(event) => onClick(contractAddress,val*maxCoverage/100)}>Insure at {val*maxCoverage/100} ETH</a>      
-        </div>
-        </div>
-    </div>  
+            </div>
+            <div className="card-footer">
+                <a href="#" className="card-footer-item" onClick={(event) => onClick(contractAddress,val*maxCoverage/100)}>Insure for {val*maxCoverage/100} ETH</a>      
+                <a href="#" className="card-footer-item" >Contact</a>
+              </div>
+      </div>  
+    </div>
   )
 }
 

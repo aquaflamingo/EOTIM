@@ -36,8 +36,6 @@ contract InsurableTransactionFactory {
         owners[msg.sender].push(id);
         newContract.transfer(msg.value);
 
-        // emit NewContractAddress(newContract,msg.sender);
-
         return newContract;
     }
 

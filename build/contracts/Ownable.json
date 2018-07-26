@@ -39,7 +39,7 @@
       "events": {},
       "links": {},
       "address": "0x091e28dc8476fbeba4833bf8f6f57f7fa5e3bfe8",
-      "updated_at": 1526953200747
+      "updated_at": 1532633354931
     },
     "1515550764169": {
       "events": {},
@@ -109,5 +109,5 @@
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1526953200747
+  "updated_at": 1532633354931
 }

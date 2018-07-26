@@ -65,10 +65,14 @@ const renderField = ({
       </div>
     </div>
 
+
+const devMode = true;
+
 /** 
  * Specific Form component for building a new insurance offering 
  * Uses Redux Form
 */
+
 class TransactionForm extends Component {
 
 
@@ -77,11 +81,12 @@ class TransactionForm extends Component {
      * FIXME://
      * */
   renderNotification(newContractEvent) {
-   console.log(newContractEvent);
+   console.log("New Contract created!  ", newContractEvent.tx);
    
     return (
         <div className="notification is-success">
-            Contract created @ {newContractEvent.address}
+            Contract created! 
+            Receipt: {newContractEvent.tx}
             <p>
             <Link to="/marketplace">
                 Check it out here.
@@ -91,13 +96,18 @@ class TransactionForm extends Component {
   }
   
   render() {
+      console.log("Developer Mode?", devMode);
+
     const { handleChange, handleSubmit, value } = this.props;
+    /**
+     * devMode fills the form with seed values automatically 
+     */
     return(
             <form onSubmit={handleSubmit}>
             {   
                 
                 this.props.status!=null ? 
-                this.renderNotification(this.props.status.logs[0])
+                this.renderNotification(this.props.status)
                 :
                 null
             }

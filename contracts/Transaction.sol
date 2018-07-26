@@ -14,7 +14,7 @@ contract Transaction is Killable {
     uint public maxCoverage;
     uint public premium;
     Insurance public insuranceStatus;
-    event TransactionInsured(string msg);
+    event TransactionInsured(string message);
     enum Insurance { Insured, NonInsured }
 
     function Transaction(address _counterparty, bytes32 _name, bytes32 _desc, uint _max_coverage, uint _prem) public {
