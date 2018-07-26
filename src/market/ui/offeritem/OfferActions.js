@@ -65,8 +65,7 @@ export function purchaseOffer(address,val) {
                       console.log("Attempting to insure contract..")
                       /* dispatch contract insured */
                       dispatch(insuredTransaction(results))
-                      
-                      console.log("Success!", results)
+                    
                     })
                     .catch(function(err) {
 

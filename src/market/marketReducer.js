@@ -14,8 +14,9 @@ const initialState = {
                 offers: action.payload
             })
         case 'INSURE_TRANSACTION':
+
             return Object.assign({},state,{
-                data: action.payload
+                insuranceSuccess: action.payload
             })
         case 'CONTRACT_CREATE':
         console.log("Contract created. Transaction information: ",action.payload)

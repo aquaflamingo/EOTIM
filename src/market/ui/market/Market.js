@@ -32,7 +32,7 @@ class Market extends Component {
   calculateAvgVal(offers) {
     var sum=0;
     for (var offer in offers) {
-        sum+=offers[offer].val;
+      if (!offers[offer].isInsured) { sum+=offers[offer].val; }
     }
     return sum/offers.length;
   }
@@ -50,6 +50,22 @@ class Market extends Component {
     }
     return tmp.length;
   }
+
+
+
+  renderSuccessNotification(txEvent) {
+    
+     return (
+         <div className="notification is-success">
+             <h4 className="title is-4">Offer insured!</h4>
+             <p>
+              Head over to the <Link to="/dashboard">  Dashboard</Link>  to view the status of your agreement.</p>
+
+             <br/>
+             {/* <p className="is-size-7"> Receipt: {txEvent.tx} </p> */}
+         </div>
+     )
+   }
 
   /**
    * Renders the Grid container with the offers, 
@@ -74,34 +90,50 @@ class Market extends Component {
   render() {
     return(
             <div>
-               
+              
+              {
+                // Render notification or not.
+                this.props.insuranceSuccess ? 
+                this.renderSuccessNotification():null
+              }
+
               <div>
                 <nav className="level">
-                <div className="level-item has-text-centered">
-                  <div>
-                    <p className="heading">Offers Available</p>
-                     {this.props.offers == null ? 
-                    <p className="title">N/A</p>
-                    :
-                    <p className="title">{this.offersAvail(this.props.offers)}</p>
-                     }
+                  <div className="level-item has-text-centered">
+                    <div>
+                      <p className="heading">Open Offers Available</p>
+                      {this.props.offers == null ? 
+                      <p className="title">N/A</p>
+                      :
+                      <p className="title">{this.offersAvail(this.props.offers)}</p>
+                      }
+                    </div>
                   </div>
-                </div>
-                <div className="level-item has-text-centered">
-                  <div>
-                    <p className="heading">Average Value</p>
-                     {this.props.offers == null ? 
-                    <p className="title">N/A</p>
-                    :
-                    <p className="title">{this.calculateAvgVal(this.props.offers).toFixed(1)} ETH</p>
-                     }
+                  <div className="level-item has-text-centered">
+                    <div>
+                      <p className="heading">Average Value</p>
+                      {this.props.offers == null ? 
+                      <p className="title">N/A</p>
+                      :
+                      <p className="title">{this.calculateAvgVal(this.props.offers).toFixed(1)} ETH</p>
+                      }
+                    </div>
                   </div>
-                </div>
-                <div className="level-item">
-                  <a href="#" onClick={this.refresh.bind(this)}> 
-                    Refresh
-                  </a>
-                </div>
+                  <div className="level-item has-text-centered">
+                    <div>
+                      <p className="heading">Offers On Marketplace</p>
+                      {this.props.offers == null ? 
+                      <p className="title">N/A</p>
+                      :
+                      <p className="title">{this.props.offers.length}</p>
+                      }
+                    </div>
+                  </div>
+                  <div className="level-item">
+                    <a href="#" onClick={this.refresh.bind(this)}> 
+                      Refresh
+                    </a>
+                  </div>
               </nav>
               
 

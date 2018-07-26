@@ -27,7 +27,8 @@ const mapDispatchToProps = (dispatch) => {
  */
 const mapStateToProps = (state, ownProps) => {
     return {
-        offers: state.market.offers
+        offers: state.market.offers,
+        insuranceSuccess: state.market.insuranceSuccess
     }
 }
 
