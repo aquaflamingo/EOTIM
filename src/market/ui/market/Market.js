@@ -41,14 +41,14 @@ class Market extends Component {
    *  Should eventually load and present the number of UNINSURED offers
   */
   offersAvail(offers) {
-    var tmp = []
+    var available = 0;
     for (var offer in offers) {
 
-      if(offer.insurance===0) {
-        tmp.push(offer)
+      if(offers[offer].isInsured===false) {
+        available++;
       }
     }
-    return tmp.length;
+    return available;
   }
 
 

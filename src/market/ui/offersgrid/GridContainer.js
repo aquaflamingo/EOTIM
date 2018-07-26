@@ -15,8 +15,9 @@ const isOpenOffers = function(offers) {
           return true;
         }
 
-        return false;
+      
       }
+      return false;
   } 
 }
 

@@ -87,8 +87,7 @@ class TransactionForm extends Component {
         <div className="notification is-success">
             <h4 className="title is-4">Offer was created!</h4>
             <p>
-             You can see the details of your new contract
-            <Link to="/marketplace">  here.  </Link></p>
+             You can see the details of your new contract  <Link to="/marketplace">  here.  </Link></p>
             <br/>
             <p className="is-size-7"> Receipt: {newContractEvent.tx} </p>
         </div>
