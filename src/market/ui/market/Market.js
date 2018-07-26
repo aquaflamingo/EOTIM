@@ -11,8 +11,6 @@ class Market extends Component {
   
   constructor(props) {
     super(props)
-
-    console.log(props)
   }
 
 
@@ -33,11 +31,8 @@ class Market extends Component {
    * */ 
   calculateAvgVal(offers) {
     var sum=0;
-    console.log("Sum")
     for (var offer in offers) {
         sum+=offers[offer].val;
-        console.log("Sum value is ",sum);
-        console.log(offer);
     }
     return sum/offers.length;
   }
@@ -84,7 +79,7 @@ class Market extends Component {
                 <nav className="level">
                 <div className="level-item has-text-centered">
                   <div>
-                    <p className="heading">Deals Available</p>
+                    <p className="heading">Offers Available</p>
                      {this.props.offers == null ? 
                     <p className="title">N/A</p>
                     :

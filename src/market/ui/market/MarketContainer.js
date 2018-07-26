@@ -15,7 +15,6 @@ const mapDispatchToProps = (dispatch) => {
       onRefresh: (event) => {
         // event.preventDefault();
         dispatch(clearOffers())
-        console.log("Refreshing offers in marketplace..")
         dispatch(refreshOffers())
      }
   }

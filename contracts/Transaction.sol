@@ -62,9 +62,9 @@ contract Transaction is Killable {
     }
 
     function insure() public payable returns (bool _success) {
-        require(coverage<=maxCoverage);
-        require((coverage+msg.value)<=maxCoverage);
-        require(insuranceStatus!=Insurance.Insured);
+        // require(coverage<=maxCoverage);
+        // require((coverage+msg.value)<=maxCoverage);
+        // require(insuranceStatus!=Insurance.Insured);
 
         coverage += msg.value;
         insuranceStatus = Insurance.Insured;

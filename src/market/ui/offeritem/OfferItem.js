@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 
-function calculatePremium(val,terms) {
+function calculatePayout(val,terms) {
 
   return val*terms;
 }
@@ -10,29 +10,48 @@ function calculatePremium(val,terms) {
  * The basis of the application is contained in an "OfferItem"
  * The offer item is passed it's relv. detail to display to to the user.
  */
-const OfferItem = ({ offerName, description, val, maxCoverage, terms, counterParty, contractAddress, onClick }) => {
+const OfferItem = ({ 
+  offerName, 
+  description, 
+  val, 
+  maxCoverage, 
+  terms, 
+  counterParty, 
+  isInsured,
+  contractAddress, 
+  onClick }) => {
 
   return(
       <div className="card">
         <div className="card-content offer-item">
             <nav className="level">
               <div className="level-left">
-              
-                <div className="level-item">
-                    <span className="tag is-success"> {val} ETH </span>
-                    </div>
+                  <div className="level-item">
+                    <span className="tag is-success"> Transaction Value: {val} ETH </span>
+                  </div>
+                  <div className="level-item">
+                    {isInsured ? 
+                     <span className="tag is-danger"> Insured </span>  
+                     :
+                     null
+                    }
+                  </div>
+                  <div className="level-item">
+                     <span className="tag is-warning"> Coverage: {maxCoverage}% </span>  
+                  </div>
+              </div>
 
-                <div className="level-right">
-                  <div className="level-item">
-                  <span className="tag">{parseInt(terms)}% Premium</span>
+                  <div className="level-right">
+                    <div className="level-item">
+                      <span className="tag">Premium: {parseInt(terms)}% </span>
+                    </div>
+                  
+                    <div className="level-item">
+                        <span className="tag is-info">
+                          Payout: {calculatePayout(val,terms/100)} ETH
+                        </span>
+                    </div>
                   </div>
-                  <div className="level-item">
-                    <span className="tag is-info">
-                      Payout: {calculatePremium(val,terms/100)} ETH
-                    </span>
-                  </div>
-                </div>
-                </div>
               </nav>
             <h2 className="title is-4">{offerName} </h2>
 

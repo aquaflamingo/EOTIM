@@ -23,7 +23,7 @@ function contractCreated(details) {
 export function createTransaction(values) {
     let web3 = store.getState().web3.web3Instance
   // Double-check web3's status.
-  console.log("Hello World")
+  console.log("Attempting to create new insurance contract offer.")
 
   if (typeof web3 !== 'undefined') {
 
@@ -46,7 +46,6 @@ export function createTransaction(values) {
             // Get current ethereum wallet.
             factory.deployed().then(function(instance) {
                 factoryInstance = instance
-                console.log("Factory address = ", factoryInstance);
                 
                 var newTrxnEvent = factoryInstance.NewContractAddress()
                     newTrxnEvent.watch(function(error, result){

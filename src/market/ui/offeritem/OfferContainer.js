@@ -6,7 +6,6 @@ import OfferItem from './OfferItem'
  * provides it with the relevant details needed to instantiate.
  * */
 const mapStateToProps = (state, ownProps) => {
-  console.log("Own props are ", ownProps)
   return {
     offerName: ownProps.offerName,
     description: ownProps.description,
@@ -14,7 +13,8 @@ const mapStateToProps = (state, ownProps) => {
     terms: ownProps.terms,
     counterParty: ownProps.counterParty,
     contractAddress: ownProps.address,
-    onClick: ownProps.onClick
+    onClick: ownProps.onClick,
+    insuranceStatus: ownProps.isInsured
   }
 }
 

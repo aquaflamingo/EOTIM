@@ -11,8 +11,8 @@ class NewTransaction extends Component {
       <section className="section">
 
         <div className="container">
-        <h2 className="title">New Transaction </h2>
-        <p> Fill out the form below to create a new insurable transaction </p><br/>
+        <h2 className="title">Create a New Insurance Offer </h2>
+        <p> Fill out the form below to create a new insurance offering. </p><br/>
         <TransactionFormContainer />
         </div>
     </section>

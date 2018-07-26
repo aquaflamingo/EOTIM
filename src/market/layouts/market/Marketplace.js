@@ -31,7 +31,7 @@ class Marketplace extends Component {
               links={links} />
             </div>
           <div className="column is-9">
-            <h1 className="title">Open Offers </h1>
+            <h1 className="title">Offers</h1>
             <MarketContainer/>
           </div>
        </div>

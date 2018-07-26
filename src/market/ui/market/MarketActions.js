@@ -25,6 +25,7 @@ function offersRefreshed(offers) {
   export function clearOffers() {
     return function(dispatch) {
       dispatch(offersCleared())
+      console.log("Offers Cleared.")
     }
   }
  
@@ -32,7 +33,7 @@ function offersRefreshed(offers) {
    * Determines whether or not the status is insured or not
    * @param {string} status 
    */
-  function parseInsurance(status) {
+  function isInsured(status) {
     if (status=="0x0000000000000000000000000000000000000000") {
       return false;
     } 
@@ -59,10 +60,7 @@ function offersRefreshed(offers) {
             instance.getTransactionDetails.call()
             .then(function(results) {
                 // resolve promise successfully
-                console.log("Results of the instance, single getTransactionDetails are ",results);
-
-                  var insuredStatus = parseInsurance(results[7]);
-                  console.log("Insured ", insuredStatus)
+                  var insuredStatus = isInsured(results[7]);
 
                   var details = {
                     address:address,
@@ -72,11 +70,8 @@ function offersRefreshed(offers) {
                     maxCoverage:  results[4].toNumber(),
                     terms: results[5].toNumber(),
                     counterParty: results[6],
-                    insurance: insuredStatus
+                    isInsured: insuredStatus
                   }
-
-                  console.log(details)
-
                   resolve(details)
               })
               .catch(function(err) {
@@ -97,6 +92,7 @@ function offersRefreshed(offers) {
    * Refreshes and checks for the offers present in the contract 
   */
   export function refreshOffers() {
+    console.log("Refreshing offers in Marketplace..")
     let web3 = store.getState().web3.web3Instance
   
     // Double-check web3's status.
@@ -109,12 +105,15 @@ function offersRefreshed(offers) {
         factory.deployed().then(function(instance) {
           instance.getTransactions.call()
             .then(function(result) {
+                fetchOfferDetails(result)
+                  .then(function(data){
+                  // data received is in order of creation. 
+                  // iterate through data and provide filtering options where needed
+                  console.log("List of Contracts obtained from Factory: ", data);
 
-              fetchOfferDetails(result).then(
-                data=> {
                   dispatch(offersRefreshed(data))
+                  console.log("Offers refreshed");
                 })
-  
             })
             .catch(function(err) {
               // If error, go to signup page.

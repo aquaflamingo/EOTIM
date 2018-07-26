@@ -34,7 +34,7 @@ export function purchaseOffer(address,val) {
           console.error("error ", error);
         }
 
-        console.log("PURCHASE OFFER: address/val ",address,val) 
+        console.log("A purchase order has been executed on the offer ",address," for the value of ", val) 
 
         // Grab transaction contract & set provider
         const trxn = contract(Transaction)
@@ -43,13 +43,14 @@ export function purchaseOffer(address,val) {
         /* Grab the transaction at the address provided in the purchase offer function */
         trxn.at(address)
           .then((instance)=> {
-            /* Watcher for transaction events */
+
+            /* Watch for transaction insurance event */
             var inst = instance.TransactionInsured();
             inst.watch(function(error, result){
               console.log("Transaction watching for insured status.",error,result)
               if (!error)
               {
-                  console.log("Offer ", result)
+                  console.log("Offer was insured successfully. Tx receipt: ", result)
               } else {
                   // Error
                   console.log("Failed to insure contract")
@@ -57,18 +58,19 @@ export function purchaseOffer(address,val) {
               }
             })
 
-            /* call the insurance method using 'call' -> reference 'call' vs. true 
-              function invocation in solidity docs, next time you come around to this */
-            instance.insure({from:coinbase,value:web3.toWei(val,'ether')})
+            var ethVal = web3.toWei(val,'ether');
+
+            instance.insure({from:coinbase,value:ethVal})
                   .then(function(results) {
-                      console.log("Insure transaction sent")
+                      console.log("Attempting to insure contract..")
                       /* dispatch contract insured */
                       dispatch(insuredTransaction(results))
-                      console.log(results)
+                      
+                      console.log("Success!", results)
                     })
                     .catch(function(err) {
 
-                      console.log("Error cannot insure...", err)
+                      console.log("Error this contract cannot be insured...", err)
                   })
 
         

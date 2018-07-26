@@ -38,8 +38,8 @@
     "1": {
       "events": {},
       "links": {},
-      "address": "0x091e28dc8476fbeba4833bf8f6f57f7fa5e3bfe8",
-      "updated_at": 1532633354931
+      "address": "0x51f1bbe2ab2ff8ecdf2ae86743a895dd58c28b1a",
+      "updated_at": 1532638563472
     },
     "1515550764169": {
       "events": {},
@@ -109,5 +109,5 @@
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1532633354931
+  "updated_at": 1532638563472
 }
