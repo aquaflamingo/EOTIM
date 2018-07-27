@@ -27,7 +27,7 @@ const isOpenOffers = function(offers) {
  */
 
 
-const GridContainer = ({ offers, onClick }) => (
+const FeedContainer = ({ offers, onClick }) => (
   <section className="is-medium">
     <br/>
         { 
@@ -61,4 +61,4 @@ const GridContainer = ({ offers, onClick }) => (
 
 
 
-export default GridContainer
+export default FeedContainer;

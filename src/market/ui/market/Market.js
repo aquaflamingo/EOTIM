@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import GridContainer from '../offersgrid/GridContainer'
+import FeedContainer from '../offersfeed/FeedContainer'
 import { Link } from 'react-router'
 
 /** 
@@ -87,7 +87,7 @@ class Market extends Component {
     }
 
 
-    return <div> <GridContainer offers={this.props.offers} onClick={this.props.onPurchaseClick} /> </div>
+    return <div> <FeedContainer offers={this.props.offers} onClick={this.props.onPurchaseClick} /> </div>
   }
   render() {
     return(

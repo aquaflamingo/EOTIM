@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import MarketMenu from '../../../ui/MarketMenu'
 import {Link} from 'react-router'
+import DashContainer from "../../ui/dash/DashContainer"
+
 class Dashboard extends Component {
 
 
@@ -21,13 +23,8 @@ class Dashboard extends Component {
         </div>
         <div className="column is-9">
           <h1 className="title">Dashboard</h1>
-          <p className="subtitle"><strong>Congratulations! </strong> Welcome to EOTIM!</p>
-
-            <br/><br/><br/>
-            <div className="notification">
-              <p> Nothing to see here. </p>
-              <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
-            </div>
+            <DashContainer />
+          
 
         </div>
       </div>
