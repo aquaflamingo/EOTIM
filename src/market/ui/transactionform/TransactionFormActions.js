@@ -4,6 +4,8 @@ import Transaction from '../../../../build/contracts/Transaction.json'
 const contract = require('truffle-contract')
 
 export const CONTRACT_CREATE = 'CONTRACT_CREATE'
+export const CONTRACT_NOT_FOUND = 'CONTRACT_NOT_FOUND'
+export const CONTRACT_FOUND = 'CONTRACT_NOT_FOUND'
 
 /**
  * For redux state updates
@@ -16,6 +18,79 @@ function contractCreated(details) {
     }
 }
 
+/**
+ * For redux state updates
+ * @param {object} details 
+ */
+function contractFound(details) {
+    return {
+        type: CONTRACT_FOUND,
+        payload: details
+    }
+}
+
+/**
+ * For redux state updates
+ * @param {object} details 
+ */
+function contractNotFound(details) {
+    return {
+        type: CONTRACT_NOT_FOUND,
+        payload: details
+    }
+}
+
+ /**
+   * Determines whether or not the status is insured or not
+   * @param {string} status 
+   */
+  function isInsured(status) {
+    if (status=="0x0000000000000000000000000000000000000000") {
+      return false;
+    } 
+
+    return true;
+  }
+  
+export function lookupTransaction(address) {
+    let web3 = store.getState().web3.web3Instance
+    console.log("Attempting to lookup insurance contract ", address)
+    if (typeof web3 !== 'undefined') {
+        return function(dispatch) {
+            let trxn = contract(Transaction)
+            trxn.setProvider(web3.currentProvider)
+            trxn.at(address)
+            // Get contract at the specific address and call it's details
+              .then((instance)=> {
+                instance.getTransactionDetails.call()
+                .then(function(results) {
+                    // resolve promise successfully
+                      var insuredStatus = isInsured(results[7]);
+    
+                      var result = {
+                        address:address,
+                        offerName: web3.toAscii(results[0]),
+                        description: web3.toAscii(results[1]),
+                        val: web3.fromWei(results[2],'ether').toNumber(),
+                        maxCoverage:  results[4].toNumber(),
+                        terms: results[5].toNumber(),
+                        counterParty: results[6],
+                        isInsured: insuredStatus
+                      }
+                      console.log("Contract ", result.offerName, " found!")
+                      dispatch(contractFound(result))
+                  })
+            }).catch(function(err) {
+                console.log("Contract could not be found.. ", err)
+                var result ={error:"Contract does not exist."}
+                // reject promise.. error
+                dispatch(contractNotFound(result))
+            })
+        }
+    } else {
+        console.error('Web3 is not initialized.');
+    }
+}
 /**
  * Creates the new insurance offering by calling Factory contract
  * @param {object} values 

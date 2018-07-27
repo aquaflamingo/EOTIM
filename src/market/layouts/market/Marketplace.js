@@ -6,12 +6,6 @@ import MarketContainer from '../../ui/market/MarketContainer'
  * Basic dumb wrapper layout for the market section of the app, containing the menu and offers
 */
 class Marketplace extends Component {
-
-  /* Woo hoo clicking the offer purchase works!*/
-  onPurchaseClick(address) {
-    alert("Clicked purchase ");
-
-  }
     
   render() {
     

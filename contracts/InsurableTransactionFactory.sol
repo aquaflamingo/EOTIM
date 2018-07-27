@@ -1,10 +1,10 @@
 pragma solidity ^0.4.2;
 
-import './Transaction.sol';
+import "./Transaction.sol";
 
 contract InsurableTransactionFactory {
     address public owner;
-    mapping(address => uint[]) owners;
+    mapping(address => uint[]) contractsOwned;
     Transaction[] contracts;
 
 
@@ -33,7 +33,8 @@ contract InsurableTransactionFactory {
 
         contracts.push(newContract);
         uint id = contracts.length - 1; 
-        owners[msg.sender].push(id);
+        contractsOwned[msg.sender].push(id);
+
         newContract.transfer(msg.value);
 
         return newContract;
@@ -41,6 +42,18 @@ contract InsurableTransactionFactory {
 
     function getTransactions() public returns (Transaction[] trxns) {
         return contracts;
+    }
+
+    function getAllInsuredTransactions(address ownerAddress) public returns (Transaction[] trxns) {
+        uint[] ids = contractsOwned[ownerAddress];
+        
+        Transaction[] trx;
+        
+        for (uint counter=0;counter<ids.length;counter++) {
+            trx.push(contracts[ids[counter]]);
+        }
+
+        return trx;
     }
 
 }

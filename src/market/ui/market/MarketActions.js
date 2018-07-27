@@ -117,7 +117,8 @@ function offersRefreshed(offers) {
             })
             .catch(function(err) {
               // If error, go to signup page.
-              console.error('Error in getting factory ', err)
+              console.error('Error in getting factory ')
+              console.log(err)
   
             })
         })

@@ -1,8 +1,20 @@
 import React, { Component } from 'react'
 import {reduxForm, Field} from 'redux-form';
 import {isAddress} from '../../../util/isAddress';
-
-
+import OfferContainer from '../offeritem/OfferContainer'
+/**
+ * Validates the form values, and passes an error object back containing specific errors
+ * @param {object} values 
+ */
+const validate = values => {
+    const errors = {}
+    if (!values.searchQuery) {
+        errors.searchQuery = '* Required'
+     } else if(!isAddress(values.searchQuery)) {
+        errors.searchQuery = '* Invalid Ethereum Address'
+     }
+    return errors
+}
 /**
  * Based on Redux Form tutorial creates a redux form with appropriate layouts.
  */
@@ -34,8 +46,10 @@ class SearchTransactionForm extends Component {
 
   
   render() {
-    const { handleChange, handleSubmit, value } = this.props;
+    const { handleChange, handleSubmit, value, onClick } = this.props;
     return(
+        <div className="container">
+
             <form onSubmit={handleSubmit}>
                 <div className="field">
                     <div className="control">
@@ -52,7 +66,7 @@ class SearchTransactionForm extends Component {
                 
                 <div className="field is-grouped">
                     <div className="control">
-                        <button className="button is-success" type="submit">Submit</button>
+                        <button className="button is-info" type="submit">Submit</button>
                     </div>
                     <div className="control">
                         <a className="button is-text" href="/marketplace">Back</a>
@@ -61,8 +75,29 @@ class SearchTransactionForm extends Component {
 
 
             </form>
+            <br/>
+            <br/>
+            <br/>
+        
+                {
+                    this.props.searchContract === null ?
+                    null
+                    :
+                    this.props.searchContract.error!=null ? 
+                    <div className="notification is-danger">
+                        <p> {this.props.searchContract.error} </p>
+                    </div>  
+                    :  
+                    <div className="notification is-white">
+                        <h3 className="title is-3">Contract Found!</h3>
+                        <OfferContainer 
+                            {... this.props.searchContract}
+                            onClick={onClick} />
+                    </div>
+                }
+            </div>
     )
   }
 }
 
-export default reduxForm({form: 'SearchTransactionForm'})(SearchTransactionForm)
+export default reduxForm({form: 'SearchTransactionForm',validate})(SearchTransactionForm)

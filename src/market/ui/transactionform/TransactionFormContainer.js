@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     console.log("Has contract been created?",state.market.status!=null);
     
     return {
-        status: state.market.status
+        createContract: state.market.createContract
     }
 }
 
@@ -33,9 +33,9 @@ const mapDispatchToProps = (dispatch) => {
 /**
  * Basic container for connecting
  */
-const TransactionFormContainer = ({handleTransactionSubmit,values,status}) =>
+const TransactionFormContainer = ({handleTransactionSubmit,values,createContract}) =>
     <TransactionForm 
-        status={status}
+        createContract={createContract}
         onSubmit={values => handleTransactionSubmit(values)}/>
   
 export default connect(

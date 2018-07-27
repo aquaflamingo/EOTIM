@@ -34,6 +34,9 @@ class Market extends Component {
     for (var offer in offers) {
       if (!offers[offer].isInsured) { sum+=offers[offer].val; }
     }
+    if (sum/offers.length==NaN) {
+      return 0;
+    }
     return sum/offers.length;
   }
 
@@ -62,7 +65,6 @@ class Market extends Component {
               Head over to the <Link to="/dashboard">  Dashboard</Link>  to view the status of your agreement.</p>
 
              <br/>
-             {/* <p className="is-size-7"> Receipt: {txEvent.tx} </p> */}
          </div>
      )
    }

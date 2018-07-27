@@ -1,7 +1,8 @@
 const initialState = {
-    data: null,
+    insuranceSuccess: null,
     offers: null,
-    status: null,
+    createContract: null,
+    searchContract: null
   }
   
   /**
@@ -19,10 +20,18 @@ const initialState = {
                 insuranceSuccess: action.payload
             })
         case 'CONTRACT_CREATE':
-        console.log("Contract created. Transaction information: ",action.payload)
+            console.log("Contract created. Transaction information: ",action.payload)
             return Object.assign({}, state, {
-                status: action.payload
+                createContract: action.payload
               })
+        case 'CONTRACT_FOUND':
+            return Object.assign({}, state, {
+                searchContract: action.payload
+              })
+        case 'CONTRACT_NOT_FOUND':
+            return Object.assign({}, state, {
+                searchContract: action.payload
+            })
         default:
             return state
     }

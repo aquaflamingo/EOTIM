@@ -105,8 +105,8 @@ class TransactionForm extends Component {
             <form onSubmit={handleSubmit}>
             {   
                 
-                this.props.status!=null ? 
-                this.renderNotification(this.props.status)
+                this.props.createContract!=null ? 
+                this.renderNotification(this.props.createContract)
                 :
                 null
             }

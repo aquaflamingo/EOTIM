@@ -63,7 +63,12 @@ const OfferItem = ({
           
             </div>
             <div className="card-footer">
-                <a href="#" className="card-footer-item" onClick={(event) => onClick(contractAddress,val*maxCoverage/100)}>Insure for {val*maxCoverage/100} ETH</a>      
+            {isInsured ? 
+              null
+              :
+              <a href="#" className="card-footer-item" onClick={(event) => onClick(contractAddress,val*maxCoverage/100)}>Insure for {val*maxCoverage/100} ETH</a>      
+            }
+                
                 <a href="#" className="card-footer-item" >Contact</a>
               </div>
       </div>  
