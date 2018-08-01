@@ -24,10 +24,16 @@ contract Transaction is Killable {
     event TransactionInsured(string message);
     enum Insurance { Insured, Uninsured }
 
-    function Transaction(address _counterparty, bytes32 _name, bytes32 _desc, uint _max_coverage, uint _prem) public {
+    constructor(
+        address _counterparty, 
+        bytes32 _name, 
+        bytes32 _desc, 
+        uint _max_coverage, 
+        uint _prem,
+        address _owner) public {
         require(_counterparty!=0x0);
         counterParty = _counterparty;
-        owner = msg.sender;
+        owner = _owner;
         maxCoverage = _max_coverage;
         premium = _prem;
         name = _name;
@@ -52,18 +58,21 @@ contract Transaction is Killable {
             uint _premium,
             address _counterParty,
             address _insurer,
-            uint insured) {
+            uint _insured,
+            address _owner
+            ) {
 
         return (
             name, 
             desc, 
-            this.balance, 
+            address(this).balance, 
             currentCoverage, 
             maxCoverage,
             premium,
             counterParty,
             insurer,
-            uint(insuranceStatus)
+            uint(insuranceStatus),
+            owner
         );
     }
 

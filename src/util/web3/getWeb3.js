@@ -2,12 +2,22 @@ import store from '../../store'
 import Web3 from 'web3'
 
 export const WEB3_INITIALIZED = 'WEB3_INITIALIZED'
+// export const COINBASE_FOUND = 'COINBASE_FOUND'
 function web3Initialized(results) {
   return {
     type: WEB3_INITIALIZED,
     payload: results
   }
 }
+
+// function coinbaseFound(coinbase) {
+//   return {
+//     type: COINBASE_FOUND,
+//     payload: coinbase
+//   }
+// }
+
+// function 
 
 let getWeb3 = new Promise(function(resolve, reject) {
   // Wait for loading completion to avoid race conditions with web3 injection timing.

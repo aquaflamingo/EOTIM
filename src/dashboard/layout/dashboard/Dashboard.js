@@ -4,10 +4,7 @@ import {Link} from 'react-router'
 import DashContainer from "../../ui/dash/DashContainer"
 
 class Dashboard extends Component {
-
-
   render() {
-  
     var links = [
       {to:'#',name:'Launched 🎊'}
     ]

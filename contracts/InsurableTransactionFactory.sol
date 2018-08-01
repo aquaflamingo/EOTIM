@@ -8,7 +8,7 @@ contract InsurableTransactionFactory {
     Transaction[] contracts;
 
 
-    function InsurableTransactionFactory() {
+    constructor()  public {
         owner = msg.sender;
     }
     
@@ -29,28 +29,35 @@ contract InsurableTransactionFactory {
     
         require(counterParty!=0x0);
 
-        Transaction newContract = new Transaction(counterParty,name,desc,max,premium);
+        Transaction newContract = new Transaction(counterParty,name,desc,max,premium,msg.sender);
 
         contracts.push(newContract);
         uint id = contracts.length - 1; 
         contractsOwned[msg.sender].push(id);
 
-        newContract.transfer(msg.value);
+        address(newContract).transfer(msg.value);
 
         return newContract;
     }
 
-    function getTransactions() public returns (Transaction[] trxns) {
+    function getTransactions() public view returns (Transaction[] trxns) {
         return contracts;
     }
 
-    function getAllInsuredTransactions(address ownerAddress) public returns (Transaction[] trxns) {
-        uint[] ids = contractsOwned[ownerAddress];
+    function zeroStub() public pure returns (uint z) {
+        return 0;
+    }
+    
+    function getAllOwnedTransactions() public view returns 
+    (Transaction[] trxs) 
+    {
+        uint[] storage ids = contractsOwned[msg.sender];
         
-        Transaction[] trx;
+        Transaction[] memory trx = new Transaction[](ids.length);
         
-        for (uint counter=0;counter<ids.length;counter++) {
-            trx.push(contracts[ids[counter]]);
+        for (uint counter=0 ;counter<ids.length;counter++) {
+        
+            trx[counter] = contracts[ids[counter]];
         }
 
         return trx;

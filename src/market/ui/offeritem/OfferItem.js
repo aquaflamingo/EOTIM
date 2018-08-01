@@ -18,7 +18,8 @@ const OfferItem = ({
   terms, 
   counterParty, 
   isInsured,
-  contractAddress, 
+  contractAddress,
+  owner, 
   onClick }) => {
 
   return(
@@ -58,6 +59,7 @@ const OfferItem = ({
             <div className="columns">
               <div className="column is-9">
                 <p className="subtitle is-5">{description} </p>
+                <label className="label">Contract Address</label>
                 <a href={"https://ethplorer.io/address/"+contractAddress}> {contractAddress}</a>
             </div>
           
@@ -69,7 +71,7 @@ const OfferItem = ({
               <a href="#" className="card-footer-item" onClick={(event) => onClick(contractAddress,val*maxCoverage/100)}>Insure for {val*maxCoverage/100} ETH</a>      
             }
                 
-                <a href="#" className="card-footer-item" >Contact</a>
+                <a href="#" className="card-footer-item" onClick={(event) => alert("Owner address is " + owner + ".")}>Contact</a>
               </div>
       </div>  
     </div>

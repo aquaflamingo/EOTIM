@@ -1,15 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Dash from './Dash'
+import {getOwnedOffers} from './DashActions'
 
 /**
  * maps the dispatch actions to the relavent events
  */
 const mapDispatchToProps = (dispatch) => {
     return {
-      onRefresh: (event) => {
-          console.log("Hello")
-        // dispatch(clearDash())
+      onRefresh: () => {
+        dispatch(getOwnedOffers())
         // dispatch(refreshDash())
      }
   }
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
  */
 const mapStateToProps = (state, ownProps) => {
     return {
-        // ownedOffers: state.dash.offers
+        offers: state.dashboard.offers
     }
 }
 

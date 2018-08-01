@@ -1,4 +1,9 @@
 import store from '../../../store'
+import InsurableTransactionFactory from '../../../../build/contracts/InsurableTransactionFactory.json'
+// import Transaction from '../../../../build/contracts/Transaction.json'
+const contract = require('truffle-contract')
+import {fetchOfferDetails} from '../../../util/contractUtils'
+
 export const GET_OWNED_OFFERS = "GET_OWNED_OFFERS"
 
 function ownedOffersRefreshed(offers) {
@@ -8,13 +13,54 @@ function ownedOffersRefreshed(offers) {
     }
 }
 
-// TODO copy the market action similar "fetchdetails" function but this time
-// use the created function in the factory contract to rerieve the addresses of all the
-// contracts that belong to the ownerAddress then do Promise calls for Trx Details on each. 
 
-
-function fetchOwnedOffers(ownerAddress) {
+function fetchOwnedOffers() {
     let web3 = store.getState().web3.web3Instance
-    let trxn = contract(Transaction)
 
+    if (typeof web3 !== 'undefined') {
+        return function(dispatch) {
+            web3.eth.getCoinbase((error, coinbase) => {
+                if (error) {
+                    console.error("Error getting coinbase ", error);
+                } else {
+                    console.log("Fetching owned insured transactions for coinbase ", coinbase)
+                    
+                    const factory = contract(InsurableTransactionFactory)
+                    factory.setProvider(web3.currentProvider)
+                    
+                    // Get all the contracts owned by the "ownerAddress" in the Factory
+                    factory.deployed().then(function(inst){
+                        console.log(inst)
+                        inst.getAllOwnedTransactions.call()
+                            .then(function(result) {
+                                fetchOfferDetails(result)
+                                    .then(function(data){
+                                    // data received is in order of creation. 
+                                    // iterate through data and provide filtering options where needed
+                                    console.log("Success getting all insured transactions : ", data);
+                                    dispatch(ownedOffersRefreshed(data))
+                                    
+                                    })
+                               
+                            }).catch(function(err) {
+                                console.log("Error could not get all insured contracts for ",coinbase);
+                                console.log(err)
+                            })
+                    }) 
+                }
+
+            })
+        }
+    } else {
+        console.error('Web3 is not initialized.');
+    }
   }
+
+export function getOwnedOffers() {
+    return function (dispatch) {
+        dispatch(fetchOwnedOffers())
+    }
+}
+
+
+  

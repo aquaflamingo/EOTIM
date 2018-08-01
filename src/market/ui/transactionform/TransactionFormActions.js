@@ -4,6 +4,7 @@ import Transaction from '../../../../build/contracts/Transaction.json'
 const contract = require('truffle-contract')
 
 export const CONTRACT_CREATE = 'CONTRACT_CREATE'
+export const CONTRACT_NOT_CREATE = 'CONTRACT_NOT_CREATE'
 export const CONTRACT_NOT_FOUND = 'CONTRACT_NOT_FOUND'
 export const CONTRACT_FOUND = 'CONTRACT_NOT_FOUND'
 
@@ -14,6 +15,13 @@ export const CONTRACT_FOUND = 'CONTRACT_NOT_FOUND'
 function contractCreated(details) {
     return {
         type: CONTRACT_CREATE,
+        payload: details
+    }
+}
+
+function contractNotCreated(details) {
+    return {
+        type: CONTRACT_NOT_CREATE,
         payload: details
     }
 }
@@ -150,6 +158,8 @@ export function createTransaction(values) {
                     console.log("Completed contract creation.")
                 })
                 .catch(function(err) {
+                    let error = {message: err.msg}
+                
                     
                     console.log(err)
                 // If error...

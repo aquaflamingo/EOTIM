@@ -9,7 +9,7 @@ contract Migrations {
       _;}
   }
 
-  function Migrations() public {
+  constructor() {
     owner = msg.sender;
   }
 

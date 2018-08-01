@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     terms: ownProps.terms,
     counterParty: ownProps.counterParty,
     contractAddress: ownProps.address,
+    owner: ownProps.owner,
     onClick: ownProps.onClick,
     insuranceStatus: ownProps.isInsured
   }

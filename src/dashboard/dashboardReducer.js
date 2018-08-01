@@ -1,5 +1,5 @@
 const initialState = {
-    ownedOffers:null
+    offers:null
   }
   
   /**
