@@ -147,7 +147,7 @@
                       "name": "selfdestruct",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 485,
+                      "referencedDeclaration": 486,
                       "src": "238:12:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
@@ -330,7 +330,7 @@
                       "name": "selfdestruct",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 485,
+                      "referencedDeclaration": 486,
                       "src": "238:12:1",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_selfdestruct_nonpayable$_t_address_$returns$__$",
@@ -419,10 +419,10 @@
     "1": {
       "events": {},
       "links": {},
-      "address": "0x3fcf4f14ddefa8f023a131b7919bc724f17abb59",
-      "transactionHash": "0xe3287f933b17882f35d9485c6c1576165fefd94a1f625a0fdf9c2878c97d7d2d"
+      "address": "0xdc22292a31dcf49f3ef055b0cd41591cf15dd416",
+      "transactionHash": "0x464c1f796e2d47918e3840a116928b7d37ec4c1ea9e3d990c3e8a490ab38af51"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-01T04:05:11.664Z"
+  "updatedAt": "2018-08-02T01:53:57.159Z"
 }

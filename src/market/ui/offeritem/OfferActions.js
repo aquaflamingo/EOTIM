@@ -59,7 +59,8 @@ export function purchaseOffer(address,val) {
             })
 
             var ethVal = web3.toWei(val,'ether');
-
+            console.log("About to insure..")
+            
             instance.insure({from:coinbase,value:ethVal})
                   .then(function(results) {
                       console.log("Attempting to insure contract..")

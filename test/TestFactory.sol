@@ -7,25 +7,29 @@ import "../contracts/InsurableTransactionFactory.sol";
 import "../contracts/Transaction.sol";
 
 contract TestFactory {
-    // function testCreateContract()  public {
-    //     InsurableTransactionFactory f = new InsurableTransactionFactory();
+    function testCreateContract()  public {
+        InsurableTransactionFactory f = new InsurableTransactionFactory();
         
-    //     bytes32 name = "This is a name";
-    //     uint max = 10;
-    //     bytes32 desc = "My description";P
-    //     uint premium = 2;
+        bytes32 name = "This is a name";
+        uint max = 10;
+        bytes32 desc = "My description";
+        uint premium = 2;
 
-    //     f.create(f,name,max,desc,premium);
-    // }
+        f.create(f,name,max,desc,premium);
+    }
 
-    function testGetAllInsuredTransactions()  public {
-        DeployedAddresses.Transaction();
+    function testGetAllOwnedTransactions()  public {
+        InsurableTransactionFactory f = InsurableTransactionFactory( DeployedAddresses.Transaction());
+      
+    }
 
+    function testGetTransactions()  public {
+        InsurableTransactionFactory f = InsurableTransactionFactory( DeployedAddresses.Transaction());
+        Transaction[] memory t  = f.getTransactions();
+        uint expected = 1;
 
-        // InsurableTransactionFactory f = InsurableTransactionFactory();
+        Assert.equal(t.length,expected, "It should retrieve the transactions in the contract");
 
-
-        // Assert.equal(0,expected,"It should be zero");
       
     }
     

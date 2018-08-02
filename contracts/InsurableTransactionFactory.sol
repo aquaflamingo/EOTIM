@@ -44,10 +44,6 @@ contract InsurableTransactionFactory {
         return contracts;
     }
 
-    function zeroStub() public pure returns (uint z) {
-        return 0;
-    }
-    
     function getAllOwnedTransactions() public view returns 
     (Transaction[] trxs) 
     {
@@ -55,7 +51,7 @@ contract InsurableTransactionFactory {
         
         Transaction[] memory trx = new Transaction[](ids.length);
         
-        for (uint counter=0 ;counter<ids.length;counter++) {
+        for (uint counter = 0 ; counter < ids.length ; counter++) {
         
             trx[counter] = contracts[ids[counter]];
         }
