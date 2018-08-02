@@ -43,6 +43,7 @@ export function purchaseOffer(address,val) {
         /* Grab the transaction at the address provided in the purchase offer function */
         trxn.at(address)
           .then((instance)=> {
+         
 
             /* Watch for transaction insurance event */
             var inst = instance.TransactionInsured();
@@ -59,17 +60,16 @@ export function purchaseOffer(address,val) {
             })
 
             var ethVal = web3.toWei(val,'ether');
-            console.log("About to insure..")
+            console.log("About to insure..", ethVal);
             
             instance.insure({from:coinbase,value:ethVal})
                   .then(function(results) {
-                      console.log("Attempting to insure contract..")
+                      console.log("Success! Insurance offer was purchased!")
                       /* dispatch contract insured */
                       dispatch(insuredTransaction(results))
-                    
                     })
                     .catch(function(err) {
-
+                      
                       console.log("Error this contract cannot be insured...", err)
                   })
 

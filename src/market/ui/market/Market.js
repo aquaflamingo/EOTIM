@@ -123,7 +123,7 @@ class Market extends Component {
                   </div>
                   <div className="level-item has-text-centered">
                     <div>
-                      <p className="heading">Offers On Marketplace</p>
+                      <p className="heading">Hosted Contracts</p>
                       {this.props.offers == null ? 
                       <p className="title">N/A</p>
                       :

@@ -2,8 +2,11 @@ pragma solidity ^0.4.2;
 
 
 import "./Killable.sol";
+import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
 
 contract Transaction is Killable {
+    using SafeMath for uint256;
+
     // Counter party is the party which is on the receiving end of this transaction
     address public counterParty;
     // Name of the transaction contract
@@ -91,7 +94,7 @@ contract Transaction is Killable {
 
     function insure() public payable returns (bool _success) {
         require(insuranceStatus!=Insurance.Insured);
-        require((msg.value)<=maxCoverage);
+        require((msg.value)<=(maxCoverage*1 ether)/10);
         
         currentCoverage += msg.value;
         insuranceStatus = Insurance.Insured;

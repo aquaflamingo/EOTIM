@@ -21,28 +21,29 @@ const OfferItem = ({
   contractAddress,
   owner, 
   onClick }) => {
-
+    
   return(
       <div className="card">
         <div className="card-content offer-item">
             <nav className="level">
               <div className="level-left">
-                  <div className="level-item">
-                    <span className="tag is-success"> Transaction Value: {val} ETH </span>
-                  </div>
-                  <div className="level-item">
-                    {isInsured ? 
-                     <span className="tag is-danger"> Insured </span>  
-                     :
-                     null
-                    }
-                  </div>
-                  <div className="level-item">
-                     <span className="tag is-warning"> Coverage: {maxCoverage}% </span>  
-                  </div>
+                   <div className="level-item">
+                      {isInsured ? 
+                      <span className="tag is-success is-large"> Insured </span>  
+                      :
+                      null
+                      }
+                    </div>
               </div>
 
                   <div className="level-right">
+                      <div className="level-item">
+                        <span className="tag is-success"> Transaction Value: {val} ETH </span>
+                      </div>
+                    
+                      <div className="level-item">
+                        <span className="tag is-warning"> Coverage: {maxCoverage}% </span>  
+                      </div>
                     <div className="level-item">
                       <span className="tag">Premium: {parseInt(terms)}% </span>
                     </div>
@@ -66,7 +67,7 @@ const OfferItem = ({
             </div>
             <div className="card-footer">
             {isInsured ? 
-              null
+             null
               :
               <a href="#" className="card-footer-item" onClick={(event) => onClick(contractAddress,val*maxCoverage/100)}>Insure for {val*maxCoverage/100} ETH</a>      
             }
