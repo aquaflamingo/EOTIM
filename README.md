@@ -1,12 +1,6 @@
 # Ethereum Open Transaction Insurance Market (EOTIM)
 
-PoC for an p2p open market for insuring escrow based transactions on the blockchain. 
-
-Let's say you're making a shipment from Mexico to Vancouver for oranges 📦🍊. 
-
-You might want to have some insurance on that... 👨🏻‍
-
-Okay probably not 🤦. But this was just a fun project to learn a little bit more about Truffle, Dapps and React.Js.
+Proof of Concept for an p2p open market for insuring escrow based transactions on the blockchain. 
 
 ## Building
 
@@ -21,7 +15,7 @@ Okay probably not 🤦. But this was just a fun project to learn a little bit mo
 4. Start Local Ethereum instance: 
     run `testrpc`
 5. Deploy contracts:
-    run `truffle migrate --network testrpc --reset`
+    run `truffle migrate --reset`
 5. Start the server: 
     `npm run start`
 6. Navigate over to http://localhost:3000
@@ -32,29 +26,17 @@ Okay probably not 🤦. But this was just a fun project to learn a little bit mo
 11. Profit??? 
 
 ## TODO
-(It's a wip okay 😆)
 
-1. Fix `insure` method to accurately insure contracts 
-2. Fix insured flags to present non-insured contracts
-3. Pull user's deal contracts on dashboard
-4. Search by name for contracts
+- [x] Fix `insure` method to accurately insure contracts 
+- [x] Fix insured flags to present non-insured contracts
+- [x] Pull user's deal contracts on dashboard
+- [x] Search for contracts
+- [ ] Fix owned contracts bug
 
-## Lé Gallerié 
+## View 
 
 ![Home](/assets/home.png)
 Home Landing Page
-
-![Dashboard](/assets/dash.png)
-Dashboard to display to users their offers
-
-![Open](/assets/open.png) 
-Blank home page
-
-![offers](/assets/offers.png)
-Offers currently out there fore me to insurer
-
-![Trxn](/assets/trxn.png)
-Transaction creation page
 
 ## Author
 

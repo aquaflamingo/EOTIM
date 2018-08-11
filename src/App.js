@@ -54,10 +54,7 @@ class App extends Component {
           <footer>  
               <div className="content has-text-centered">
                 <p>
-                  <strong>Ethereum Open Transaction Insurance Market</strong> made by <a href="https://robertsimoes.com">Robert Simoes</a>. ✌️
-                </p>
-                <p>
-                  ETH: 0x34b081884Ac640B6CAD3bC9aA1d1cdd5e33AAAb1
+                  <strong>Ethereum Open Transaction Insurance Market</strong> made in Canada.
                 </p>
                 <br/>
                 <br/>

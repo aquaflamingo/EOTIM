@@ -18,7 +18,6 @@ class Dash extends Component {
     renderOwnedContracts() {
       let renderItems = []
       for (let offer of this.props.offers) {
-
       
         renderItems.push(
             <div className="card">

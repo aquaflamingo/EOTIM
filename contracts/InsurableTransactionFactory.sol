@@ -47,7 +47,7 @@ contract InsurableTransactionFactory {
     function getAllOwnedTransactions() public view returns 
     (Transaction[] trxs) 
     {
-        uint[] storage ids = contractsOwned[msg.sender];
+        uint[] memory ids = contractsOwned[msg.sender];
         
         Transaction[] memory trx = new Transaction[](ids.length);
         
