@@ -30,8 +30,8 @@ function fetchOwnedOffers() {
                     
                     // Get all the contracts owned by the "ownerAddress" in the Factory
                     factory.deployed().then(function(inst){
-                        console.log(inst)
-                        inst.getAllOwnedTransactions.call()
+                        let instance = inst;
+                        instance.getAllOwnedTransactions.call()
                             .then(function(result) {
                                 fetchOfferDetails(result)
                                     .then(function(data){

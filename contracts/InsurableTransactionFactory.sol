@@ -17,7 +17,7 @@ contract InsurableTransactionFactory {
 
 
     function count() public constant returns (uint theCount) { 
-        return contracts.length;
+        return contractsOwned[msg.sender].length;
     }
 
     function create(
@@ -27,15 +27,14 @@ contract InsurableTransactionFactory {
         bytes32 desc,
         uint premium) payable external returns (Transaction newContractAddress) {
     
-        require(counterParty!=0x0);
+        require(counterParty!=0x0, "Counterparty cannot be null");
 
         Transaction newContract = new Transaction(counterParty,name,desc,max,premium,msg.sender);
 
         contracts.push(newContract);
         uint id = contracts.length - 1; 
         contractsOwned[msg.sender].push(id);
-
-        address(newContract).transfer(msg.value);
+        newContract.transfer(msg.value);
 
         return newContract;
     }
@@ -44,19 +43,18 @@ contract InsurableTransactionFactory {
         return contracts;
     }
 
-    function getAllOwnedTransactions() public view returns 
-    (Transaction[] trxs) 
+    function getAllOwnedTransactions() public view returns (Transaction[] transactions) 
     {
-        uint[] memory ids = contractsOwned[msg.sender];
+        uint[] ids = contractsOwned[msg.sender];
         
         Transaction[] memory trx = new Transaction[](ids.length);
         
         for (uint counter = 0 ; counter < ids.length ; counter++) {
-        
             trx[counter] = contracts[ids[counter]];
         }
 
         return trx;
     }
+
 
 }

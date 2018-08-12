@@ -7,6 +7,8 @@ import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
 contract Transaction is Killable {
     using SafeMath for uint256;
 
+    // value of the transaction 
+    uint256 public value;
     // Counter party is the party which is on the receiving end of this transaction
     address public counterParty;
     // Name of the transaction contract
@@ -42,11 +44,9 @@ contract Transaction is Killable {
         name = _name;
         desc = _desc;
         insuranceStatus = Insurance.Uninsured;
+        value = msg.value;
     }
 
-    function setCounterParty(address _party) public onlyOwner {
-        counterParty = _party;
-    }
 
     // Fallback function
     function() public payable {}
@@ -68,7 +68,7 @@ contract Transaction is Killable {
         return (
             name, 
             desc, 
-            address(this).balance, 
+            value, 
             currentCoverage, 
             maxCoverage,
             premium,
@@ -93,8 +93,8 @@ contract Transaction is Killable {
 
 
     function insure() public payable returns (bool _success) {
-        require(insuranceStatus!=Insurance.Insured);
-        require((msg.value)<=(maxCoverage*1 ether)/10);
+        require(insuranceStatus!=Insurance.Insured,"Transaction is already insured");
+        require((msg.value)<=(maxCoverage*1 ether)/10,"Value cannot exceed max coverage");
         
         currentCoverage += msg.value;
         insuranceStatus = Insurance.Insured;
@@ -102,15 +102,13 @@ contract Transaction is Killable {
         return true;
     }
 
+    function settle() public payable {
+        address(this.counterParty).transfer(value);
+        if (insuranceStatus==Insurance.Insured) {
+            address(this.insurer).transfer(currentCoverage);
+        }
 
-
-    function setMaxCoverage(uint _coverage) onlyOwner public  {
-        maxCoverage = _coverage;
-    }
-
-    function setPremium(uint _premium) onlyOwner public {
-        require(_premium>0);
-        premium = _premium;
+        return;
     }
 
 
