@@ -4,7 +4,7 @@ pragma solidity ^0.4.2;
 import "./Killable.sol";
 import 'openzeppelin-solidity/contracts/math/SafeMath.sol';
 
-contract Transaction is Killable {
+contract Transaction  is Killable {
     using SafeMath for uint256;
 
     // value of the transaction 
@@ -23,6 +23,8 @@ contract Transaction is Killable {
     uint public maxCoverage;
     // premium to be paid for the insurance
     uint public premium;
+    // owner
+    address public owner;
 
     Insurance public insuranceStatus;
 
@@ -35,7 +37,9 @@ contract Transaction is Killable {
         bytes32 _desc, 
         uint _max_coverage, 
         uint _prem,
-        address _owner) public {
+        address _owner,
+        uint _value
+        ) public payable {
         require(_counterparty!=0x0);
         counterParty = _counterparty;
         owner = _owner;
@@ -44,7 +48,7 @@ contract Transaction is Killable {
         name = _name;
         desc = _desc;
         insuranceStatus = Insurance.Uninsured;
-        value = msg.value;
+        value = _value;
     }
 
 
@@ -103,10 +107,11 @@ contract Transaction is Killable {
     }
 
     function settle() public payable {
-        address(this.counterParty).transfer(value);
-        if (insuranceStatus==Insurance.Insured) {
-            address(this.insurer).transfer(currentCoverage);
-        }
+        //TODO Settle contract and pay back insurer 
+        // address(counterParty).transfer(value);
+        // if (insuranceStatus==Insurance.Insured) {
+        //     address(insurer).transfer(currentCoverage);
+        // }
 
         return;
     }

@@ -29,12 +29,12 @@ contract InsurableTransactionFactory {
     
         require(counterParty!=0x0, "Counterparty cannot be null");
 
-        Transaction newContract = new Transaction(counterParty,name,desc,max,premium,msg.sender);
+        Transaction newContract = new Transaction(counterParty,name,desc,max,premium,msg.sender,uint(msg.value));
 
         contracts.push(newContract);
         uint id = contracts.length - 1; 
         contractsOwned[msg.sender].push(id);
-        newContract.transfer(msg.value);
+        address(newContract).transfer(msg.value);
 
         return newContract;
     }
@@ -45,7 +45,7 @@ contract InsurableTransactionFactory {
 
     function getAllOwnedTransactions() public view returns (Transaction[] transactions) 
     {
-        uint[] ids = contractsOwned[msg.sender];
+        uint[] storage ids = contractsOwned[msg.sender];
         
         Transaction[] memory trx = new Transaction[](ids.length);
         

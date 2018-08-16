@@ -31,12 +31,12 @@ class Market extends Component {
    * */ 
   calculateAvgVal(offers) {
     var sum=0;
+    if (offers.length===0|| sum/offers===NaN) return 0;
+
     for (var offer in offers) {
       if (!offers[offer].isInsured) { sum+=offers[offer].val; }
     }
-    if (sum/offers.length==NaN) {
-      return 0;
-    }
+    
     return sum/offers.length;
   }
 

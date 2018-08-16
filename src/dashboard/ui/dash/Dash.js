@@ -18,7 +18,6 @@ class Dash extends Component {
     renderOwnedContracts() {
       let renderItems = []
       for (let offer of this.props.offers) {
-      
         renderItems.push(
             <div className="card">
               <div className="card-content">
@@ -74,15 +73,24 @@ class Dash extends Component {
     render() {
         return (
           <div className="content">
-           
-            {this.props.offers === null ? 
-            null
+            <h3 className="subtitle is-size-4">Owned Contracts</h3>
+            <div className="notification is-danger">
+              <p> ⚠️  <strong>‍‍Feature Under Construction  </strong></p>
+              <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
+            </div>
+
+            {/* TODO For now remove this until, can figure out the getOwnedTransactions() */}
+            {/* {this.props.offers === null || this.props.offers.length === 0 ? 
+            <div className="notification">
+              <p> You don't own any insurance contracts. </p>
+              <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
+            </div>
             :
             <div>
-            <h3 className="subtitle is-size-4">Owned Contracts</h3>
+            
               {this.renderOwnedContracts()}
             </div>
-            }
+            } */}
             
          
 
@@ -92,9 +100,3 @@ class Dash extends Component {
 }
 
 export default Dash;
-
- {/* <p> Coinbase: {this.props.coinbase} </p> */}
-//  <div className="notification">
-//  <p> Nothing to see here. </p>
-//  <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
-// </div>

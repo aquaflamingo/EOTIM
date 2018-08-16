@@ -29,14 +29,16 @@ Proof of Concept for an p2p open market for insuring escrow based transactions o
 
 - [x] Fix `insure` method to accurately insure contracts 
 - [x] Fix insured flags to present non-insured contracts
-- [x] Pull user's deal contracts on dashboard
+- [ ] Pull user's deal contracts on dashboard // BUG 🐞
+    - [ ] Explore Remix Execution of Contract
+    - [ ] Port to `ethereumProvider`?
 - [x] Search for contracts
-- [ ] Fix owned contracts bug
 
 ## View 
 
-![Home](/assets/home.png)
-Home Landing Page
+![1](/assets/eotim-ex-1.gif)
+
+![2](/assets/eotim-ex-2.gif)
 
 ## Author
 

@@ -54,8 +54,9 @@ class App extends Component {
           <footer>  
               <div className="content has-text-centered">
                 <p>
-                  <strong>Ethereum Open Transaction Insurance Market</strong> made in Canada.
+                  <strong>Ethereum Open Transaction Insurance Market</strong>
                 </p>
+                <p>Created 2018 ️️✌️</p>
                 <br/>
                 <br/>
               </div>
