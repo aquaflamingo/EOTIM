@@ -36,9 +36,9 @@ Proof of Concept for an p2p open market for insuring escrow based transactions o
 
 ## View 
 
-![1](/assets/eotim-ex-1.gif)
-
 ![2](/assets/eotim-ex-2.gif)
+
+[View More](/assets/eotim-ex-1.gif)
 
 ## Author
 
