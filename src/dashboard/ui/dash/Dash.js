@@ -8,7 +8,6 @@ class Dash extends Component {
     }
   
   
-  
     componentDidMount() {
       console.log("Dash component mounted")
       setTimeout(this.props.onRefresh,1000)
@@ -70,30 +69,28 @@ class Dash extends Component {
       this.props.onRefresh()
     }
 
+
     render() {
         return (
           <div className="content">
+          
             <h3 className="subtitle is-size-4">Owned Contracts</h3>
-            <div className="notification is-danger">
-              <p> ⚠️  <strong>‍‍Feature Under Construction  </strong></p>
-              <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
-            </div>
-
-            {/* TODO For now remove this until, can figure out the getOwnedTransactions() */}
-            {/* {this.props.offers === null || this.props.offers.length === 0 ? 
+            {this.props.offers === null || this.props.offers.length === 0 ? 
             <div className="notification">
               <p> You don't own any insurance contracts. </p>
               <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
             </div>
             :
             <div>
-            
+          
               {this.renderOwnedContracts()}
             </div>
-            } */}
+            }
             
-         
-
+            <h3> Debug Land </h3>
+              <button href="#" className="button is-info is-medium" onClick={(ev)=>this.props.onFakeClick()}>
+              Fake Transaction 
+              </button>
           </div>
         )
     }

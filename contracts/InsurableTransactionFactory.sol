@@ -4,18 +4,23 @@ import "./Transaction.sol";
 
 contract InsurableTransactionFactory {
     address public owner;
-    mapping(address => uint[]) contractsOwned;
+    mapping(address => address[]) contractsOwned;
     Transaction[] contracts;
 
 
     constructor()  public {
         owner = msg.sender;
+    
     }
-    
-    
+
     event NewContractAddress (address contractAddress, address contractCreator);
 
 
+    function getContractIdsOwnedBy(address _address) public returns (address[] _ids) {
+        return contractsOwned[_address];
+    }
+
+    
     function count() public constant returns (uint theCount) { 
         return contractsOwned[msg.sender].length;
     }
@@ -32,8 +37,7 @@ contract InsurableTransactionFactory {
         Transaction newContract = new Transaction(counterParty,name,desc,max,premium,msg.sender,uint(msg.value));
 
         contracts.push(newContract);
-        uint id = contracts.length - 1; 
-        contractsOwned[msg.sender].push(id);
+        contractsOwned[msg.sender].push(newContract);
         address(newContract).transfer(msg.value);
 
         return newContract;
@@ -43,18 +47,6 @@ contract InsurableTransactionFactory {
         return contracts;
     }
 
-    function getAllOwnedTransactions() public view returns (Transaction[] transactions) 
-    {
-        uint[] storage ids = contractsOwned[msg.sender];
-        
-        Transaction[] memory trx = new Transaction[](ids.length);
-        
-        for (uint counter = 0 ; counter < ids.length ; counter++) {
-            trx[counter] = contracts[ids[counter]];
-        }
-
-        return trx;
-    }
 
 
 }

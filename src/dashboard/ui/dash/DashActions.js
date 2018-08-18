@@ -2,7 +2,8 @@ import store from '../../../store'
 import InsurableTransactionFactory from '../../../../build/contracts/InsurableTransactionFactory.json'
 // import Transaction from '../../../../build/contracts/Transaction.json'
 const contract = require('truffle-contract')
-import {fetchOfferDetails} from '../../../util/contractUtils'
+import {fetchOfferDetails, fakeCreateTransaction} from '../../../util/contractUtils'
+
 
 export const GET_OWNED_OFFERS = "GET_OWNED_OFFERS"
 
@@ -13,6 +14,18 @@ function ownedOffersRefreshed(offers) {
     }
 }
 
+function fake() {
+    return function(dispatch) {
+        fakeCreateTransaction()
+        .then(function(results){
+            console.log("Results are ", results);
+        
+            dispatch(ownedOffersRefreshed(results))
+        }).catch(function(err) {
+            console.log(err)
+        })
+    }
+}
 
 function fetchOwnedOffers() {
     let web3 = store.getState().web3.web3Instance
@@ -31,7 +44,7 @@ function fetchOwnedOffers() {
                     // Get all the contracts owned by the "ownerAddress" in the Factory
                     factory.deployed().then(function(inst){
                         let instance = inst;
-                        instance.getAllOwnedTransactions.call()
+                        instance.getContractIdsOwnedBy.call(coinbase)
                             .then(function(result) {
                                 fetchOfferDetails(result)
                                     .then(function(data){
@@ -62,5 +75,10 @@ export function getOwnedOffers() {
     }
 }
 
+export function createFake() {
+    return function(dispatch) {
+        dispatch(fake())
+    }
+}
 
   

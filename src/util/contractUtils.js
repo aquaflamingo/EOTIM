@@ -1,4 +1,5 @@
 import Transaction from '../../build/contracts/Transaction.json'
+import InsurableTransactionFactory from '../../build/contracts/InsurableTransactionFactory.json'
 
 import store from '../store'
 const contract = require('truffle-contract')
@@ -61,3 +62,50 @@ export function fetchOfferDetails(offerAddresses) {
     let results = Promise.all(actions)
     return results;
   }
+
+export function fakeCreateTransaction() {
+    let web3 = store.getState().web3.web3Instance;
+    const factory = contract(InsurableTransactionFactory)
+    factory.setProvider(web3.currentProvider)
+
+    let fake = () => {
+      return new Promise((resolve,reject) => {
+        var factoryInstance
+
+        web3.eth.getCoinbase((error, coinbase) => {
+            // Log errors, if any.
+            if (error) {
+                console.error(error);
+            }
+            
+            // Get current ethereum wallet.
+            factory.deployed().then(function(instance) {
+                factoryInstance = instance
+                
+    
+
+                var ethVal = web3.toWei(parseFloat(0.002),'ether');
+                
+                factoryInstance.create(
+                    "0xC257274276a4E539741Ca11b590B9447B26A8051",
+                    "Mexico Orange Shipment",
+                    20,
+                    "Need freight insurance",
+                    1,
+                    {from:coinbase, value:ethVal})
+                .then(function(result) {
+                    resolve(result)
+                    console.log("Fake Contract Created!! ", result)
+                })
+                .catch(function(err) {
+                    console.log(err)
+                    reject(err)
+                // If error...
+                })
+                
+            })
+        })
+      })
+    }
+    return new Promise(fake);
+}

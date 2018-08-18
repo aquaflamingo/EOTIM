@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Dash from './Dash'
-import {getOwnedOffers} from './DashActions'
+import {getOwnedOffers, createFake} from './DashActions'
 
 /**
  * maps the dispatch actions to the relavent events
@@ -10,8 +10,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
       onRefresh: () => {
         dispatch(getOwnedOffers())
-        // dispatch(refreshDash())
-     }
+      }, 
+      onFakeClick: () => {
+          console.log("Fake click")
+          dispatch(createFake());
+      }
   }
 }
 
