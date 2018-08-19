@@ -3,18 +3,40 @@ import InsurableTransactionFactory from '../../build/contracts/InsurableTransact
 
 import store from '../store'
 const contract = require('truffle-contract')
+const UNINSURED = "0x0000000000000000000000000000000000000000";
+const INSURED = "0x0000000000000000000000000000000000000001"
+const SETTLED = "0x0000000000000000000000000000000000000002"
 
 /**
    * Determines whether or not the status is insured or not
    * @param {string} status 
    */
 export function isInsured(status) {
-    if (status=="0x0000000000000000000000000000000000000000") {
+    if (status==="0x0000000000000000000000000000000000000000") {
       return false;
     } 
 
     return true;
   }
+
+/**
+ * Parses the state of a 
+ */
+export function getState(state) {
+  console.log("State is ",state)
+  switch(state) {
+    case UNINSURED:
+      return "uninsured"
+    case INSURED:
+      return "insured"
+        
+    case SETTLED:
+      return "settled"
+       
+    default:
+      return null;
+  }
+}
 
 /**
  * Create a set of promises to iterate through and grab relavent contract
@@ -33,7 +55,7 @@ export function fetchOfferDetails(offerAddresses) {
         // Get contract at the specific address and call it's details
           .then((instance)=> {
             instance.getTransactionDetails.call()
-            .then(function(results) {
+            .then((results) =>{
                 // resolve promise successfully
 
                   var details = {
@@ -45,7 +67,8 @@ export function fetchOfferDetails(offerAddresses) {
                     terms: results[5].toNumber(),
                     counterParty: results[6],
                     isInsured: isInsured(results[7]),
-                    owner: results[9]
+                    owner: results[9],
+                    state: getState(results[7])
                   }
                   resolve(details)
               })

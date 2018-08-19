@@ -8,9 +8,9 @@ const MarketMenu = ({title,links}) => (
             </p>
             <ul className="menu-list">
             {
-                 links.map(link=> (
-                    <li>
-                    <Link to={link.to}>{link.name}</Link>
+                 links.map(link=> (       
+                    <li key={link.key}>
+                        <Link to={link.to}>{link.name}</Link>
                     </li>
                 ))
             }

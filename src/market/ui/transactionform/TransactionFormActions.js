@@ -130,7 +130,7 @@ export function createTransaction(values) {
             factory.deployed().then(function(instance) {
                 factoryInstance = instance
                 
-                var newTrxnEvent = factoryInstance.NewContractAddress()
+                var newTrxnEvent = factoryInstance.NewContractCreated()
                     newTrxnEvent.watch(function(error, result){
                         if (!error)
                         {
@@ -142,7 +142,7 @@ export function createTransaction(values) {
                         }
                     });
 
-                var ethVal = web3.toWei(parseFloat(values.transactionValue),'ether');
+                let ethVal = web3.toWei(parseFloat(values.transactionValue),'ether');
                 console.log("Values in contract creation are ", values)
                 
                 factoryInstance.create(

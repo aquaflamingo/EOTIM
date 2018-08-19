@@ -1,12 +1,11 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 import OfferContainer from '../offeritem/OfferContainer'
 
 // Utility function
 
 const isOpenOffers = function(offers) {
-  if (offers.length===0) {return false}
-  else {
+  if (offers.length!==0) {
     // How many insured contracts are there
     // Iterate to check
       for (var offer in offers) {
@@ -14,11 +13,10 @@ const isOpenOffers = function(offers) {
         if (!offers[offer].isInsured) {
           return true;
         }
-
-      
       }
       return false;
   } 
+  return false;
 }
 
 /**
@@ -30,15 +28,15 @@ const isOpenOffers = function(offers) {
 const FeedContainer = ({ offers, onClick }) => (
   <section className="is-medium">
     <br/>
+
         { 
           isOpenOffers(offers) ?
-            
-            // Error not able to render as a collection for some reason.. 
             offers.map(offer=> {
               // if it's insured don't render to screen.
               if (offer.isInsured===true) {
-                return ;
+                return null;
               } else {
+                
                 return (
                     <div className="no-params">
                       <OfferContainer 

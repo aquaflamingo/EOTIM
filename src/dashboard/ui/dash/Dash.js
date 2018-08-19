@@ -3,22 +3,31 @@ import { Link } from 'react-router'
 
 class Dash extends Component {
   
-    constructor(props) {
-      super(props)
-    }
-  
   
     componentDidMount() {
       console.log("Dash component mounted")
       setTimeout(this.props.onRefresh,1000)
     }
   
+    calculateSettlement(offer) {
+      if (offer.state==="insured") {
+        console.log("Insured contract, settlement cost: ",offer.premium*offer.trxValue*offer.maxCoverage);
+        return offer.premium/100 * offer.trxValue * offer.maxCoverage/100;
+      } else {
+        console.log("Uninsured contract settlement cost: 0.0");
+       return 0;
+      }
+    }
   
     renderOwnedContracts() {
       let renderItems = []
+      let key=0;
       for (let offer of this.props.offers) {
+      
+        if (offer.state==='settled') continue;
+        
         renderItems.push(
-            <div className="card">
+            <div className="card" key={key++}>
               <div className="card-content">
                 <div className="columns">
                   <div className="column">
@@ -53,8 +62,8 @@ class Dash extends Component {
                     </div> 
 
                     <div className="card-footer">
-                      <a href="#" className="card-footer-item" onClick={(event) => alert("Transaction would be settled!")}>
-                        Settle Transaction ({offer.isInsured ? offer.terms*offer.maxCoverage*offer.val : 0.0 } ETH)
+                      <a href="#" className="card-footer-item" onClick={() => this.props.onSettle(offer.address,this.calculateSettlement(offer))}>
+                        Settle Transaction ~({offer.isInsured ? this.calculateSettlement(offer): 0.0 } ETH)
                       </a>      
                     </div>
                   </div>
@@ -70,23 +79,32 @@ class Dash extends Component {
     }
 
 
+    renderContractsFeed() {
+      if (this.props.offers.length === 0)
+        return(
+            <div className="notification">
+              <p> You don't own any insurance contracts. </p>
+              <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
+            </div>
+        )
+      else
+        return (
+          this.renderOwnedContracts()
+        )
+            
+            
+    }
     render() {
         return (
           <div className="content">
           
             <h3 className="subtitle is-size-4">Owned Contracts</h3>
-            {this.props.offers === null || this.props.offers.length === 0 ? 
-            <div className="notification">
-              <p> You don't own any insurance contracts. </p>
-              <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
-            </div>
-            :
-            <div>
-          
-              {this.renderOwnedContracts()}
-            </div>
+            {this.props.offers === null ?
+              <p> Refreshing.. </p>
+              :
+              this.renderContractsFeed()
             }
-            
+
             <h3> Debug Land </h3>
               <button href="#" className="button is-info is-medium" onClick={(ev)=>this.props.onFakeClick()}>
               Fake Transaction 

@@ -92,7 +92,6 @@ class Market extends Component {
   render() {
     return(
             <div>
-              
               {
                 // Render notification or not.
                 this.props.insuranceSuccess ? 
@@ -117,7 +116,7 @@ class Market extends Component {
                       {this.props.offers == null ? 
                       <p className="title">N/A</p>
                       :
-                      <p className="title">{this.calculateAvgVal(this.props.offers).toFixed(1)} ETH</p>
+                      <p className="title">{this.calculateAvgVal(this.props.offers).toFixed(3)} ETH</p>
                       }
                     </div>
                   </div>

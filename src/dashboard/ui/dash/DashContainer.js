@@ -1,18 +1,22 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import Dash from './Dash'
-import {getOwnedOffers, createFake} from './DashActions'
+import {getOwnedOffers, createFake,settleTransaction} from './DashActions'
 
 /**
- * maps the dispatch actions to the relavent events
+ * maps the dispatch actions to the relevant events
  */
 const mapDispatchToProps = (dispatch) => {
     return {
       onRefresh: () => {
+        console.log("Beginning owned offers retrieval..")
         dispatch(getOwnedOffers())
       }, 
+      onSettle: (address,value) => {
+          console.log("Beginning contract settlement on ", address, "..")
+          dispatch(settleTransaction(address,value))
+      },
       onFakeClick: () => {
-          console.log("Fake click")
+          console.log("Beginning fake contract creation..")
           dispatch(createFake());
       }
   }

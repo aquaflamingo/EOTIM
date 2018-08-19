@@ -36,7 +36,7 @@ class App extends Component {
             <div id="navMenu" className="navbar-menu">
               <div className="navbar-start">
                 <a className="navbar-item">
-                  <Link className="navbar-item" to="/" ><img src="logo.png"/></Link>
+                  <Link className="navbar-item" to="/" ><img src="logo.png" alt="logo"/></Link>
                 </a>
               </div>
               <Links/>
@@ -46,8 +46,7 @@ class App extends Component {
         </div>
 
         <div className="main-content section">
-        
-        {this.props.children}
+          {this.props.children}
         </div>
 
         <section className="section">

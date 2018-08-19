@@ -1,16 +1,77 @@
 import store from '../../../store'
 import InsurableTransactionFactory from '../../../../build/contracts/InsurableTransactionFactory.json'
-// import Transaction from '../../../../build/contracts/Transaction.json'
+import Transaction from '../../../../build/contracts/Transaction.json'
 const contract = require('truffle-contract')
 import {fetchOfferDetails, fakeCreateTransaction} from '../../../util/contractUtils'
 
 
 export const GET_OWNED_OFFERS = "GET_OWNED_OFFERS"
+export const OFFER_SETTLED = "OFFER_SETTLED"
+
+function offerSettled(status) {
+    return {
+        type: OFFER_SETTLED,
+        payload: status
+    }
+}
 
 function ownedOffersRefreshed(offers) {
     return {
         type: GET_OWNED_OFFERS,
         payload: offers
+    }
+}
+
+function settleTransactionFor(address,value) {
+    let web3 = store.getState().web3.web3Instance
+    if (typeof web3 !== 'undefined') {
+        return function(dispatch) {
+            web3.eth.getCoinbase((error, coinbase) => {
+                if (error) {
+                    console.error("Error getting coinbase ", error);
+                } else {
+                    const trxn = contract(Transaction)
+                    trxn.setProvider(web3.currentProvider)
+                    let ethVal = web3.toWei(parseFloat(value),'ether');
+
+                    console.log("Attempting to settle contract ", address, " at ", ethVal,"  on behalf of ", coinbase,);
+
+                    trxn.at(address)
+                        .then((instance) => {
+                            let event_settlement = instance.TransactionStatusChange()
+                            event_settlement.watch((error,result) => {
+                                if(!error) {
+                                    console.log("Settlement Success Event ", result)
+                                } else {
+                                    console.log("Error: ", error)
+                                }
+                            })
+                            console.log(instance);
+                            
+
+                            instance.settle({from:coinbase,value:ethVal})
+                                .then((res)=> { 
+                                    console.log("Success, contract ", address, " settled..");
+                                    console.log(res);
+                                    dispatch(offerSettled(res));
+                                }).catch((err)=> {
+                                    console.log("Failed to settle contract ", address, "...");
+                                    console.log(err);
+                                })
+                        })
+                        .catch((error)=> {
+                            console.log("Could not get transaction.. ", error);
+                        })
+
+
+                  
+
+                }
+            })
+
+        }
+    } else {
+        console.log("Error Web3 Not Initialized..")
     }
 }
 
@@ -29,7 +90,6 @@ function fake() {
 
 function fetchOwnedOffers() {
     let web3 = store.getState().web3.web3Instance
-
     if (typeof web3 !== 'undefined') {
         return function(dispatch) {
             web3.eth.getCoinbase((error, coinbase) => {
@@ -44,7 +104,7 @@ function fetchOwnedOffers() {
                     // Get all the contracts owned by the "ownerAddress" in the Factory
                     factory.deployed().then(function(inst){
                         let instance = inst;
-                        instance.getContractIdsOwnedBy.call(coinbase)
+                        instance.getContractsOwnedBy.call(coinbase)
                             .then(function(result) {
                                 fetchOfferDetails(result)
                                     .then(function(data){
@@ -72,6 +132,12 @@ function fetchOwnedOffers() {
 export function getOwnedOffers() {
     return function (dispatch) {
         dispatch(fetchOwnedOffers())
+    }
+}
+
+export function settleTransaction(address,value) {
+    return function(dispatch) {
+        dispatch(settleTransactionFor(address,value))
     }
 }
 

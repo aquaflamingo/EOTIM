@@ -11,6 +11,10 @@ const initialState = {
             return Object.assign({}, state, {
                 offers: action.payload
             })
+        case 'OFFER_SETTLE':
+            return Object.assign({}, state, {
+                settlementStatus: action.payload
+            })
         default:
             return state
     }

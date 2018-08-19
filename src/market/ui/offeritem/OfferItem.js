@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 
 function calculatePayout(val,terms) {
@@ -45,7 +45,7 @@ const OfferItem = ({
                         <span className="tag is-warning"> Coverage: {maxCoverage}% </span>  
                       </div>
                     <div className="level-item">
-                      <span className="tag">Premium: {parseInt(terms)}% </span>
+                      <span className="tag">Premium: {parseInt(terms,2)}% </span>
                     </div>
                   
                     <div className="level-item">

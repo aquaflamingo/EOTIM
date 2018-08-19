@@ -11,9 +11,9 @@ class Marketplace extends Component {
     
     /* Links in relavent side nav */
     var links = [
-      {to:'/marketplace',name:'All'},
-      {to:'/marketplace/new',name:'Create Transaction'},
-      {to:'/marketplace/search',name:'Search Transaction'},
+      {to:'/marketplace',name:'All',key:0},
+      {to:'/marketplace/new',name:'Create Transaction',key:1},
+      {to:'/marketplace/search',name:'Search Transaction',key:2},
     ]
     return(
       <div className="container">
