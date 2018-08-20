@@ -20,8 +20,6 @@ class Dashboard extends Component {
         <div className="column is-9">
           <h1 className="title">Dashboard</h1>
             <DashContainer />
-          
-
         </div>
       </div>
       </div>

@@ -1,11 +1,6 @@
 import React from 'react'
 
 
-function calculatePayout(val,terms) {
-
-  return val*terms;
-}
-
 /**
  * The basis of the application is contained in an "OfferItem"
  * The offer item is passed it's relv. detail to display to to the user.
@@ -50,7 +45,7 @@ const OfferItem = ({
                   
                     <div className="level-item">
                         <span className="tag is-info">
-                          Payout: {calculatePayout(val,terms/100)} ETH
+                          Payout: {(val*terms/100)} ETH
                         </span>
                     </div>
                   </div>

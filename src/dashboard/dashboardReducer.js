@@ -1,19 +1,22 @@
 const initialState = {
-    offers:null
+    offers:null,
+    settlement: null
   }
   
   /**
    * Handles redux state objects related to marketplace actions
    */
   const dashboardReducer = (state = initialState, action) => {
+    console.log(action)
     switch (action.type) {
+        
         case 'GET_OWNED_OFFERS':
             return Object.assign({}, state, {
                 offers: action.payload
             })
-        case 'OFFER_SETTLE':
+        case 'OFFER_SETTLED':
             return Object.assign({}, state, {
-                settlementStatus: action.payload
+                settlement: action.payload
             })
         default:
             return state

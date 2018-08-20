@@ -78,7 +78,6 @@ class SearchTransactionForm extends Component {
             <br/>
             <br/>
             <br/>
-        
                 {
                     this.props.searchContract === null ?
                     null

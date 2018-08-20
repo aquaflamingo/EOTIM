@@ -1,79 +1,81 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import SettleableTransactionContainer from '../settleable-transaction/SettleableTransactionContainer'
+import BasicNotification from '../../../ui/BasicNotification';
 
 class Dash extends Component {
-  
   
     componentDidMount() {
       console.log("Dash component mounted")
       setTimeout(this.props.onRefresh,1000)
     }
-  
-    calculateSettlement(offer) {
-      if (offer.state==="insured") {
-        console.log(offer)
-        console.log("Insured contract, settlement cost: ",offer.terms*offer.val*offer.maxCoverage);
-        return offer.terms/100 * offer.val * offer.maxCoverage/100;
-      } else {
-        console.log("Uninsured contract settlement cost: 0.0");
-       return 0;
-      }
-    }
-  
+
     renderOwnedContracts() {
-      let renderItems = []
-      let key=0;
+      let unsettledContracts = []
+      let settledContracts = []
       for (let offer of this.props.offers) {
-      
-        if (offer.state==='settled') continue;
-        
-        renderItems.push(
-            <div className="card card-feed-item" key={key++}>
-              <div className="card-content">
-                <div className="columns">
-                  <div className="column">
-                    <h5 className="has-text-weight-semibold">
-                    {offer.offerName}
-                    </h5>
-                    <label className="label">Contract Address </label>
-                    <p className="is-size-7"> {offer.address} </p>
-                  </div>
-
-                  <div className="column">
-                    <div className="columns">
-                      <div className="column">
-                        <span className="tag is-success">{offer.val} ETH</span>
-                      </div>
-
-                      <div className="column">
-                        <span className="tag is-warning">Max Coverage: {offer.maxCoverage}%</span>
-                      </div>
-
-                      <div className="column">
-                        <span className="tag">Premium: {offer.terms}%</span>
-                      </div>
-                      <div className="column">
-                      {
-                      offer.isInsured ? 
-                      <span className="tag is-info">Insured</span>
-                      :
-                      <span className="tag is-danger">Not Insured</span>
-                      }
-                      </div>
-                    </div> 
-
-                    <div className="card-footer">
-                      <a href="#" className="card-footer-item" onClick={() => this.props.onSettle(offer.address,this.calculateSettlement(offer))}>
-                        Settle Transaction ~({offer.isInsured ? this.calculateSettlement(offer): 0.0 } ETH)
-                      </a>      
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        if (offer.state==='settled') {
+          settledContracts.push(
+              <div className="box">  
+                <div className="media-content">
+                  <div className="content">
+                    <p>
+                      <strong>{offer.offerName}</strong><small><span className="tag">Date</span></small>
+                      <br/>
+                      {offer.address}
+                      <small>Counter Party:{offer.counterParty}</small> 
+                    </p>
+                  </div> 
+              </div> 
+          </div>)
+        } else {
+          unsettledContracts.push(
+              <SettleableTransactionContainer
+                  offer={offer} />
+          )
+        }
+      }
+      if (unsettledContracts.length===0 && settledContracts.length===0) {
+        return (<div className="owned-transaction">
+                <BasicNotification 
+                  title="No contracts found." 
+                  color='is-info'
+                  description="You don't currently own any contracts at this time."/>
+                </div>)
+      } else if (unsettledContracts.length===0 && settledContracts.length>0) {
+        return (
+          <div className="owned-transactions">
+            <BasicNotification 
+                    title="No contracts found." 
+                    color='is-info'
+                    description="You don't have any unsettled contracts."/>
+             <h3 className="subtitle">Settled Contracts</h3>
+              {settledContracts}
+          </div>
+        )
+      } else if (unsettledContracts.length>0 && settledContracts.length===0) {
+        return (
+          <div className="owned-transactions">
+            <h3 className="subtitle">Unsettled Transactions</h3>
+            {unsettledContracts}
+            <h3 className="subtitle">Settled Contracts</h3>
+              <BasicNotification 
+                  title="No contracts found." 
+                  color='is-info'
+                  description="None of your contracts are settled at this time."/>
+          </div>
+        )
+      } else {
+        return (
+          <div className="owned--transactions">
+            <h3 className="subtitle">Unsettled Transactions</h3>
+            {unsettledContracts}
+            <h3 className="subtitle">Settled Contracts</h3>
+            {settledContracts}
+          </div>
         )
       }
-      return <div className="list">{renderItems}</div>
+      
     }
     refresh() {
       this.props.onRefresh()
@@ -83,23 +85,34 @@ class Dash extends Component {
     renderContractsFeed() {
       if (this.props.offers.length === 0)
         return(
-            <div className="notification">
-              <p> You don't own any insurance contracts. </p>
-              <p> Head over to the market to <Link to="marketplace">browse.</Link></p>
-            </div>
+          <div>
+              <BasicNotification 
+              title="⚠️ No contracts found." 
+              color='is-info'
+              description="You don't currently own any contracts at this time."/>
+          </div>
+         
         )
       else
         return (
-          this.renderOwnedContracts()
+            this.renderOwnedContracts()
         )
             
             
     }
+
     render() {
         return (
           <div className="content">
-          
-            <h3 className="subtitle is-size-4">Owned Contracts</h3>
+        
+            { this.props.settlement === null ?
+              null 
+            :
+              this.props.settlement.status === true ?
+                <BasicNotification title="👌 Settled Transaction!" description={`Transaction was settled.. ${this.props.settlement}`} color="is-success"/>
+              :
+                <BasicNotification title="⚠️ Failed to Settle Transaction!" description={`Transaction failed to settle... ${this.props.settlement.error}`} color="is-danger"/>
+            }
             {this.props.offers === null ?
               <p> Refreshing.. </p>
               :

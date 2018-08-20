@@ -1,4 +1,4 @@
-pragma solidity ^0.4.2;
+pragma solidity ^0.4.24;
 
 
 import "./Killable.sol";
@@ -112,7 +112,8 @@ contract Transaction  is Killable {
         current_coverage += msg.value;
         // premium payout is equal to (max_coverage*transaction_value)*premium_percent
         // percentages are stored as integers / 100
-        premium_payout = mul(div(mul(max_coverage,premium_percent),10000),transaction_value);
+        premium_payout = SafeMath.mul(SafeMath.div(SafeMath.mul(max_coverage,premium_percent),10000),transaction_value);
+        
         insuranceStatus = TransactionState.Insured;
         insurer = msg.sender;
         emit TransactionStatusChange("The contract has been insured.",insuranceStatus);
@@ -138,7 +139,6 @@ contract Transaction  is Killable {
         } 
         // else 
         // {
-        //    
         // No insurance, user get's back prepaid premium
         // }
 

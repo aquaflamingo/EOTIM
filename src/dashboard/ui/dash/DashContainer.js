@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Dash from './Dash'
-import {getOwnedOffers, createFake,settleTransaction} from './DashActions'
+import {getOwnedOffers, createFake} from './DashActions'
 
 /**
  * maps the dispatch actions to the relevant events
@@ -10,9 +10,6 @@ const mapDispatchToProps = (dispatch) => {
       onRefresh: () => {
         dispatch(getOwnedOffers())
       }, 
-      onSettle: (address,value) => {
-          dispatch(settleTransaction(address,value))
-      },
       onFakeClick: () => {
           dispatch(createFake());
       }
@@ -25,8 +22,12 @@ const mapDispatchToProps = (dispatch) => {
  * @param {object} ownProps 
  */
 const mapStateToProps = (state, ownProps) => {
+    console.log("\n\n\n inside dash container ")
+    console.log("state ", state)
+    console.log("\n\n\n")
     return {
-        offers: state.dashboard.offers
+        offers: state.dashboard.offers,
+        settlement: state.dashboard.settlement
     }
 }
 
