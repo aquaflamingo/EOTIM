@@ -25,15 +25,15 @@ contract Transaction  is Killable {
     uint public premium_percent;
     // owner
     address public owner;
-
+    // premium_payout
     uint public premium_payout;
-    
-    TransactionState public insuranceStatus;
-
-    event TransactionStatusChange(string message);
-    event PremiumPaid(string message, uint value);
 
     enum TransactionState { Uninsured, Insured, Settled }
+    TransactionState public insuranceStatus;
+
+    event TransactionStatusChange(string message, TransactionState state);
+    event PremiumPaid(string message, uint value);
+
 
 
     constructor(
@@ -46,8 +46,6 @@ contract Transaction  is Killable {
         uint _value
         ) public payable {
         require(_counterparty!=0x0);
-        // TODO require that msg.value have value of transaction
-        // PLUS the prepaid premium of the contract 
         counter_party = _counterparty;
         owner = _owner;
         max_coverage = _max_coverage;
@@ -75,8 +73,9 @@ contract Transaction  is Killable {
             uint _premium_percent,
             address _counterParty,
             address _insurer,
-            uint _insured,
-            address _owner
+            uint status,
+            address _owner,
+            uint _balance
             ) {
 
         return (
@@ -89,7 +88,8 @@ contract Transaction  is Killable {
             counter_party,
             insurer,
             uint(insuranceStatus),
-            owner
+            owner,
+            uint(this.balance)
         );
     }
 
@@ -105,46 +105,45 @@ contract Transaction  is Killable {
         }
     }
 
-
-
     function insure() public payable returns (bool _success) {
         require(insuranceStatus!=TransactionState.Insured,"Transaction is already insured");
         require(insuranceStatus!=TransactionState.Settled, "Transaction has already been settled.");
         require((msg.value)<=(max_coverage*1 ether)/10,"Value cannot exceed max coverage");
-        
         current_coverage += msg.value;
-
-         // premium payout is equal to (max_coverage*transaction_value)*premium_percent
-        // percentages are stored as integers /100
-        // premium_payout = mul(div(mul(max_coverage,premium_percent),10000),transaction_value);
-
+        // premium payout is equal to (max_coverage*transaction_value)*premium_percent
+        // percentages are stored as integers / 100
+        premium_payout = mul(div(mul(max_coverage,premium_percent),10000),transaction_value);
         insuranceStatus = TransactionState.Insured;
         insurer = msg.sender;
-        emit TransactionStatusChange("Insured");
-
+        emit TransactionStatusChange("The contract has been insured.",insuranceStatus);
         return true;
     }
 
-    //TODO have claims maker deposit premium + value of transaction into escrow 
-    //settlment, insurer takes premium claim + back their insurance
+    // TODO have claims maker deposit premium + value of transaction into escrow 
+    // settlment, insurer takes premium claim + back their insurance
     // TODO error here.. 
-    function settle() public payable onlyOwner returns (bool success) {
+    function settle() public payable returns (bool _success) {
         require(insuranceStatus!=TransactionState.Settled, "Transaction has already been settled."); 
         require(msg.sender == owner, "Transacton can only be settled by claim owner.");
         
-        address(counter_party).transfer(transaction_value);
+        uint amount = transaction_value;
+        transaction_value = 0;
+        address(counter_party).transfer(amount);
 
-        if (insuranceStatus==TransactionState.Insured) {
+        if (insuranceStatus==TransactionState.Insured)
+        {
             uint insurer_payback = current_coverage+msg.value;
             address(insurer).transfer(insurer_payback);
             emit PremiumPaid("Insurance premium was paid.",1);
-        } else {
-            // No insurance, user get's back prepaid premium
-
-        }
+        } 
+        // else 
+        // {
+        //    
+        // No insurance, user get's back prepaid premium
+        // }
 
         insuranceStatus = TransactionState.Settled;
-        emit TransactionStatusChange("Settled");
+        emit TransactionStatusChange("The contract has been settled", insuranceStatus);
         
         return true;
     }
@@ -155,5 +154,9 @@ contract Transaction  is Killable {
 
     // Fallback function
     function() public payable {}
+
+    function getBalance() public view returns (uint) {
+        return address(this).balance;
+    }
 
 }

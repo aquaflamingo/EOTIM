@@ -2,8 +2,6 @@ import Transaction from '../../../../build/contracts/Transaction.json'
 import store from '../../../store'
 export const REFRESH_OFFERS = "REFRESH_OFFERS"
 
-import { browserHistory } from 'react-router'
-
 
 const contract = require('truffle-contract')
 
@@ -43,10 +41,8 @@ export function purchaseOffer(address,val) {
         /* Grab the transaction at the address provided in the purchase offer function */
         trxn.at(address)
           .then((instance)=> {
-         
-
             /* Watch for transaction insurance event */
-            var inst = instance.TransactionInsured();
+            var inst = instance.TransactionStatusChange();
             inst.watch(function(error, result){
               console.log("Transaction watching for insured status.",error,result)
               if (!error)

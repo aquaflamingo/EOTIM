@@ -8,15 +8,12 @@ import {getOwnedOffers, createFake,settleTransaction} from './DashActions'
 const mapDispatchToProps = (dispatch) => {
     return {
       onRefresh: () => {
-        console.log("Beginning owned offers retrieval..")
         dispatch(getOwnedOffers())
       }, 
       onSettle: (address,value) => {
-          console.log("Beginning contract settlement on ", address, "..")
           dispatch(settleTransaction(address,value))
       },
       onFakeClick: () => {
-          console.log("Beginning fake contract creation..")
           dispatch(createFake());
       }
   }

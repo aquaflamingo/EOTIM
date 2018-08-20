@@ -1392,10 +1392,10 @@
     "1": {
       "events": {},
       "links": {},
-      "address": "0xcbc24b5822024cbef8d259c117ca452c2fc7a4c3",
-      "transactionHash": "0x3f4d8461e647523d36ba5f2c31ec886139a752875e47a7b0d8a80d1df2fee5b3"
+      "address": "0xdc22292a31dcf49f3ef055b0cd41591cf15dd416",
+      "transactionHash": "0x87a06a3e5862fec70c58062241ce45a958ac6994158df49585c60492f73299b6"
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-19T02:42:03.982Z"
+  "updatedAt": "2018-08-20T02:51:58.499Z"
 }

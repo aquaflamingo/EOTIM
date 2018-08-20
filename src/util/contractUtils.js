@@ -3,9 +3,9 @@ import InsurableTransactionFactory from '../../build/contracts/InsurableTransact
 
 import store from '../store'
 const contract = require('truffle-contract')
-const UNINSURED = "0x0000000000000000000000000000000000000000";
-const INSURED = "0x0000000000000000000000000000000000000001"
-const SETTLED = "0x0000000000000000000000000000000000000002"
+const UNINSURED = 0;
+const INSURED = 1;
+const SETTLED = 2;
 
 /**
    * Determines whether or not the status is insured or not
@@ -15,7 +15,6 @@ export function isInsured(status) {
     if (status==="0x0000000000000000000000000000000000000000") {
       return false;
     } 
-
     return true;
   }
 
@@ -23,16 +22,13 @@ export function isInsured(status) {
  * Parses the state of a 
  */
 export function getState(state) {
-  console.log("State is ",state)
   switch(state) {
     case UNINSURED:
       return "uninsured"
     case INSURED:
       return "insured"
-        
     case SETTLED:
       return "settled"
-       
     default:
       return null;
   }
@@ -48,7 +44,6 @@ export function fetchOfferDetails(offerAddresses) {
     let web3 = store.getState().web3.web3Instance
     let trxn = contract(Transaction)
     trxn.setProvider(web3.currentProvider)
-
     let getDetails = function getDetails(address) {
       return new Promise((resolve,reject)=>{
         trxn.at(address)
@@ -57,7 +52,6 @@ export function fetchOfferDetails(offerAddresses) {
             instance.getTransactionDetails.call()
             .then((results) =>{
                 // resolve promise successfully
-
                   var details = {
                     address:address,
                     offerName: web3.toAscii(results[0]),
@@ -67,8 +61,9 @@ export function fetchOfferDetails(offerAddresses) {
                     terms: results[5].toNumber(),
                     counterParty: results[6],
                     isInsured: isInsured(results[7]),
+                    state: getState(results[8].toNumber()),
                     owner: results[9],
-                    state: getState(results[7])
+                    balance: results[10].toNumber()
                   }
                   resolve(details)
               })
@@ -79,7 +74,6 @@ export function fetchOfferDetails(offerAddresses) {
         })
       })
     }
-    
     let actions = offerAddresses.map(getDetails)
     // Call all promises and then publish results. 
     let results = Promise.all(actions)
@@ -94,21 +88,15 @@ export function fakeCreateTransaction() {
     let fake = () => {
       return new Promise((resolve,reject) => {
         var factoryInstance
-
         web3.eth.getCoinbase((error, coinbase) => {
             // Log errors, if any.
             if (error) {
                 console.error(error);
             }
-            
             // Get current ethereum wallet.
             factory.deployed().then(function(instance) {
                 factoryInstance = instance
-                
-    
-
                 var ethVal = web3.toWei(parseFloat(0.002),'ether');
-                
                 factoryInstance.create(
                     "0xC257274276a4E539741Ca11b590B9447B26A8051",
                     "Mexico Orange Shipment",
@@ -121,11 +109,10 @@ export function fakeCreateTransaction() {
                     console.log("Fake Contract Created!! ", result)
                 })
                 .catch(function(err) {
+                    // If error...
                     console.log(err)
                     reject(err)
-                // If error...
                 })
-                
             })
         })
       })

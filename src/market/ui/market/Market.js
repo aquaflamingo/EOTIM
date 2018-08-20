@@ -8,10 +8,6 @@ import { Link } from 'react-router'
  * statistics for offerings.
 */
 class Market extends Component {
-  
-  constructor(props) {
-    super(props)
-  }
 
 
 
@@ -31,7 +27,7 @@ class Market extends Component {
    * */ 
   calculateAvgVal(offers) {
     var sum=0;
-    if (offers.length===0|| sum/offers===NaN) return 0;
+    if (offers.length===0|| isNaN(sum/offers)) return 0;
 
     for (var offer in offers) {
       if (!offers[offer].isInsured) { sum+=offers[offer].val; }
@@ -74,7 +70,7 @@ class Market extends Component {
    * as well as a notice if there are no contract offers available.
    */
   renderOffers() {
-    if (this.props.offers.length==0) {
+    if (this.props.offers.length===0) {
         return (
             <div>
             <br/><br/><br/>
@@ -103,7 +99,7 @@ class Market extends Component {
                   <div className="level-item has-text-centered">
                     <div>
                       <p className="heading">Open Offers Available</p>
-                      {this.props.offers == null ? 
+                      {this.props.offers === null ? 
                       <p className="title">N/A</p>
                       :
                       <p className="title">{this.offersAvail(this.props.offers)}</p>
@@ -113,7 +109,7 @@ class Market extends Component {
                   <div className="level-item has-text-centered">
                     <div>
                       <p className="heading">Average Value</p>
-                      {this.props.offers == null ? 
+                      {this.props.offers === null ? 
                       <p className="title">N/A</p>
                       :
                       <p className="title">{this.calculateAvgVal(this.props.offers).toFixed(3)} ETH</p>
@@ -123,7 +119,7 @@ class Market extends Component {
                   <div className="level-item has-text-centered">
                     <div>
                       <p className="heading">Hosted Contracts</p>
-                      {this.props.offers == null ? 
+                      {this.props.offers === null ? 
                       <p className="title">N/A</p>
                       :
                       <p className="title">{this.props.offers.length}</p>
@@ -140,7 +136,7 @@ class Market extends Component {
 
               <div>
                 {
-                  this.props.offers == null ?
+                  this.props.offers === null ?
                   <p> Refreshing.. </p>
                 :
                   this.renderOffers()

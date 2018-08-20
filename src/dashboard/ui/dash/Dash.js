@@ -11,8 +11,9 @@ class Dash extends Component {
   
     calculateSettlement(offer) {
       if (offer.state==="insured") {
-        console.log("Insured contract, settlement cost: ",offer.premium*offer.trxValue*offer.maxCoverage);
-        return offer.premium/100 * offer.trxValue * offer.maxCoverage/100;
+        console.log(offer)
+        console.log("Insured contract, settlement cost: ",offer.terms*offer.val*offer.maxCoverage);
+        return offer.terms/100 * offer.val * offer.maxCoverage/100;
       } else {
         console.log("Uninsured contract settlement cost: 0.0");
        return 0;
@@ -27,7 +28,7 @@ class Dash extends Component {
         if (offer.state==='settled') continue;
         
         renderItems.push(
-            <div className="card" key={key++}>
+            <div className="card card-feed-item" key={key++}>
               <div className="card-content">
                 <div className="columns">
                   <div className="column">

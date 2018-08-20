@@ -33,9 +33,7 @@ function settleTransactionFor(address,value) {
                     const trxn = contract(Transaction)
                     trxn.setProvider(web3.currentProvider)
                     let ethVal = web3.toWei(parseFloat(value),'ether');
-
-                    console.log("Attempting to settle contract ", address, " at ", ethVal,"  on behalf of ", coinbase,);
-
+                    console.log("Attempting to settle contract ", address, " at ", ethVal,"ETH  on behalf of ", coinbase);
                     trxn.at(address)
                         .then((instance) => {
                             let event_settlement = instance.TransactionStatusChange()
@@ -47,12 +45,9 @@ function settleTransactionFor(address,value) {
                                 }
                             })
                             console.log(instance);
-                            
-
                             instance.settle({from:coinbase,value:ethVal})
                                 .then((res)=> { 
                                     console.log("Success, contract ", address, " settled..");
-                                    console.log(res);
                                     dispatch(offerSettled(res));
                                 }).catch((err)=> {
                                     console.log("Failed to settle contract ", address, "...");
@@ -62,10 +57,6 @@ function settleTransactionFor(address,value) {
                         .catch((error)=> {
                             console.log("Could not get transaction.. ", error);
                         })
-
-
-                  
-
                 }
             })
 
@@ -97,10 +88,8 @@ function fetchOwnedOffers() {
                     console.error("Error getting coinbase ", error);
                 } else {
                     console.log("Fetching owned insured transactions for coinbase ", coinbase)
-                    
                     const factory = contract(InsurableTransactionFactory)
                     factory.setProvider(web3.currentProvider)
-                    
                     // Get all the contracts owned by the "ownerAddress" in the Factory
                     factory.deployed().then(function(inst){
                         let instance = inst;
@@ -108,15 +97,13 @@ function fetchOwnedOffers() {
                             .then(function(result) {
                                 fetchOfferDetails(result)
                                     .then(function(data){
-                                    // data received is in order of creation. 
-                                    // iterate through data and provide filtering options where needed
-                                    console.log("Success getting all insured transactions : ", data);
-                                    dispatch(ownedOffersRefreshed(data))
-                                    
+                                        console.log("Success getting all insured transactions : ", data);
+                                        dispatch(ownedOffersRefreshed(data))
                                     })
-                               
                             }).catch(function(err) {
                                 console.log("Error could not get all insured contracts for ",coinbase);
+                                let data = [];
+                                dispatch(ownedOffersRefreshed(data))
                                 console.log(err)
                             })
                     }) 

@@ -3,7 +3,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import SearchTransactionForm from './SearchTransactionForm'
 import {lookupTransaction} from '../transactionform/TransactionFormActions'
-import {purchaseOffer} from '../offeritem/OfferActions'
 
 /**
  * Maps the state objects to props

@@ -58,9 +58,10 @@ contract InsurableTransactionFactory {
     function getTransactions() public view returns (address[] trxns) {
         return contracts;
     }
-
-
-    
-
+    /// @dev returns the balance of the factory contract
+    /// @return _balance 
+    function getBalance() public view returns (uint _balance) {
+        return address(this).balance;
+    }
 
 }

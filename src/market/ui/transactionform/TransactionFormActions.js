@@ -4,9 +4,8 @@ import Transaction from '../../../../build/contracts/Transaction.json'
 const contract = require('truffle-contract')
 
 export const CONTRACT_CREATE = 'CONTRACT_CREATE'
-export const CONTRACT_NOT_CREATE = 'CONTRACT_NOT_CREATE'
 export const CONTRACT_NOT_FOUND = 'CONTRACT_NOT_FOUND'
-export const CONTRACT_FOUND = 'CONTRACT_NOT_FOUND'
+export const CONTRACT_FOUND = 'CONTRACT_FOUND'
 
 /**
  * For redux state updates
@@ -18,14 +17,6 @@ function contractCreated(details) {
         payload: details
     }
 }
-
-function contractNotCreated(details) {
-    return {
-        type: CONTRACT_NOT_CREATE,
-        payload: details
-    }
-}
-
 /**
  * For redux state updates
  * @param {object} details 
@@ -53,7 +44,7 @@ function contractNotFound(details) {
    * @param {string} status 
    */
   function isInsured(status) {
-    if (status=="0x0000000000000000000000000000000000000000") {
+    if (status==="0x0000000000000000000000000000000000000000") {
       return false;
     } 
 
@@ -159,9 +150,7 @@ export function createTransaction(values) {
                 })
                 .catch(function(err) {
                     let error = {message: err.msg}
-                
-                    
-                    console.log(err)
+                    console.log(error)
                 // If error...
                 })
                 
