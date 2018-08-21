@@ -20,10 +20,16 @@ class Dash extends Component {
                 <div className="media-content">
                   <div className="content">
                     <p>
-                      <strong>{offer.offerName}</strong><small><span className="tag">Date</span></small>
+                      <strong>{offer.offerName}</strong>
                       <br/>
-                      {offer.address}
-                      <small>Counter Party:{offer.counterParty}</small> 
+                    </p>
+                    <p>
+                      <small>Counter Party</small> 
+                      <br/>
+                      {offer.counterParty}
+                    </p>
+                    <p>
+                        <small>Address:<a href={`https://etherscan.io/address/${offer.address}`}>  {offer.address}</a></small>
                     </p>
                   </div> 
               </div> 
@@ -38,16 +44,16 @@ class Dash extends Component {
       if (unsettledContracts.length===0 && settledContracts.length===0) {
         return (<div className="owned-transaction">
                 <BasicNotification 
-                  title="No contracts found." 
-                  color='is-info'
+                  title="ℹ No  contracts found." 
+                  color=''
                   description="You don't currently own any contracts at this time."/>
                 </div>)
       } else if (unsettledContracts.length===0 && settledContracts.length>0) {
         return (
           <div className="owned-transactions">
             <BasicNotification 
-                    title="No contracts found." 
-                    color='is-info'
+                    title="ℹ No unsettled contracts found." 
+                    color=''
                     description="You don't have any unsettled contracts."/>
              <h3 className="subtitle">Settled Contracts</h3>
               {settledContracts}
@@ -60,8 +66,8 @@ class Dash extends Component {
             {unsettledContracts}
             <h3 className="subtitle">Settled Contracts</h3>
               <BasicNotification 
-                  title="No contracts found." 
-                  color='is-info'
+                  title="ℹ No settled contracts found." 
+                  color=''
                   description="None of your contracts are settled at this time."/>
           </div>
         )
@@ -109,11 +115,13 @@ class Dash extends Component {
               null 
             :
               this.props.settlement.status === true ?
-                <BasicNotification title="👌 Settled Transaction!" description={`Transaction was settled.. ${this.props.settlement}`} color="is-success"/>
+                <BasicNotification title="👌 Settled Transaction!" description={`Transaction was settled.. Tx: ${this.props.settlement.tx.tx}`} color="is-success"/>
               :
                 <BasicNotification title="⚠️ Failed to Settle Transaction!" description={`Transaction failed to settle... ${this.props.settlement.error}`} color="is-danger"/>
             }
-            {this.props.offers === null ?
+
+            {
+              this.props.offers === null ?
               <p> Refreshing.. </p>
               :
               this.renderContractsFeed()

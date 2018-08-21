@@ -7,7 +7,6 @@ const initialState = {
    * Handles redux state objects related to marketplace actions
    */
   const dashboardReducer = (state = initialState, action) => {
-    console.log(action)
     switch (action.type) {
         
         case 'GET_OWNED_OFFERS':

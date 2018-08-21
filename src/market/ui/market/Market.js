@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import FeedContainer from '../offersfeed/FeedContainer'
-import { Link } from 'react-router'
+import BasicNotification from '../../../ui/BasicNotification'
+
+
+let filterState = "Uninsured"
 
 /** 
  * A more sophisticated layout for containing the relavent offers in the
@@ -8,8 +11,6 @@ import { Link } from 'react-router'
  * statistics for offerings.
 */
 class Market extends Component {
-
-
 
   componentDidMount() {
     console.log("Market component mounted")
@@ -21,47 +22,31 @@ class Market extends Component {
     this.props.onRefresh()
   }
 
-  
   /**
    * Used to calculate the average value per insurance offering
    * */ 
-  calculateAvgVal(offers) {
-    var sum=0;
-    if (offers.length===0|| isNaN(sum/offers)) return 0;
-
-    for (var offer in offers) {
-      if (!offers[offer].isInsured) { sum+=offers[offer].val; }
-    }
-    
-    return sum/offers.length;
+  calculateAverageUninsuredValueVal(offers) {
+    if (offers.length===0) return 0;
+    let unInsuredOffers = offers.filter((offer)=>{return offer.state==="uninsured"});
+    if (unInsuredOffers.length===0) return 0;
+    let sum = unInsuredOffers.reduce((acc,offer)=>{return acc+offer.val},0);
+    return sum/unInsuredOffers.length;
   }
 
   /**
    *  Should eventually load and present the number of UNINSURED offers
   */
-  offersAvail(offers) {
-    var available = 0;
-    for (var offer in offers) {
-
-      if(offers[offer].isInsured===false) {
-        available++;
-      }
-    }
-    return available;
+  offersAvailable(offers) {
+    return offers.filter((offer)=>{return offer.state==="uninsured"}).length
   }
 
-
-
   renderSuccessNotification(txEvent) {
-    
      return (
-         <div className="notification is-success">
-             <h4 className="title is-4">Offer insured!</h4>
-             <p>
-              Head over to the <Link to="/dashboard">  Dashboard</Link>  to view the status of your agreement.</p>
-
-             <br/>
-         </div>
+       <BasicNotification 
+          title="👌 Offer insured!"
+          color="is-success"
+          description="Head over to the the Dashboard to view the status of your agreement."
+          />
      )
    }
 
@@ -69,28 +54,31 @@ class Market extends Component {
    * Renders the Grid container with the offers, 
    * as well as a notice if there are no contract offers available.
    */
-  renderOffers() {
+  renderUninsuredOffers() {
+    
     if (this.props.offers.length===0) {
         return (
-            <div>
-            <br/><br/><br/>
-            <div className="notification is-info">
-                <p> No Offers Available.. </p>
-                <p> Why not <Link to="marketplace/new">create one?</Link></p>
-              </div>
-            </div>
+          <BasicNotification 
+            title="😕 No Offers Available.."
+            color=""
+            description="Why not create one ?"
+            />
         )
     }
 
-
-    return <div> <FeedContainer offers={this.props.offers} onClick={this.props.onPurchaseClick} /> </div>
+    
+    // Perhaps filtering in the future
+    
+    let offers = this.props.offers.filter((offer)=>{return offer.state==="uninsured"})
+    console.log("Rendering Offers ", offers)
+    return <div> <FeedContainer offers={offers} /> </div>
   }
   render() {
     return(
             <div>
               {
                 // Render notification or not.
-                this.props.insuranceSuccess ? 
+                this.props.purchaseStatus ? 
                 this.renderSuccessNotification():null
               }
 
@@ -102,7 +90,7 @@ class Market extends Component {
                       {this.props.offers === null ? 
                       <p className="title">N/A</p>
                       :
-                      <p className="title">{this.offersAvail(this.props.offers)}</p>
+                      <p className="title">{this.offersAvailable(this.props.offers)}</p>
                       }
                     </div>
                   </div>
@@ -112,7 +100,7 @@ class Market extends Component {
                       {this.props.offers === null ? 
                       <p className="title">N/A</p>
                       :
-                      <p className="title">{this.calculateAvgVal(this.props.offers).toFixed(3)} ETH</p>
+                      <p className="title">{this.calculateAverageUninsuredValueVal(this.props.offers).toFixed(3)} ETH</p>
                       }
                     </div>
                   </div>
@@ -132,18 +120,19 @@ class Market extends Component {
                     </a>
                   </div>
               </nav>
-              
-
-              <div>
+        
+              <div className="offers-feed">
                 {
                   this.props.offers === null ?
                   <p> Refreshing.. </p>
                 :
-                  this.renderOffers()
+                <div>
+                   { this.renderUninsuredOffers()}
+                    <br/>
+                    <p className='has-text-centered'>Results Filtered By:   <strong>{filterState}</strong></p>
+                  </div>
                 }
               </div>
-              
-
               </div>
             </div>
     )

@@ -22,9 +22,6 @@ const mapDispatchToProps = (dispatch) => {
  * @param {object} ownProps 
  */
 const mapStateToProps = (state, ownProps) => {
-    console.log("\n\n\n inside dash container ")
-    console.log("state ", state)
-    console.log("\n\n\n")
     return {
         offers: state.dashboard.offers,
         settlement: state.dashboard.settlement

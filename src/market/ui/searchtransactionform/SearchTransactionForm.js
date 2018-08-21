@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {reduxForm, Field} from 'redux-form';
 import {isAddress} from '../../../util/isAddress';
-import OfferContainer from '../offeritem/OfferContainer'
+import TransactionItemContainer from '../transactionitem/TransactionItemContainer'
 /**
  * Validates the form values, and passes an error object back containing specific errors
  * @param {object} values 
@@ -89,9 +89,8 @@ class SearchTransactionForm extends Component {
                     :  
                     <div className="notification is-white">
                         <h3 className="title is-3">Contract Found!</h3>
-                        <OfferContainer 
-                            {... this.props.searchContract}
-                            onClick={onClick} />
+                        <TransactionItemContainer 
+                            {... this.props.searchContract}/>
                     </div>
                 }
             </div>

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import {purchaseOffer} from '../offeritem/OfferActions'
 import {refreshOffers,clearOffers} from './MarketActions'
 import Market from './Market'
 
@@ -8,9 +7,6 @@ import Market from './Market'
  */
 const mapDispatchToProps = (dispatch) => {
     return {
-      onPurchaseClick: (address,val) => {
-        dispatch(purchaseOffer(address,val))
-      },
       onRefresh: (event) => {
         // event.preventDefault();
         dispatch(clearOffers())
@@ -27,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state, ownProps) => {
     return {
         offers: state.market.offers,
-        insuranceSuccess: state.market.insuranceSuccess
+        purchaseStatus: state.market.purchaseStatus
     }
 }
 

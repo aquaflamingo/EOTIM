@@ -6,11 +6,11 @@ import React from 'react'
  * The offer item is passed it's relv. detail to display to to the user.
  */
 const SettleableTransaction = ({ 
-  offerName, 
+  name, 
   val, 
   maxCoverage, 
   terms, 
-  isInsured,
+  state,
   address,
   handleSettlement,
   settlementCost}) => {
@@ -20,7 +20,7 @@ const SettleableTransaction = ({
                   <div className="columns">
                     <div className="column">
                       <h5 className="has-text-weight-semibold">
-                      {offerName}
+                      {name}
                       </h5>
                       <label className="label">Contract Address </label>
                       <p className="is-size-7"> {address} </p>
@@ -41,17 +41,17 @@ const SettleableTransaction = ({
                         </div>
                         <div className="column">
                         {
-                        isInsured ? 
-                        <span className="tag is-info">Insured</span>
-                        :
-                        <span className="tag is-danger">Not Insured</span>
+                        state==="insured" ? 
+                          <span className="tag is-success">Insured</span>
+                          :
+                          <span className="tag is-danger">Uninsured</span>
                         }
                         </div>
                       </div> 
 
                       <div className="card-footer">
                         <a href="#" className="card-footer-item" onClick={() => handleSettlement(address,val)}>
-                          Settle Transaction ~({isInsured ? settlementCost: 0.0 } ETH)
+                          Settle Transaction ~({state==="insured" ? settlementCost: 0.0 } ETH)
                         </a>      
                       </div>
                     </div>

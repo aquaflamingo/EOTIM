@@ -5,17 +5,16 @@ import React from 'react'
  * The basis of the application is contained in an "OfferItem"
  * The offer item is passed it's relv. detail to display to to the user.
  */
-const OfferItem = ({ 
+const TransactionItem = ({ 
   offerName, 
   description, 
   val, 
   maxCoverage, 
   terms, 
-  counterParty, 
-  isInsured,
+  state,
   contractAddress,
-  owner, 
-  onClick }) => {
+  owner,
+  onInsureClick}) => {
     
   return(
       <div className="card">
@@ -23,10 +22,13 @@ const OfferItem = ({
             <nav className="level">
               <div className="level-left">
                    <div className="level-item">
-                      {isInsured ? 
-                      <span className="tag is-success is-large"> Insured </span>  
-                      :
-                      null
+                      {state==="insured" ? 
+                        <span className="tag is-success is-large"> Insured </span>  
+                        :
+                        state === "uninsured" ? 
+                          <span className="tag is-danger is-large"> Uninsured </span>  
+                          :
+                          <span className="tag is-large"> Settled. </span>  
                       }
                     </div>
               </div>
@@ -45,7 +47,7 @@ const OfferItem = ({
                   
                     <div className="level-item">
                         <span className="tag is-info">
-                          Payout: {(val*terms/100)} ETH
+                          Payout: {(val*terms/100*maxCoverage/100)} ETH
                         </span>
                     </div>
                   </div>
@@ -56,17 +58,17 @@ const OfferItem = ({
               <div className="column is-9">
                 <p className="subtitle is-5">{description} </p>
                 <label className="label">Contract Address</label>
-                <a href={"https://ethplorer.io/address/"+contractAddress}> {contractAddress}</a>
+                <a href={`https://ethplorer.io/address/${contractAddress}`}> {contractAddress}</a>
             </div>
           
             </div>
             <div className="card-footer">
-            {isInsured ? 
-             null
-              :
-              <a href="#" className="card-footer-item" onClick={(event) => onClick(contractAddress,val*maxCoverage/100)}>Insure for {val*maxCoverage/100} ETH</a>      
+            {
+              state ==="insured" || state==="settled"? 
+              null
+                :
+                <a href="#" className="card-footer-item" onClick={() => onInsureClick(contractAddress,val*maxCoverage/100)}>Insure for {val*maxCoverage/100} ETH</a>      
             }
-                
                 <a href="#" className="card-footer-item" onClick={(event) => alert("Owner address is " + owner + ".")}>Contact</a>
               </div>
       </div>  
@@ -74,4 +76,4 @@ const OfferItem = ({
   )
 }
 
-export default OfferItem
+export default TransactionItem

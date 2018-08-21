@@ -6,11 +6,10 @@ import SettleableTransaction from './SettleableTransaction'
 
 const calculateSettlement = (offer) => {
       if (offer.state==="insured") {
-        console.log(offer)
-        console.log("Insured contract, settlement cost: ",offer.terms*offer.val*offer.maxCoverage);
+        console.log("INSURED SETTLEMENT COST: ",offer.terms/100*offer.val*offer.maxCoverage/100);
         return offer.terms/100 * offer.val * offer.maxCoverage/100;
       } else {
-        console.log("Uninsured contract settlement cost: 0.0");
+        console.log("UNINSURED SETTLEMENT COST: 0.0");
        return 0;
       }
 }
@@ -28,7 +27,7 @@ const mapStateToProps = (state, ownProps) => {
         maxCoverage: ownProps.offer.maxCoverage,
         address: ownProps.offer.address,
         settlementCost: cost,
-        insuranceStatus: ownProps.offer.isInsured,
+        state: ownProps.offer.state,
         props: ownProps
     }
 }
