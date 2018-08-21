@@ -1,3 +1,4 @@
 node_modules/
 /.gtm/
 /.idea/
+build/*
