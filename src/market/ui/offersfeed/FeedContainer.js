@@ -12,7 +12,6 @@ const FeedContainer = ({ offers }) => (
   <section className="is-medium">
     <br/>
     {
-      
           offers.map(offer => {
            return (
               <div className="no-params">

@@ -65,9 +65,6 @@ const renderField = ({
       </div>
     </div>
 
-
-const devMode = true;
-
 /** 
  * Specific Form component for building a new insurance offering 
  * Uses Redux Form
@@ -95,8 +92,6 @@ class TransactionForm extends Component {
   }
   
   render() {
-      console.log("Developer Mode?", devMode);
-
     const { handleChange, handleSubmit, value } = this.props;
     /**
      * devMode fills the form with seed values automatically 

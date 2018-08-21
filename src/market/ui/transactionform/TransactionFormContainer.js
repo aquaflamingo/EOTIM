@@ -11,8 +11,6 @@ import TransactionForm from './TransactionForm'
  * @param {object} ownProps 
  */
 const mapStateToProps = (state, ownProps) => {
-    console.log("Has contract been created?",state.market.status!=null);
-    
     return {
         createContract: state.market.createContract
     }
@@ -33,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
 /**
  * Basic container for connecting
  */
-const TransactionFormContainer = ({handleTransactionSubmit,values,createContract}) =>
+const TransactionFormContainer = ({handleTransactionSubmit,createContract}) =>
     <TransactionForm 
         createContract={createContract}
         onSubmit={values => handleTransactionSubmit(values)}/>

@@ -44,10 +44,9 @@ export function purchaseOffer(address,val) {
             /* Watch for transaction insurance event */
             var inst = instance.TransactionStatusChange();
             inst.watch(function(error, result){
-              console.log("Transaction watching for insured status.",error,result)
               if (!error)
               {
-                  console.log("Offer was insured successfully. Tx receipt: ", result)
+                  console.log("! Transaction Status Change:\n", result.args.message)
               } else {
                   // Error
                   console.log("Failed to insure contract")
@@ -56,16 +55,13 @@ export function purchaseOffer(address,val) {
             })
 
             var ethVal = web3.toWei(val,'ether');
-            console.log("About to insure..", ethVal);
+            console.log("About to insure for..", ethVal, " wei");
             
             instance.insure({from:coinbase,value:ethVal})
                   .then(function(results) {
-                      console.log("Success! Insurance offer was purchased!")
-                      /* dispatch contract insured */
                       dispatch(insuredTransaction(results))
                     })
                     .catch(function(err) {
-                      
                       console.log("Error this contract cannot be insured...", err)
                   })
 

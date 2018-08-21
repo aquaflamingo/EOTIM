@@ -66,7 +66,6 @@ class Market extends Component {
         )
     }
 
-    
     // Perhaps filtering in the future
     
     let offers = this.props.offers.filter((offer)=>{return offer.state==="uninsured"})

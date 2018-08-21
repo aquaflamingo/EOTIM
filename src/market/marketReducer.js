@@ -19,7 +19,7 @@ const initialState = {
                 purchaseStatus: action.payload
             })
         case 'CONTRACT_CREATE':
-            console.log("Contract created. Transaction information: ",action.payload)
+            console.log("INSIDE MARKET REDUCER. action: ",action.payload)
             return Object.assign({}, state, {
                 createContract: action.payload
               })

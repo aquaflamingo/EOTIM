@@ -50,7 +50,7 @@ const SettleableTransaction = ({
                       </div> 
 
                       <div className="card-footer">
-                        <a href="#" className="card-footer-item" onClick={() => handleSettlement(address,val)}>
+                        <a href="#" className="card-footer-item" onClick={() => handleSettlement(address,settlementCost)}>
                           Settle Transaction ~({state==="insured" ? settlementCost: 0.0 } ETH)
                         </a>      
                       </div>

@@ -23,7 +23,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
      onInsureClick: (address,val) => {
-       console.log("on insure clicked... ", dispatch)
         dispatch(purchaseOffer(address,val))
       }
     }
