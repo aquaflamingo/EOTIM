@@ -2,7 +2,9 @@ import store from '../../../store'
 import InsurableTransactionFactory from '../../../../build/contracts/InsurableTransactionFactory.json'
 
 const contract = require('truffle-contract')
-import {fetchOfferDetails, fakeCreateTransaction} from '../../../util/contractUtils'
+import {fetchOfferDetails
+    //  fakeCreateTransaction
+    } from '../../../util/contractUtils'
 
 
 export const GET_OWNED_OFFERS = "GET_OWNED_OFFERS"
@@ -15,17 +17,18 @@ function ownedOffersRefreshed(offers) {
     }
 }
 
-function fake() {
-    return function(dispatch) {
-        fakeCreateTransaction()
-        .then(function(results){
-            console.log("Results are ", results);  
-            dispatch(ownedOffersRefreshed(results))
-        }).catch(function(err) {
-            console.log(err)
-        })
-    }
-}
+// Only for Debugging 
+// function fake() {
+//     return function(dispatch) {
+//         fakeCreateTransaction()
+//         .then(function(results){
+//             console.log("Results are ", results);  
+//             dispatch(ownedOffersRefreshed(results))
+//         }).catch(function(err) {
+//             console.log(err)
+//         })
+//     }
+// }
 
 function fetchOwnedOffers() {
     let web3 = store.getState().web3.web3Instance
@@ -71,10 +74,10 @@ export function getOwnedOffers() {
 }
 
 
-export function createFake() {
-    return function(dispatch) {
-        dispatch(fake())
-    }
-}
+// export function createFake() {
+//     return function(dispatch) {
+//         dispatch(fake())
+//     }
+// }
 
   

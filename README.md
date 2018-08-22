@@ -11,25 +11,31 @@ Proof of Concept for an p2p open market for insuring escrow based transactions o
 ```
 
 2. `cd eotim && npm install`
-3. Download testrpc
-4. Start Local Ethereum instance: 
-    run `testrpc`
-5. Deploy contracts:
+3. Start [`ganache-cli`](https://github.com/trufflesuite/ganache-cli)
+4. Deploy contracts:
     run `truffle migrate --reset`
 5. Start the server: 
     `npm run start`
 6. Navigate over to http://localhost:3000
 7. Make sure you have MetaMask
-8. Input your `menomic` -> check testrpc
-9. Make sure network on 8545 (testrpc)
-10. ???
-11. Profit??? 
+8. ???
+9. Profit??? 
 
 ## View 
 
 ![2](/assets/eotim-ex-2.gif)
 
 [View More](/assets/eotim-ex-1.gif)
+
+
+## Extension Possibilities // TODOs
+
+- [ ] Escalation of claims on transaction to disburse insurance back 🔥
+- [ ] Proof of Goods Arrival // defaulting of payment to counter party 🔥
+- [ ] Registry Contract with insured, owned, settled contracts for queries
+- [ ] View my insured transactions view 🔥
+- [ ] Better architecture with registry and action relayer
+- [ ] Filtering market contracts 
 
 ## Author
 

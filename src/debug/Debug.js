@@ -17,41 +17,6 @@ class Debug extends Component {
         this.setState({value: event.target.value});
     }
 
-
-
-    refreshOffer(val) {
-        let web3 = store.getState().web3.web3Instance
-        console.log("Refresh offer")
-        // Double-check web3's status.
-        if (typeof web3 !== 'undefined') {
-
-            return function (dispatch) {
-                const factory = contract(InsurableTransactionFactory)
-                factory.setProvider(web3.currentProvider)
-
-                factory.deployed().then(function (instance) {
-                    instance.get([1])
-                        .then(function (result) {
-
-                            console.log("Offers are refreshed!! , ", result)
-
-                        })
-                        .catch(function (err) {
-                            // If error, go to signup page.
-                            console.error('Error in getting factory ', err)
-
-                        })
-                })
-            }
-        } else {
-            console.error('Web3 is not initialized.');
-        }
-    }
-
-    componentDidMount() {
-        this.refreshOffer(0)
-    }
-
     handleSubmit(event) {
         alert("clicked ",this.state.value)
         this.refreshOffer(this.state.value)

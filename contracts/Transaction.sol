@@ -26,7 +26,11 @@ contract Transaction  is Killable {
     // owner
     address public owner;
 
-    enum TransactionState { Uninsured, Insured, Settled }
+    // DEMO PURPOSES ONLY:
+    string public demoClaimHash = "notreal";
+    //
+
+    enum TransactionState { Uninsured, Insured, Settled, ClaimPending }
     TransactionState public contract_state;
 
     event TransactionStatusChange(string message, TransactionState state);
@@ -160,8 +164,7 @@ contract Transaction  is Killable {
         return true;
     }
 
-    //TODO Claims 
-    // function makeClaim() {}
+    
 
     /// @dev gets the balance of the contract
     /// @return _balance balance of this contract
@@ -172,4 +175,24 @@ contract Transaction  is Killable {
       /// @dev fallback payable function
     function() public payable {}
 
+
+    /// =================== NOT REAL =============================
+
+    /// @dev THIS IS FOR FUN PURPOSES ONLY & WOULD BE DELETED IN A REAL APP
+    /// ---- a true clams process would need to provide a real IPFS document hash
+    /// ---- and a set of validations would be made using perhaps an oracle
+    /// ---- in order to execute the claims payback
+    // function fMakeDemoClaim(string proofHash) external  {
+    //     require(contract_state == TransactionState.Insured, "Transaction must be insured to escalate to make a claim");
+    //     require(keccak256(proofHash) == keccak256(demoClaimHash), "Evidence is not substantial enough to escalate to claims process");
+    //     // Proof has been provided yay, transfer coverage to defaultee!
+
+    //     address(counter_party).transfer(current_coverage);
+    //     current_coverage = 0;
+
+    //     contract_state = TransactionState.Settled;
+    //     emit TransactionStatusChange("The claim on the contract has been settled", contract_state);
+    // }
+
+    /// ==========================================================
 }

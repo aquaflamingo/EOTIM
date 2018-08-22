@@ -127,10 +127,10 @@ class Dash extends Component {
               this.renderContractsFeed()
             }
 
-            <h3> Debug Land </h3>
+            {/* <h3> Debug Land </h3>
               <button href="#" className="button is-info is-medium" onClick={(ev)=>this.props.onFakeClick()}>
               Fake Transaction 
-              </button>
+              </button> */}
           </div>
         )
     }

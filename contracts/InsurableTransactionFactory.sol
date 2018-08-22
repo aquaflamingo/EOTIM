@@ -6,15 +6,12 @@ contract InsurableTransactionFactory {
     address public owner;
     mapping(address => address[]) contractsOwned;
     address[] contracts;
-
-
+  
     constructor()  public {
         owner = msg.sender;
-    
     }
 
     event NewContractCreated (string msg, address contractAddress);
-
 
     /// @dev A lookup method for finding all contracts currently owned by parameter `address`
     /// @param _address address to lookup
@@ -23,10 +20,11 @@ contract InsurableTransactionFactory {
         return contractsOwned[_address];
     }
 
+
     /// @dev counts number of contracts currently in the factory
     /// @return _count: count of contracts currently in the factory
     function count() public view returns (uint _count) { 
-        return contractsOwned[msg.sender].length;
+        return contracts.length;
     }
 
     /// @dev Factory method to create the insurable Transaction contracts
@@ -47,7 +45,9 @@ contract InsurableTransactionFactory {
         
         Transaction newContract = new Transaction(counterParty,name,desc,max,premium,msg.sender,uint(msg.value));
         contracts.push(newContract);
+
         contractsOwned[msg.sender].push(newContract);
+        
         address(newContract).transfer(msg.value);
         emit NewContractCreated("Contract created successfully.", newContract);
         return newContract;
