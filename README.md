@@ -2,9 +2,9 @@
 
 Proof of Concept for an p2p open market for insuring escrow based transactions on the blockchain. 
 
-## Hypothentical Scenario
+## Hypothetical Scenario
 
-Suppose `Party A` is a malevolent corperate competitor to `Party B` in the manufacturing industry. In the pursuit of total market domination, `Party A` attempts to grief `Party B` by increasing it's inventory loss and accounts receivables default rate by making multiple orders and withdrawing the payment on arrival
+Suppose `Party A` is a malevolent corporate competitor to `Party B` in the manufacturing industry. In the pursuit of total market domination, `Party A` attempts to grief `Party B` by increasing it's inventory loss and accounts receivables default rate by making multiple orders and withdrawing the payment at the last minute.
 
 Being suspicious, `Party B` demands that it will only go through with the transaction if `Party A` creates an *insured* escrow transaction. In the event that `Party B` sends the goods, but `Party A` decides to default on the transaction, a third party `Party C` provides insurance up to the maximum value of the transaction to be paid out to `Party B` for inventory loss expenses.
 
