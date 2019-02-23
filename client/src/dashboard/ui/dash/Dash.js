@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import SettleableTransactionContainer from './dashboard/ui/settleable-transaction/SettleableTransactionContainer'
-import BasicNotification from './ui/BasicNotification';
+import SettleableTransactionContainer from 'dashboard/ui/settleable-transaction/SettleableTransactionContainer'
+import BasicNotification from 'ui/BasicNotification';
 
 class Dash extends Component {
   

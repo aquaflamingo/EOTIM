@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 // Styles
 
-import './css/bulma.css'
+import 'css/bulma.css'
 import './App.css'
 
 /**
@@ -14,15 +14,15 @@ class App extends Component {
     const Links = () =>  {
       return(   
         <div className="navbar-end">
-            {/* <a className="navbar-item">
+            <a className="navbar-item">
               <Link to="/dashboard" className="navbar-item">Dashboard</Link>
             </a>
-            {/* <a className="navbar-item">
+            <a className="navbar-item">
               <Link to="/profile" className="navbar-item">Profile</Link>
-            </a> */}
+            </a>
             <a className="navbar-item">
               <Link to="/marketplace" className="navbar-item">Market</Link>
-            </a> */}
+            </a>
           </div>
       )
     }
@@ -30,7 +30,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/* <div className="container">
+        <div className="container">
             <nav className="navbar is-white">
             
             <div id="navMenu" className="navbar-menu">
@@ -60,7 +60,7 @@ class App extends Component {
                 <br/>
               </div>
           </footer>
-        </section> */}
+        </section>
       </div>
     );
   }

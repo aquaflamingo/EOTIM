@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {reduxForm, Field} from 'redux-form';
-import {isAddress} from './util/isAddress';
-import { Link } from 'react-router'
+import {isAddress} from 'util/isAddress';
+import { Link } from 'react-router-dom'
 
 /**
  * Validates the form values, and passes an error object back containing specific errors

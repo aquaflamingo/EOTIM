@@ -1,6 +1,6 @@
 import React from 'react'
 
-import TransactionItemContainer from './market/ui/transactionitem/TransactionItemContainer'
+import TransactionItemContainer from 'market/ui/transactionitem/TransactionItemContainer'
 
 /**
  * Grid container creates the list of offers - eventually to become a grid based 

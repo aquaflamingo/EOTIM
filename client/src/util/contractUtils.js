@@ -1,7 +1,7 @@
-import Transaction from './contracts/Transaction.json'
-import InsurableTransactionFactory from './ontracts/InsurableTransactionFactory.json'
+import Transaction from 'contracts/Transaction.json'
+import InsurableTransactionFactory from 'contracts/InsurableTransactionFactory.json'
 
-import store from './store'
+import store from 'store'
 const contract = require('truffle-contract')
 const UNINSURED = 0;
 const INSURED = 1;

@@ -1,7 +1,6 @@
-import InsurableTransactionFactory from './contracts/InsurableTransactionFactory.json'
-import {fetchOfferDetails} from './util/contractUtils'
-
-import store from './store'
+import InsurableTransactionFactory from 'contracts/InsurableTransactionFactory.json'
+import {fetchOfferDetails} from 'util/contractUtils'
+import store from 'store'
 const contract = require('truffle-contract')
 export const REFRESH_OFFERS = "REFRESH_OFFERS"
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {reduxForm, Field} from 'redux-form';
-import {isAddress} from './util/isAddress';
-import TransactionItemContainer from './market/ui/transactionitem/TransactionItemContainer'
+import {isAddress} from 'util/isAddress';
+import TransactionItemContainer from 'market/ui/transactionitem/TransactionItemContainer'
 /**
  * Validates the form values, and passes an error object back containing specific errors
  * @param {object} values 

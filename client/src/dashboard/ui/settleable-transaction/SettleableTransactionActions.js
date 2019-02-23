@@ -1,5 +1,5 @@
-import Transaction from './contracts/Transaction.json'
-import store from './store'
+import Transaction from 'contracts/Transaction.json'
+import store from 'store'
 
 const contract = require('truffle-contract')
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TransactionFormContainer from './market/ui/transactionform/TransactionFormContainer'
+import TransactionFormContainer from 'market/ui/transactionform/TransactionFormContainer'
 
 
 class NewTransaction extends Component {

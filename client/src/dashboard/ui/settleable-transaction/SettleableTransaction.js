@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 /**
  * The basis of the application is contained in an "OfferItem"
  * The offer item is passed it's relv. detail to display to to the user.

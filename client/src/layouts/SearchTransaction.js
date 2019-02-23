@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SearchTransactionFormContainer from './market/ui/searchtransactionform/SearchTransactionFormContainer'
+import SearchTransactionFormContainer from 'market/ui/searchtransactionform/SearchTransactionFormContainer'
 
 
 class SearchTransaction extends Component {

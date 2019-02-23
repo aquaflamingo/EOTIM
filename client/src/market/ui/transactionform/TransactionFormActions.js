@@ -1,8 +1,8 @@
-import store from './store'
-import InsurableTransactionFactory from './contracts/InsurableTransactionFactory.json'
-import Transaction from './contracts/Transaction.json'
-const contract = require('truffle-contract')
+import store from 'store'
+import InsurableTransactionFactory from 'contracts/InsurableTransactionFactory.json'
+import Transaction from 'contracts/Transaction.json'
 
+const contract = require('truffle-contract')
 export const CONTRACT_CREATE = 'CONTRACT_CREATE'
 export const CONTRACT_NOT_FOUND = 'CONTRACT_NOT_FOUND'
 export const CONTRACT_FOUND = 'CONTRACT_FOUND'

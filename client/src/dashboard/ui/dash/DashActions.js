@@ -1,10 +1,7 @@
 import store from 'store'
-import InsurableTransactionFactory from './contracts/InsurableTransactionFactory.json'
-
+import InsurableTransactionFactory from 'contracts/InsurableTransactionFactory.json'
+import {fetchOfferDetails} from 'util/contractUtils'
 const contract = require('truffle-contract')
-import {fetchOfferDetails} from './util/contractUtils'
-
-
 export const GET_OWNED_OFFERS = "GET_OWNED_OFFERS"
 
 
@@ -14,19 +11,6 @@ function ownedOffersRefreshed(offers) {
         payload: offers
     }
 }
-
-// Only for Debugging 
-// function fake() {
-//     return function(dispatch) {
-//         fakeCreateTransaction()
-//         .then(function(results){
-//             console.log("Results are ", results);  
-//             dispatch(ownedOffersRefreshed(results))
-//         }).catch(function(err) {
-//             console.log(err)
-//         })
-//     }
-// }
 
 function fetchOwnedOffers() {
     let web3 = store.getState().web3.web3Instance

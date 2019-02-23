@@ -1,8 +1,6 @@
-import Transaction from './contracts/Transaction.json'
-import store from './store'
+import Transaction from 'contracts/Transaction.json'
+import store from 'store'
 export const REFRESH_OFFERS = "REFRESH_OFFERS"
-import {parseTransactionDetails} from "./util/contractUtils"
-
 
 const contract = require('truffle-contract')
 

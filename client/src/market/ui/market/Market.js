@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import FeedContainer from './market/ui/offersfeed/FeedContainer'
-import BasicNotification from './ui/BasicNotification'
+import FeedContainer from 'market/ui/offersfeed/FeedContainer'
+import BasicNotification from 'ui/BasicNotification'
 
 
 let filterState = "Uninsured"

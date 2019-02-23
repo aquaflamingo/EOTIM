@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import SearchTransactionForm from './SearchTransactionForm'
-import {lookupTransaction} from './market/ui/transactionform/TransactionFormActions'
+import {lookupTransaction} from 'market/ui/transactionform/TransactionFormActions'
 
 /**
  * Maps the state objects to props
