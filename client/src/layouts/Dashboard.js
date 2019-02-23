@@ -10,6 +10,7 @@ class Dashboard extends Component {
 
     return(
       <div className="container">
+      hello world
       <br/><br/>
       <div className="columns">
         <div className="column is-3">

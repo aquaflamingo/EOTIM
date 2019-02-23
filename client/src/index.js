@@ -9,8 +9,7 @@ import getWeb3 from 'util/web3/getWeb3'
 // Layouts
 import App from './App'
 
-import Home from 'layouts/Home'
-import Dashboard from 'layouts/Dashboard'
+import Dashboard from './layouts/Dashboard'
 import Marketplace from 'layouts/Marketplace'
 import NewTransaction from 'layouts/NewTransaction'
 import SearchTransaction from 'layouts/SearchTransaction'
@@ -29,7 +28,6 @@ ReactDOM.render((
   <ConnectedRouter history={history}>
       <Switch>
         <Route exact path="/" component={App}/>
-        <Route exact path="/home" component={Home} />
         <Route path="dashboard" component={Dashboard} />
         {/* <Route path="profile" component={Profile} /> */}
         <Route path="marketplace" component={Marketplace} />
