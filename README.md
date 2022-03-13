@@ -1,4 +1,5 @@
 # Ethereum Open Transaction Insurance Market (EOTIM)
+[![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](https://www.repostatus.org/badges/latest/abandoned.svg)](https://www.repostatus.org/#abandoned)
 
 Proof of Concept for an p2p open market for insuring escrow based transactions on the blockchain. 
 
@@ -15,7 +16,7 @@ If, however, the transaction goes through, `Party C` is paid a premium on the tr
 1. Clone repo
 
 ```
-    $ git clone https://github.com/robertsimoes/Ethereum-Open-Transaction-Insurance-Market eotim
+    $ git clone https://github.com/aquaflamingo/Ethereum-Open-Transaction-Insurance-Market eotim
 ```
 
 2. `cd eotim && npm install`
@@ -44,10 +45,6 @@ If, however, the transaction goes through, `Party C` is paid a premium on the tr
 - [ ] View my insured transactions view 🔥
 - [ ] Better architecture with registry and action relayer
 - [ ] Filtering market contracts 
-
-## Author
-
-[@RobertSimoes](www.robertsimoes.com)
 
 ## Technology
 
